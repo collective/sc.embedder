@@ -20,8 +20,6 @@
 
             <div tal:replace="structure provider:plone.abovecontentbody" />
 
-           <p> TEMPLATE DE MULTIMEDIA </p>
-
             <tal:block repeat="widget view/widgets/values" >
                     <div class="field" tal:condition="python:widget.__name__ not in ('',[],{})">
                         <label tal:content="structure widget/label" />

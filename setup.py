@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import os
 
 version = '1.0a1.dev0'
-description="A multimedia content type for Plone"
+description = "A multimedia content type for Plone"
 long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "INSTALL.txt")).read() + "\n" + \
                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
@@ -35,7 +35,7 @@ setup(name='sc.content.embedder',
       url='http://www.simplesconsultoria.com.br',
       license='gpl',
       packages=find_packages('src'),
-      package_dir = {'': 'src'},
+      package_dir={'': 'src'},
       namespace_packages=['sc', 'sc.content'],
       include_package_data=True,
       zip_safe=False,
@@ -44,6 +44,7 @@ setup(name='sc.content.embedder',
           'plone.behavior',
           'plone.app.dexterity>=1.2.1',
           'plone.app.referenceablebehavior',
+          'collective.dexteritytextindexer==1.4.1',
       ],
       extras_require={
         'test': ['plone.app.testing'],

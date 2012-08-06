@@ -1,16 +1,17 @@
 # -*- coding:utf-8 -*-
-import logging
+
 from five import grok
 from zope import schema
-from zope.schema.vocabulary import SimpleVocabulary
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.fieldproperty import FieldProperty
 
 from plone.directives import dexterity
 
 from plone.directives import form
 
 from plone.namedfile.field import NamedImage
+
+from plone.app.textfield import RichText
+
+from collective import dexteritytextindexer
 
 from sc.content.embedder import MessageFactory as _
 
@@ -26,6 +27,8 @@ class IMultimedia(form.Schema):
     """ A representation of a Multimedia content type
     """
 
+    dexteritytextindexer.searchable('body_txt', 'alt_cont')
+    form.order_before(**{'url': '*'})
     url = schema.TextLine(
         title=_(u"Multimedia URL"),
         description=_(u"The URL for your multimedia file. Can be a URL " + \
@@ -40,8 +43,8 @@ class IMultimedia(form.Schema):
         required=False,
         )
 
-    heigth = schema.Int(
-        title=_(u"Heigth"),
+    height = schema.Int(
+        title=_(u"Height"),
         description=_(u""),
         required=False,
         )
@@ -51,10 +54,15 @@ class IMultimedia(form.Schema):
         description=_(u""),
         default=u'Top',
         required=True,
-        values=[u'Top',u'Bottom',u'Left',u'Right'],
+        values=[u'Top', u'Bottom', u'Left', u'Right'],
         )
 
-    alt_cont = schema.TextLine(
+    body_txt = RichText(
+        title=_(u"Body text"),
+        required=False,
+        )
+
+    alt_cont = RichText(
         title=_(u"Alternative content"),
         description=_(u"Description or transcription to an individual" + \
                       u"that is no able to see or hear."),

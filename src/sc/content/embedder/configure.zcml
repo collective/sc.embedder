@@ -11,14 +11,21 @@
     <includeDependencies package="." />
     <!--  <i18n:registerTranslations directory="locales" /> -->
 
+    
+    <grok:grok package="." />
+
+    <include file="profiles.zcml"/>
+
     <!-- Permissions -->
     <permission
        id="sc.content.embedder.AddMultimedia"
        title="sc.content.embedder: Add Multimedia"
     />
 
-    <grok:grok package="." />
-
-    <include file="profiles.zcml"/>
+    <browser:resource
+      name="multimedia.css"
+      file="multimedia.css"
+      layer=".interfaces.IEmbedderLayer"
+    />
 
 </configure>
