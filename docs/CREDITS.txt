@@ -1,6 +1,9 @@
-Note:  place names and roles of the people who contribute to this package
-       in this file, one to a line, like so:
+Share and Enjoy
+---------------
 
-- Joe Schmoe, Original Author
-- Bob Slob, contributed monkey patches
-- Jane Main, wrote flibberty module
+sc.content.embedder would not have been possible without the contribution
+of the following people:
+
+- Alejandro Pereira
+
+Development sponsored by Simples Consultoria.
