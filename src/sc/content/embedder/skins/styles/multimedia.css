@@ -1,0 +1,64 @@
+/* Css for Multimedia content type */
+
+/* Add form */
+.template-sc\.embedder\.multimedia #formfield-form-widgets-width{
+    float: left;
+    margin-right: 10px;
+}
+
+.template-sc\.embedder\.multimedia #formfield-form-widgets-width input,
+.template-sc\.embedder\.multimedia #formfield-form-widgets-height input{
+    width: 100px;
+}
+
+.template-sc\.embedder\.multimedia #formfield-form-widgets-height{
+    display: inline;
+    width: 100px;
+}
+
+
+/* View */
+.portaltype-sc-embedder-multimedia .documentDescription{
+    margin-bottom: 5px !important;
+}
+
+.portaltype-sc-embedder-multimedia .documentByLine{
+    margin-bottom: 20px;
+}
+
+.top_embedded, .left_embedded, .right_embedded, .bottom_embedded{
+    width:400px;
+    height: 150px;
+    border:1px solid;
+}
+
+.left_embedded{
+    float:left;
+    margin: 0px 10px 10px 0px;
+}
+
+.right_embedded{
+    float:right;
+    margin: 0px 0px 10px 10px;
+}
+
+.top_embedded{
+    margin-bottom: 10px;
+}
+
+#embed_body_text{
+    display:inline;
+}
+
+#alt_cont {
+    text-align: right;
+}
+
+#alt_cont a{
+    color: #3a679f;
+    text-decoration: underline;
+    font-weight: bold;
+}
+#alt_cont .alt_cont_text{
+    text-align: left;
+}

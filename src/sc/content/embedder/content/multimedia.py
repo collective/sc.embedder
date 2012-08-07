@@ -86,3 +86,10 @@ class View(dexterity.DisplayForm):
     grok.context(IMultimedia)
     grok.require('zope2.View')
     grok.name('view')
+
+    def render_player_tag(self):
+        """ Returns the tag of the embed multimedia.
+        """
+        pos = self.context.player_pos
+        tag = '<div class="%s_embedded">Player display</div>' % pos.lower()
+        return tag

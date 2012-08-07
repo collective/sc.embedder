@@ -15,17 +15,12 @@
     <grok:grok package="." />
 
     <include file="profiles.zcml"/>
+    <include file="skins.zcml"/>
 
     <!-- Permissions -->
     <permission
        id="sc.content.embedder.AddMultimedia"
        title="sc.content.embedder: Add Multimedia"
-    />
-
-    <browser:resource
-      name="multimedia.css"
-      file="multimedia.css"
-      layer=".interfaces.IEmbedderLayer"
     />
 
 </configure>
