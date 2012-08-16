@@ -1,19 +1,32 @@
 /* Css for Multimedia content type */
 
 /* Add form */
-.template-sc\.embedder\.multimedia #formfield-form-widgets-width{
+.template-sc\.embedder\.multimedia #formfield-form-widgets-width,
+.portaltype-sc-embedder-multimedia #formfield-form-widgets-width{
     float: left;
     margin-right: 10px;
 }
 
 .template-sc\.embedder\.multimedia #formfield-form-widgets-width input,
-.template-sc\.embedder\.multimedia #formfield-form-widgets-height input{
+.template-sc\.embedder\.multimedia #formfield-form-widgets-height input,
+.portaltype-sc-embedder-multimedia #formfield-form-widgets-width input,
+.portaltype-sc-embedder-multimedia #formfield-form-widgets-height input{
     width: 100px;
 }
 
-.template-sc\.embedder\.multimedia #formfield-form-widgets-height{
+.template-sc\.embedder\.multimedia #formfield-form-widgets-height,
+.portaltype-sc-embedder-multimedia #formfield-form-widgets-height{
     display: inline;
     width: 100px;
+}
+.template-sc\.embedder\.multimedia #formfield-form-widgets-url,
+.portaltype-sc-embedder-multimedia #formfield-form-widgets-url{
+    margin-bottom: -1px;
+}
+
+.template-sc\.embedder\.multimedia #formfield-form-widgets-url #form-widgets-url,
+.portaltype-sc-embedder-multimedia #formfield-form-widgets-url #form-widgets-url{
+    float: left;
 }
 
 
@@ -24,12 +37,6 @@
 
 .portaltype-sc-embedder-multimedia .documentByLine{
     margin-bottom: 20px;
-}
-
-.top_embedded, .left_embedded, .right_embedded, .bottom_embedded{
-    width:400px;
-    height: 150px;
-    border:1px solid;
 }
 
 .left_embedded{

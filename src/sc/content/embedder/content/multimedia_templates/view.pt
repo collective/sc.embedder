@@ -21,15 +21,17 @@
             <div tal:replace="structure provider:plone.abovecontentbody" />
 
             <div tal:condition='python:context.player_pos != "Bottom"'
-                 tal:replace="structure view/render_player_tag"/>
+                 tal:attributes="class view/get_player_pos_class">
+                 <span tal:replace="structure context/html"/>
+            </div>
 
             <div id="embed_body_text" class="field" tal:condition="context/body_txt">
                 <div tal:content="structure view/w/body_txt/render" />
             </div>
 
             <div tal:condition='python:context.player_pos == "Bottom"'
-                 class="bottom_embedded">
-                 Player display
+                 class="bottom_embedded" >
+                 <span tal:replace="structure context/html" />
             </div>
 
             <div id="alt_cont" class="field" tal:condition="context/alt_cont">

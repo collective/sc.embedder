@@ -45,6 +45,7 @@ setup(name='sc.content.embedder',
           'plone.app.dexterity>=1.2.1',
           'plone.app.referenceablebehavior',
           'collective.dexteritytextindexer==1.4.1',
+          'collective.oembed',
       ],
       extras_require={
         'test': ['plone.app.testing'],

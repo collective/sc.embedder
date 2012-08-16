@@ -1,19 +1,38 @@
 # -*- coding:utf-8 -*-
 
+import zope.lifecycleevent
+
 from five import grok
-from zope import schema
+
+from zope import schema, component
+from zope.event import notify
+
+from z3c.form import button
+from z3c.form import field
+
+from Products.CMFCore.interfaces import IFolderish
+
+from Products.statusmessages.interfaces import IStatusMessage
+
+from plone.app.textfield import RichText
 
 from plone.directives import dexterity
-
 from plone.directives import form
 
 from plone.namedfile.field import NamedImage
 
-from plone.app.textfield import RichText
+from plone.dexterity.events import AddCancelledEvent
+from plone.dexterity.events import EditFinishedEvent
+from plone.dexterity.events import EditCancelledEvent
 
 from collective import dexteritytextindexer
 
+from collective.oembed.interfaces import IConsumer
+
+from sc.content.embedder.config import API_ENDPOINTS
 from sc.content.embedder import MessageFactory as _
+
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 player_options = {'top': u'Top',
@@ -49,6 +68,12 @@ class IMultimedia(form.Schema):
         required=False,
         )
 
+    html = schema.TextLine(
+        title=_(u"Embed html code"),
+        description=_(u"This code take care of render the embed multimedia item"),
+        required=False,
+        )
+
     player_pos = schema.Choice(
         title=_(u"Player position"),
         description=_(u""),
@@ -66,7 +91,7 @@ class IMultimedia(form.Schema):
         title=_(u"Alternative content"),
         description=_(u"Description or transcription to an individual" + \
                       u"that is no able to see or hear."),
-        required=True,
+        required=False,
         )
 
     image = NamedImage(
@@ -82,14 +107,129 @@ class Multimedia(dexterity.Item):
     grok.implements(IMultimedia)
 
 
+class AddForm(dexterity.AddForm):
+    grok.name('sc.embedder.multimedia')
+
+    template = ViewPageTemplateFile('multimedia_templates/' + \
+                                    'sc.embedder.multimedia.pt')
+
+    @button.buttonAndHandler(_('Save'), name='save')
+    def handleAdd(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        obj = self.createAndAdd(data)
+        if obj is not None:
+            # mark only as finished if we get the new object
+            self._finishedAdd = True
+            IStatusMessage(self.request).addStatusMessage(
+                                                _(u"Item created"), "info")
+
+    @button.buttonAndHandler(_(u'Cancel'), name='cancel')
+    def handleCancel(self, action):
+        IStatusMessage(self.request).addStatusMessage(_(u"Add New Item operation cancelled"), "info")
+        self.request.response.redirect(self.nextURL())
+        notify(AddCancelledEvent(self.context))
+
+    @button.buttonAndHandler(_('Load'), name='load')
+    def handleAdd(self, action):
+        fields = ['width', 'height', 'description', 'title', 'html']
+        url = self.widgets['url'].value
+        if url != '':
+            consumer = component.getUtility(IConsumer)
+            data = consumer.get_data(url, maxwidth=None, maxheight=None,
+                                    format='json')
+            if data is None:
+                return
+            for field in fields:
+                if data.has_key(field):
+                    value = data[field]
+                    if field == 'description':
+                        field = 'IDublinCore.description'
+                    elif field == 'title':
+                        field = 'IDublinCore.title'
+                    self.widgets[field].value = value
+
+    def get_url_widget(self):
+        widget = [key for key in self.widgets.values() \
+                 if key.id == 'form-widgets-url']
+        if widget != []:
+            url_w = widget[0]
+            return url_w
+
+    def get_load_action(self):
+        action = [key for key in self.actions.values() \
+                 if key.id == 'form-buttons-load']
+        if action != []:
+            load = action[0]
+            return load
+
+
+class EditForm(dexterity.EditForm):
+    grok.context(IMultimedia)
+    template = ViewPageTemplateFile('multimedia_templates/' + \
+                                    'edit.pt')
+
+    @button.buttonAndHandler(_(u'Save'), name='save')
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+        self.applyChanges(data)
+        IStatusMessage(self.request).addStatusMessage(_(u"Changes saved"), "info")
+        self.request.response.redirect(self.nextURL())
+        notify(EditFinishedEvent(self.context))
+
+    @button.buttonAndHandler(_(u'Cancel'), name='cancel')
+    def handleCancel(self, action):
+        IStatusMessage(self.request).addStatusMessage(_(u"Edit cancelled"), "info")
+        self.request.response.redirect(self.nextURL())
+        notify(EditCancelledEvent(self.context))
+
+    @button.buttonAndHandler(_('Load'), name='load')
+    def handleAdd(self, action):
+        fields = ['width', 'height', 'description', 'title', 'html']
+        url = self.widgets['url'].value
+        if url != '':
+            consumer = component.getUtility(IConsumer)
+            data = consumer.get_data(url, maxwidth=None, maxheight=None,
+                                    format='json')
+            if data is None:
+                return
+            for field in fields:
+                if data.has_key(field):
+                    value = data[field]
+                    if field == 'description':
+                        field = 'IDublinCore.description'
+                    elif field == 'title':
+                        field = 'IDublinCore.title'
+                    self.widgets[field].value = value
+
+    def get_url_widget(self):
+        widget = [key for key in self.widgets.values() \
+                 if key.id == 'form-widgets-url']
+        if widget != []:
+            url_w = widget[0]
+            return url_w
+
+    def get_load_action(self):
+        action = [key for key in self.actions.values() \
+                 if key.id == 'form-buttons-load']
+        if action != []:
+            load = action[0]
+            return load
+
+
 class View(dexterity.DisplayForm):
     grok.context(IMultimedia)
     grok.require('zope2.View')
     grok.name('view')
 
-    def render_player_tag(self):
-        """ Returns the tag of the embed multimedia.
+    def get_player_pos_class(self):
+        """ Returns the css class based on the position of the embed item.
         """
         pos = self.context.player_pos
-        tag = '<div class="%s_embedded">Player display</div>' % pos.lower()
-        return tag
+        css_class = "%s_embedded" % pos.lower()
+        return css_class

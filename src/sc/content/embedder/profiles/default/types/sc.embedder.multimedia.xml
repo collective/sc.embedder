@@ -7,7 +7,7 @@
   <!-- Basic metadata -->
   <property name="title" i18n:translate="">Multimedia</property>
   <property name="description" i18n:translate="">A multimedia</property>
-<!--   <property name="content_icon">++resource++collective.person/user.png</property> -->
+  <property name="content_icon">multimedia.png</property>
   <property name="factory">sc.embedder.multimedia</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
