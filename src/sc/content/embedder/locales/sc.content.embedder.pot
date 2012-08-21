@@ -1,0 +1,110 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-03-09 19:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sc.content.embedder\n"
+
+#: sc/content/embedder/configure.zcml:9
+msgid "sc.content.embedder: Add Multimedia"
+msgstr ""
+
+#: sc/content/embedder/profiles.zcml:9
+msgid "sc.content.embedder: Instalar"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "sc.content.embedder: Desinstalar"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:47
+msgid "The URL for your multimedia file. Can be a URL from Youtube, Vimeo, Slideshare, SounCloud or other main multimedia websites."
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:54
+msgid "Width"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:60
+msgid "Height"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:66
+msgid "Embed html code"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:67
+msgid "This code take care of render the embed multimedia item"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:73
+msgid "Player position"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:77
+msgid "Top"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:77
+msgid "Bottom"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:77
+msgid "Left"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:77
+msgid "Right"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid ""
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Body text"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Alternative content"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Description or transcription to an individual that is no able to see or hear."
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Image"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "A image to be used when listing content."
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Save"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Cancel"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Load"
+msgstr ""
+
+#: sc/content/embedder/content/multimedia.py:
+msgid "Apply"
+msgstr ""

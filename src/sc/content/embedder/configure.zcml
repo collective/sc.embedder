@@ -9,9 +9,8 @@
 
     <five:registerPackage package="." />
     <includeDependencies package="." />
-    <!--  <i18n:registerTranslations directory="locales" /> -->
+    <i18n:registerTranslations directory="locales" />
 
-    
     <grok:grok package="." />
 
     <include file="profiles.zcml"/>

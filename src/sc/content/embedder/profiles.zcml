@@ -15,7 +15,7 @@
 
     <genericsetup:registerProfile
         name="uninstall"
-        title="Uninstall sc.content.embedder"
+        title="sc.content.embedder: Uninstall"
         directory="profiles/uninstall"
         description="Uninstall sc.content.embedder"
         provides="Products.GenericSetup.interfaces.EXTENSION"

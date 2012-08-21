@@ -44,7 +44,7 @@ setup(name='sc.content.embedder',
           'plone.behavior',
           'plone.app.dexterity>=1.2.1',
           'plone.app.referenceablebehavior',
-          'collective.dexteritytextindexer==1.4.1',
+          'collective.dexteritytextindexer',
           'collective.oembed',
       ],
       extras_require={

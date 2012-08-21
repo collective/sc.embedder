@@ -29,13 +29,6 @@ from sc.content.embedder import MessageFactory as _
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
-player_options = {'top': u'Top',
-                  'bottom': u'Bottom',
-                  'left': u'Left',
-                  'right': u'Right',
-                  }
-
-
 class IMultimedia(form.Schema):
     """ A representation of a Multimedia content type
     """
@@ -84,7 +77,7 @@ class IMultimedia(form.Schema):
 
     alt_cont = RichText(
         title=_(u"Alternative content"),
-        description=_(u"Description or transcription to an individual" + \
+        description=_(u"Description or transcription to an individual " + \
                       u"that is no able to see or hear."),
         required=False,
         )
@@ -167,7 +160,7 @@ class EditForm(dexterity.EditForm):
     template = ViewPageTemplateFile('multimedia_templates/' + \
                                     'edit.pt')
 
-    @button.buttonAndHandler(_(u'Save'), name='save')
+    @button.buttonAndHandler(_(u'Apply'), name='save')
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
