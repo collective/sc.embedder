@@ -11,7 +11,7 @@ from sc.content.embedder.config import PROJECTNAME
 from sc.content.embedder.testing import INTEGRATION_TESTING
 
 CSS = [
-    "++resource++multimedia.css",
+    "multimedia.css",
     ]
 
 
