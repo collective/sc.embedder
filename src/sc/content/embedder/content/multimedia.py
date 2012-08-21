@@ -1,16 +1,11 @@
 # -*- coding:utf-8 -*-
 
-import zope.lifecycleevent
-
 from five import grok
 
 from zope import schema, component
 from zope.event import notify
 
 from z3c.form import button
-from z3c.form import field
-
-from Products.CMFCore.interfaces import IFolderish
 
 from Products.statusmessages.interfaces import IStatusMessage
 
@@ -29,7 +24,6 @@ from collective import dexteritytextindexer
 
 from collective.oembed.interfaces import IConsumer
 
-from sc.content.embedder.config import API_ENDPOINTS
 from sc.content.embedder import MessageFactory as _
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -70,7 +64,8 @@ class IMultimedia(form.Schema):
 
     html = schema.TextLine(
         title=_(u"Embed html code"),
-        description=_(u"This code take care of render the embed multimedia item"),
+        description=_(u"This code take care of render the embed" + \
+                        " multimedia item"),
         required=False,
         )
 
@@ -128,12 +123,13 @@ class AddForm(dexterity.AddForm):
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
-        IStatusMessage(self.request).addStatusMessage(_(u"Add New Item operation cancelled"), "info")
+        IStatusMessage(self.request).addStatusMessage(
+                            _(u"Add New Item operation cancelled"), "info")
         self.request.response.redirect(self.nextURL())
         notify(AddCancelledEvent(self.context))
 
     @button.buttonAndHandler(_('Load'), name='load')
-    def handleAdd(self, action):
+    def handleLoad(self, action):
         fields = ['width', 'height', 'description', 'title', 'html']
         url = self.widgets['url'].value
         if url != '':
@@ -143,7 +139,7 @@ class AddForm(dexterity.AddForm):
             if data is None:
                 return
             for field in fields:
-                if data.has_key(field):
+                if field in data.keys():
                     value = data[field]
                     if field == 'description':
                         field = 'IDublinCore.description'
@@ -178,18 +174,20 @@ class EditForm(dexterity.EditForm):
             self.status = self.formErrorsMessage
             return
         self.applyChanges(data)
-        IStatusMessage(self.request).addStatusMessage(_(u"Changes saved"), "info")
+        IStatusMessage(self.request).addStatusMessage(
+                                            _(u"Changes saved"), "info")
         self.request.response.redirect(self.nextURL())
         notify(EditFinishedEvent(self.context))
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
-        IStatusMessage(self.request).addStatusMessage(_(u"Edit cancelled"), "info")
+        IStatusMessage(self.request).addStatusMessage(
+                                            _(u"Edit cancelled"), "info")
         self.request.response.redirect(self.nextURL())
         notify(EditCancelledEvent(self.context))
 
     @button.buttonAndHandler(_('Load'), name='load')
-    def handleAdd(self, action):
+    def handleLoad(self, action):
         fields = ['width', 'height', 'description', 'title', 'html']
         url = self.widgets['url'].value
         if url != '':
@@ -199,7 +197,7 @@ class EditForm(dexterity.EditForm):
             if data is None:
                 return
             for field in fields:
-                if data.has_key(field):
+                if field in data.keys():
                     value = data[field]
                     if field == 'description':
                         field = 'IDublinCore.description'
