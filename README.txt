@@ -61,5 +61,5 @@ You can check his documentation to see a list of them.
 Mostly Harmless
 ===============
 
-.. image:: https://secure.travis-ci.org/collective/sc.content.embedder.png
-    :target: http://travis-ci.org/collective/sc.content.embedder
+.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.content.embedder.png
+    :target: http://travis-ci.org/simplesconsultoria/sc.content.embedder
