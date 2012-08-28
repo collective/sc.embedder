@@ -1,0 +1,56 @@
+Functional test:
+
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> request = layer['request']
+
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+    >>> portalURL = portal.absolute_url()
+
+    >>> from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
+    >>> browser.open(portalURL + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
+    >>> browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
+    >>> browser.getControl(name='submit').click()
+
+    >>> 'You are now logged in' in browser.contents
+    True
+
+Test add view save button:
+
+    >>> browser.open(portalURL + '/++add++sc.embedder.multimedia')
+    >>> browser.getControl(name='form.widgets.IDublinCore.title').value = 'multimedia'
+    >>> browser.getControl(name='form.widgets.html').value = '<iframe src="http://www.slideshare.net/slideshow/embed_code/11591441" width="302" height="251" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>'
+    >>> browser.getControl(name='form.widgets.url').value = 'Some url'
+    >>> browser.getControl(name='form.buttons.save').click()
+
+    >>> 'Item created' in browser.contents
+    True
+
+Test add view cancel button:
+
+    >>> browser.open(portalURL + '/++add++sc.embedder.multimedia')
+    >>> browser.getControl(name='form.buttons.cancel').click()
+
+    >>> 'Add New Item operation cancelled' in browser.contents
+    True
+
+Test edit apply button:
+
+    >>> browser.open(portalURL + '/multimedia/edit')
+    >>> browser.getControl(name='form.widgets.IDublinCore.title').value = 'Some Title'
+    >>> browser.getControl(name='form.widgets.html').value = '<iframe src="http://www.slideshare.net/slideshow/embed_code/11591441" width="302" height="251" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>'
+    >>> browser.getControl(name='form.widgets.url').value = 'www.simplesconsultoria.com.br'
+    >>> browser.getControl(name='form.buttons.save').click()
+
+    >>> 'Changes saved' in browser.contents
+    True
+
+Test edit view cancel button:
+
+    >>> browser.open(portalURL + '/multimedia/edit')
+    >>> browser.getControl(name='form.buttons.cancel').click()
+
+    >>> 'Edit cancelled' in browser.contents
+    True

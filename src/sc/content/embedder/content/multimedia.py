@@ -59,7 +59,7 @@ class IMultimedia(form.Schema):
         title=_(u"Embed html code"),
         description=_(u"This code take care of render the embed" + \
                         " multimedia item"),
-        required=False,
+        required=True,
         )
 
     player_pos = schema.Choice(
@@ -141,6 +141,27 @@ class AddForm(dexterity.AddForm):
                         field = 'IDublinCore.title'
                     self.widgets[field].value = value
 
+    def set_custom_embed_code(self, data):
+        """ Return the code that embed the code. Could be with the
+            original size or the custom chosen.
+        """
+        orig = data['html']
+        width_index = orig.find('width="')
+        until = orig.find('"', width_index + 7)
+        orig_width = orig[width_index + 7:until]
+        height_index = orig.find('height="')
+        until = orig.find('"', height_index + 8)
+        orig_height = orig[height_index + 8:until]
+
+        if orig_width != str(data['width']) or \
+           orig_height != str(data['height']):
+            until_w = orig.find('"', width_index + 7)
+            until_h = orig.find('"', height_index + 8)
+            html = orig[:width_index + 7] + str(data['width']) + \
+                   orig[until_w:height_index + 8] + \
+                   str(data['height']) + orig[until_h:]
+            data['html'] = html
+
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
                  if key.id == 'form-widgets-url']
@@ -155,41 +176,19 @@ class AddForm(dexterity.AddForm):
             load = action[0]
             return load
 
-    def set_custom_embed_code(self, data):
-        """ Return the code that embed the code. Could be with the
-            original size or the custom chosen.
-        """
-        orig = data['html']
-        width_index = orig.find('width="')
-        until = orig.find('"', width_index + 7)
-        orig_width = orig[width_index + 7:until]
-        height_index = orig.find('height="')
-        until = orig.find('"', height_index + 8)
-        orig_height = orig[height_index + 8:until]
-
-        if orig_width != data['width'] or \
-           orig_height != data['height']:
-            until_w = orig.find('"', width_index + 7)
-            until_h = orig.find('"', height_index + 8)
-            html = orig[:width_index + 7] + str(data['width']) + \
-                   orig[until_w:height_index + 8] + \
-                   str(data['height']) + orig[until_h:]
-            data['html'] = html
-
 
 class EditForm(dexterity.EditForm):
     grok.context(IMultimedia)
-    template = ViewPageTemplateFile('multimedia_templates/' + \
-                                    'edit.pt')
+    template = ViewPageTemplateFile('multimedia_templates/edit.pt')
 
     @button.buttonAndHandler(_(u'Apply'), name='save')
     def handleApply(self, action):
         data, errors = self.extractData()
+        self.set_custom_embed_code(data)
         if errors:
             self.status = self.formErrorsMessage
             return
         self.applyChanges(data)
-        self.set_custom_embed_code()
         IStatusMessage(self.request).addStatusMessage(
                                             _(u"Changes saved"), "info")
         self.request.response.redirect(self.nextURL())
@@ -221,6 +220,27 @@ class EditForm(dexterity.EditForm):
                         field = 'IDublinCore.title'
                     self.widgets[field].value = value
 
+    def set_custom_embed_code(self, data):
+        """ Return the code that embed the code. Could be with the
+            original size or the custom chosen.
+        """
+        orig = data['html']
+        width_index = orig.find('width="')
+        until = orig.find('"', width_index + 7)
+        orig_width = orig[width_index + 7:until]
+        height_index = orig.find('height="')
+        until = orig.find('"', height_index + 8)
+        orig_height = orig[height_index + 8:until]
+
+        if orig_width != str(data['width']) or \
+           orig_height != str(data['height']):
+            until_w = orig.find('"', width_index + 7)
+            until_h = orig.find('"', height_index + 8)
+            html = orig[:width_index + 7] + str(data['width']) + \
+                   orig[until_w:height_index + 8] + \
+                   str(data['height']) + orig[until_h:]
+            data['html'] = html
+
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
                  if key.id == 'form-widgets-url']
@@ -234,27 +254,6 @@ class EditForm(dexterity.EditForm):
         if action != []:
             load = action[0]
             return load
-
-    def set_custom_embed_code(self):
-        """ Return the code that embed the code. Could be with the
-            original size or the custom chosen.
-        """
-        orig = self.context.html
-        width_index = orig.find('width="')
-        until = orig.find('"', width_index + 7)
-        orig_width = orig[width_index + 7:until]
-        height_index = orig.find('height="')
-        until = orig.find('"', height_index + 8)
-        orig_height = orig[height_index + 8:until]
-
-        if orig_width != self.context.width or \
-           orig_height != self.context.height:
-            until_w = orig.find('"', width_index + 7)
-            until_h = orig.find('"', height_index + 8)
-            html = orig[:width_index + 7] + str(self.context.width) + \
-                   orig[until_w:height_index + 8] + \
-                   str(self.context.height) + orig[until_h:]
-            self.context.html = html
 
 
 class View(dexterity.DisplayForm):

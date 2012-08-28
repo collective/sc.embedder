@@ -4,14 +4,15 @@ Introduction
 ============
 
 This packages gives you the oportunity to create a multimedia content type
-for systems based on Plone with just few clicks. Bring you multimedia content
-from main multimedia providers to you site, intranet or whatever.
+for systems based on Plone with just few clicks. Bring your multimedia content
+from main multimedia providers to your site, intranet or whatever.
 
 Usage
 =====
 
 Once the product is installed you will note that you are available to add
-a *Multimedia* content type. Inside this add view you will see the fields:
+a *Multimedia* content type. When you attempt to add an item you will see the
+fields:
 
 - Multimedia URL
 - Description
@@ -42,15 +43,16 @@ With *player position* field you can set where the embed multimedia is going
 to be render regarding the body text. You have the options *top, bottom, left
 and right*.
 
-Body text will be the main information that will describe the content type.
+Body text will be the main information that will describe the content.
 
 The *alternative content* is to give a description or transcription to an
 individual that is no able to hear. In the layout this is hidden by default.
 There is a link called **alternative content** that will show or hide again
 the content of this field by clicking on it.
 
-The *Image* will be the image that it will be showed in a search list that
-someone will generate to give a quick visual description of the item.
+The *Image* field is just to assign an image to the object that will give a
+quick visual description of the content. The idea is to show it in listing
+views or covers.
 
 Providers
 =========

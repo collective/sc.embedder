@@ -27,6 +27,7 @@ class MultimediaTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Folder', 'test-folder')
@@ -66,7 +67,7 @@ class MultimediaTestCase(unittest.TestCase):
         self.assertEquals(u'',
                         add_form.widgets['height'].value)
 
-        # Then we request the data
+        # Then we request the data and check again to see that isn't empty.
         add_form.handleLoad(add_form, action)
         self.assertNotEquals(u'',
                         add_form.widgets['IDublinCore.title'].value)
@@ -78,3 +79,75 @@ class MultimediaTestCase(unittest.TestCase):
                         add_form.widgets['width'].value)
         self.assertNotEquals(u'',
                         add_form.widgets['height'].value)
+
+    def test_custom_player_size_addform(self):
+        """ Check if the custom size applies to the embed code in the
+            add form.
+        """
+        add_view = self.folder.unrestrictedTraverse(
+                                        '++add++sc.embedder.multimedia')
+        dummy_data = {}
+        dummy_data['html'] = '<object width="512" height="296"><param ' + \
+                        'name="flashvars" value="ap=1"></param></object>'
+        dummy_data['width'] = 300
+        dummy_data['height'] = 200
+        add_form = add_view.form_instance
+        add_form.set_custom_embed_code(dummy_data)
+        self.assertTrue('width="300"' in dummy_data['html'])
+        self.assertTrue('height="200"' in dummy_data['html'])
+
+    def test_custom_player_size_editform(self):
+        """ Check if the custom size applies to the embed code in the
+            edit form.
+        """
+        edit_view = self.multimedia.unrestrictedTraverse('edit')
+        edit_form = edit_view.form_instance
+        dummy_data = {}
+        dummy_data['html'] = '<object width="512" height="296"><param ' + \
+                        'name="flashvars" value="ap=1"></param></object>'
+        dummy_data['width'] = 300
+        dummy_data['height'] = 200
+        edit_form.set_custom_embed_code(dummy_data)
+        self.assertTrue('width="300"' in dummy_data['html'])
+        self.assertTrue('height="200"' in dummy_data['html'])
+
+    def test_player_position_class(self):
+        """ Tests the return of the css class based on the position
+            selected in the form.
+        """
+        view = self.multimedia.unrestrictedTraverse('view')
+
+        # Classes
+        self.multimedia.player_pos = u'Top'
+        pos_class = view.get_player_pos_class()
+        self.assertEquals(pos_class, 'top_embedded')
+
+        self.multimedia.player_pos = u'Bottom'
+        pos_class = view.get_player_pos_class()
+        self.assertEquals(pos_class, 'bottom_embedded')
+
+        self.multimedia.player_pos = u'Left'
+        pos_class = view.get_player_pos_class()
+        self.assertEquals(pos_class, 'left_embedded')
+
+        self.multimedia.player_pos = u'Right'
+        pos_class = view.get_player_pos_class()
+        self.assertEquals(pos_class, 'right_embedded')
+
+    def test_get_url_widget(self):
+        from z3c.form.browser.text import TextWidget
+        edit_view = self.multimedia.unrestrictedTraverse('edit')
+        edit_form = edit_view.form_instance
+        edit_form.update()
+        url_wid = edit_view.get_url_widget()
+        self.assertTrue(TextWidget, url_wid)
+        self.assertEquals(url_wid.id, 'form-widgets-url')
+
+    def test_get_load_action(self):
+        from z3c.form.button import ButtonAction
+        edit_view = self.multimedia.unrestrictedTraverse('edit')
+        edit_form = edit_view.form_instance
+        edit_form.update()
+        load_act = edit_view.get_load_action()
+        self.assertTrue(ButtonAction, load_act)
+        self.assertEquals(load_act.id, 'form-buttons-load')
