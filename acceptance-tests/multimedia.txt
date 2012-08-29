@@ -1,0 +1,51 @@
+*** Settings ***
+
+Resource  plone.txt
+
+Suite Setup  Setup
+
+*** Variables ***
+
+${input_identifier} =  input#form-widgets-image-input
+
+*** Test cases ***
+
+Test Add Multimedia
+    Goto Homepage
+    Add Multimedia  http://vimeo.com/17914974
+
+Test Edit Multimedia
+    Goto Homepage
+    Edit Multimedia  The Backwater Gospel  Some description
+
+*** Keywords ***
+
+Setup
+    Log In  admin  admin
+
+Add File
+    [arguments]  ${file}
+
+    Choose File  css=${input_identifier}  ${file}
+
+Add Multimedia
+    [arguments]  ${url}
+
+    Open Add New Menu
+    Click Link  css=a#sc-embedder-multimedia
+    Page Should Contain  Add Multimedia
+    Input Text  css=input#form-widgets-url  ${url}
+    Click Button  Load
+    Add File  ${PATH_TO_TEST_IMAGES}/image.jpg
+    Click Button  Save
+    Page Should Contain  Item created
+
+Edit Multimedia
+    [arguments]  ${title}  ${description}
+
+    Click Link  ${title}
+    Click Link  Edit
+    Input Text  css=textarea#form-widgets-IDublinCore-description  ${description}
+    Click Button  Apply
+    Page Should Contain  Changes saved
+
