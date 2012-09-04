@@ -18,8 +18,8 @@
 
     <!-- Permissions -->
     <permission
-       id="sc.content.embedder.AddMultimedia"
-       title="sc.content.embedder: Add Multimedia"
+       id="sc.content.embedder.AddContentEmbedder"
+       title="sc.content.embedder: Add Content Embedder"
     />
 
 </configure>

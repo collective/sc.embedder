@@ -15,89 +15,97 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: sc/content/embedder/configure.zcml:9
-msgid "sc.content.embedder: Add Multimedia"
-msgstr "sc.content.embedder: Agregar Multimedia"
+msgid "sc.content.embedder: Add Content Embedder"
+msgstr "sc.content.embedder: Agregar Embebedor de contenido"
 
 #: sc/content/embedder/profiles.zcml:9
 msgid "sc.content.embedder: Install"
-msgstr "sc.content.embedder: Instalar Multimedia"
+msgstr "sc.content.embedder: Instalar"
 
-#: sc/content/embedder/content/multimedia.py:
+#: sc/content/embedder/profiles.zcml:18
 msgid "sc.content.embedder: Uninstall"
-msgstr "sc.content.embedder: Desinstalar Multimedia"
+msgstr "sc.content.embedder: Desinstalar"
 
-#: sc/content/embedder/content/multimedia.py:47
+#: sc/content/embedder/content/contentembedder.py:39
 msgid "The URL for your multimedia file. Can be a URL from Youtube, Vimeo, Slideshare, SounCloud or other main multimedia websites."
 msgstr "La URL de tu archivo multimedia. Puede ser una URL de Youtube, Vime, Slideshar, SounCloud o otro principal sitio de multimedia."
 
-#: sc/content/embedder/content/multimedia.py:54
+#: sc/content/embedder/content/contentembedder.py:46
 msgid "Width"
 msgstr "Ancho"
 
-#: sc/content/embedder/content/multimedia.py:60
+#: sc/content/embedder/content/contentembedder.py:52
 msgid "Height"
 msgstr "Altura"
 
-#: sc/content/embedder/content/multimedia.py:66
-msgid "Embed html code"
-msgstr "Código html embebido"
-
-#: sc/content/embedder/content/multimedia.py:67
-msgid "This code take care of render the embed multimedia item"
-msgstr "Este código se encarga de renderizar el elemento multimedia embebido"
-
-#: sc/content/embedder/content/multimedia.py:70
+#: sc/content/embedder/content/contentembedder.py:58
 msgid "Player position"
 msgstr "Posición del reproductor"
 
-#: sc/content/embedder/content/multimedia.py:70
+#: sc/content/embedder/content/contentembedder.py:66
+msgid "Embed html code"
+msgstr "Código html embebido"
+
+#: sc/content/embedder/content/contentembedder.py:67
+msgid "This code take care of render the embed multimedia item"
+msgstr "Este código se encarga de renderizar el elemento multimedia embebido"
+
+#: sc/content/embedder/content/contentembedder.py:70
+msgid "Player position"
+msgstr "Posición del reproductor"
+
+#: sc/content/embedder/content/contentembedder.py:70
 msgid "Top"
 msgstr "Superior"
 
-#: sc/content/embedder/content/multimedia.py:70
+#: sc/content/embedder/content/contentembedder.py:70
 msgid "Bottom"
 msgstr "Inferior"
 
-#: sc/content/embedder/content/multimedia.py:70
+#: sc/content/embedder/content/contentembedder.py:70
 msgid "Left"
 msgstr "Izquierda"
 
-#: sc/content/embedder/content/multimedia.py:70
+#: sc/content/embedder/content/contentembedder.py:70
 msgid "Right"
 msgstr "Derecha"
 
-#: sc/content/embedder/content/multimedia.py:74
+#: sc/content/embedder/content/contentembedder.py:74
 msgid "Body text"
 msgstr "Cuerpo del texto"
 
-#: sc/content/embedder/content/multimedia.py:79
+#: sc/content/embedder/content/contentembedder.py:79
 msgid "Alternative content"
 msgstr "Contenido alternativo"
 
-#: sc/content/embedder/content/multimedia.py:80
+#: sc/content/embedder/content/contentembedder.py:80
 msgid "Description or transcription to an individual that is no able to see or hear."
 msgstr "Descripcción o transcripcción hacia un individuo que no es capaz de ver u oir."
 
-#: sc/content/embedder/content/multimedia.py:86
+#: sc/content/embedder/content/contentembedder.py:86
 msgid "Image"
 msgstr "Imagen"
 
-#: sc/content/embedder/content/multimedia.py:87
+#: sc/content/embedder/content/contentembedder.py:87
 msgid "A image to be used when listing content."
 msgstr "Imagen a utilizar cuando se liste el contenido."
 
-#: sc/content/embedder/content/multimedia.py:104
+#: sc/content/embedder/content/contentembedder.py:104
 msgid "Save"
 msgstr "Guardar"
 
-#: sc/content/embedder/content/multimedia.py:117
+#: sc/content/embedder/content/contentembedder.py:117
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: sc/content/embedder/content/multimedia.py:124
+#: sc/content/embedder/content/contentembedder.py:124
 msgid "Load"
 msgstr "Cargar"
 
-#: sc/content/embedder/content/multimedia.py:163
+#: sc/content/embedder/content/contentembedder.py:163
 msgid "Apply"
 msgstr "Aplicar"
+
+#: sc/content/embedder/profiles/default/types/sc.embedder.content:8
+msgid "Content Embedder"
+msgstr "Embebedor de contenido"

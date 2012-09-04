@@ -13,7 +13,7 @@ class PermissionsTest(unittest.TestCase):
         self.portal = self.layer['portal']
 
     def test_add_permissions(self):
-        permission = 'sc.content.embedder: Add Multimedia'
+        permission = 'sc.content.embedder: Add Content Embedder'
         roles = self.portal.rolesOfPermission(permission)
         roles = [r['name'] for r in roles if r['selected']]
         expected = ['Contributor', 'Manager', 'Owner', 'Site Administrator']

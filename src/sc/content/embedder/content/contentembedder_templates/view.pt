@@ -20,27 +20,27 @@
 
             <div tal:replace="structure provider:plone.abovecontentbody" />
 
-            <div tal:condition='python:context.player_pos != "Bottom"'
+            <div tal:condition='python:context.player_position != "Bottom"'
                  tal:attributes="class view/get_player_pos_class">
-                 <span tal:replace="structure context/html"/>
+                 <span tal:replace="structure context/embed_html"/>
             </div>
 
-            <div id="embed_body_text" class="field" tal:condition="context/body_txt">
-                <div tal:content="structure view/w/body_txt/render" />
+            <div id="embed_body_text" class="field" tal:condition="context/text">
+                <div tal:content="structure view/w/text/render" />
             </div>
 
-            <div tal:condition='python:context.player_pos == "Bottom"'
+            <div tal:condition='python:context.player_position == "Bottom"'
                  class="bottom_embedded" >
-                 <span tal:replace="structure context/html" />
+                 <span tal:replace="structure context/embed_html" />
             </div>
 
-            <div id="alt_cont" class="field" tal:condition="context/alt_cont">
+            <div id="alt_cont" class="field" tal:condition="context/alternate_content">
                 <a>Alternative content</a>
-                <div class="alt_cont_text" tal:content="structure view/w/alt_cont/render" />
+                <div class="alt_cont_text" tal:content="structure view/w/alternate_content/render" />
             </div>
 
             <div tal:replace="structure provider:plone.belowcontentbody" />
-            <script type="text/javascript" tal:attributes="src string:$portal_url/multimedia.js"></script>
+            <script type="text/javascript" tal:attributes="src string:$portal_url/contentembedder.js"></script>
         </tal:main-macro>
     </metal:main>
 

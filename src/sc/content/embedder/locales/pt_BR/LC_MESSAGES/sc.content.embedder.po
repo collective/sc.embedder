@@ -15,28 +15,32 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: sc/content/embedder/configure.zcml:9
-msgid "sc.content.embedder: Add Multimedia"
-msgstr "sc.content.embedder: Adicionar Multimedia"
+msgid "sc.content.embedder: Add Content Embedder"
+msgstr "sc.content.embedder: Adicionar Embedder do conteúdo"
 
 #: sc/content/embedder/profiles.zcml:9
 msgid "sc.content.embedder: Install"
-msgstr "sc.content.embedder: Instalar Multimedia"
+msgstr "sc.content.embedder: Instalar"
 
-#: sc/content/embedder/content/multimedia.py:
+#: sc/content/embedder/profiles.zcml:18
 msgid "sc.content.embedder: Uninstall"
-msgstr "sc.content.embedder: Desinstalar Multimedia"
+msgstr "sc.content.embedder: Desinstalar"
 
-#: sc/content/embedder/content/multimedia.py:47
+#: sc/content/embedder/content/multimedia.py:38
 msgid "The URL for your multimedia file. Can be a URL from Youtube, Vimeo, Slideshare, SounCloud or other main multimedia websites."
 msgstr "A URL do seu arquivo multimídia. Pode ser uma URL do Youtube, Vimeo, Slideshare, SounCloud ou outros principais sítios multimídia"
 
-#: sc/content/embedder/content/multimedia.py:54
+#: sc/content/embedder/content/multimedia.py:46
 msgid "Width"
 msgstr "Largura"
 
-#: sc/content/embedder/content/multimedia.py:60
+#: sc/content/embedder/content/multimedia.py:52
 msgid "Height"
 msgstr "Altura"
+
+#: sc/content/embedder/content/contentembedder.py:58
+msgid "Player position"
+msgstr "Posição do player"
 
 #: sc/content/embedder/content/multimedia.py:66
 msgid "Embed html code"
@@ -101,3 +105,7 @@ msgstr "Carregar"
 #: sc/content/embedder/content/multimedia.py:163
 msgid "Apply"
 msgstr "Aplicar"
+
+#: sc/content/embedder/profiles/default/types/sc.embedder.content:8
+msgid "Content Embedder"
+msgstr "Embedder do conteúdo"

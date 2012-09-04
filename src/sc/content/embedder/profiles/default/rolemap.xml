@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <rolemap>
  <permissions>
-  <permission name="sc.content.embedder: Add Multimedia" acquire="True">
+  <permission name="sc.content.embedder: Add Content Embedder" acquire="True">
    <role name="Manager"/>
    <role name="Site Administrator"/>
    <role name="Owner"/>

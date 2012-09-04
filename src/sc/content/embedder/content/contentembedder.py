@@ -5,8 +5,6 @@ from five import grok
 from zope import schema, component
 from zope.event import notify
 
-from z3c.form import button
-
 from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.app.textfield import RichText
@@ -20,6 +18,8 @@ from plone.dexterity.events import AddCancelledEvent
 from plone.dexterity.events import EditFinishedEvent
 from plone.dexterity.events import EditCancelledEvent
 
+from z3c.form import button
+
 from collective import dexteritytextindexer
 
 from collective.oembed.interfaces import IConsumer
@@ -29,16 +29,16 @@ from sc.content.embedder import MessageFactory as _
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
-class IMultimedia(form.Schema):
-    """ A representation of a Multimedia content type
+class IContentEmbedder(form.Schema):
+    """ A representation of a Content Embedder content type
     """
 
-    dexteritytextindexer.searchable('body_txt', 'alt_cont')
+    dexteritytextindexer.searchable('text', 'alternate_content')
     form.order_before(**{'url': '*'})
     url = schema.TextLine(
         title=_(u"Multimedia URL"),
         description=_(u"The URL for your multimedia file. Can be a URL " + \
-                      u"from Youtube, Vimeo, Slideshare, SounCloud or " + \
+                      u"from Youtube, Vimeo, Slideshare, SoundCloud or " + \
                       u"other main multimedia websites."),
         required=True,
         )
@@ -55,14 +55,14 @@ class IMultimedia(form.Schema):
         required=False,
         )
 
-    html = schema.TextLine(
+    embed_html = schema.Text(
         title=_(u"Embed html code"),
         description=_(u"This code take care of render the embed" + \
                         " multimedia item"),
         required=True,
         )
 
-    player_pos = schema.Choice(
+    player_position = schema.Choice(
         title=_(u"Player position"),
         description=_(u""),
         default=u'Top',
@@ -70,12 +70,12 @@ class IMultimedia(form.Schema):
         values=[u'Top', u'Bottom', u'Left', u'Right'],
         )
 
-    body_txt = RichText(
+    text = RichText(
         title=_(u"Body text"),
         required=False,
         )
 
-    alt_cont = RichText(
+    alternate_content = RichText(
         title=_(u"Alternative content"),
         description=_(u"Description or transcription to an individual " + \
                       u"that is no able to see or hear."),
@@ -89,17 +89,17 @@ class IMultimedia(form.Schema):
         )
 
 
-class Multimedia(dexterity.Item):
-    """ A Multimedia
+class ContentEmbedder(dexterity.Item):
+    """ A Content Embedder
     """
-    grok.implements(IMultimedia)
+    grok.implements(IContentEmbedder)
 
 
 class AddForm(dexterity.AddForm):
-    grok.name('sc.embedder.multimedia')
+    grok.name('sc.embedder.content')
 
-    template = ViewPageTemplateFile('multimedia_templates/' + \
-                                    'sc.embedder.multimedia.pt')
+    template = ViewPageTemplateFile('contentembedder_templates/' + \
+                                    'sc.embedder.content.pt')
 
     @button.buttonAndHandler(_('Save'), name='save')
     def handleAdd(self, action):
@@ -139,13 +139,15 @@ class AddForm(dexterity.AddForm):
                         field = 'IDublinCore.description'
                     elif field == 'title':
                         field = 'IDublinCore.title'
+                    elif field == 'html':
+                        field = 'embed_html'
                     self.widgets[field].value = value
 
     def set_custom_embed_code(self, data):
         """ Return the code that embed the code. Could be with the
             original size or the custom chosen.
         """
-        orig = data['html']
+        orig = data['embed_html']
         width_index = orig.find('width="')
         until = orig.find('"', width_index + 7)
         orig_width = orig[width_index + 7:until]
@@ -160,7 +162,7 @@ class AddForm(dexterity.AddForm):
             html = orig[:width_index + 7] + str(data['width']) + \
                    orig[until_w:height_index + 8] + \
                    str(data['height']) + orig[until_h:]
-            data['html'] = html
+            data['embed_html'] = html
 
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
@@ -178,8 +180,8 @@ class AddForm(dexterity.AddForm):
 
 
 class EditForm(dexterity.EditForm):
-    grok.context(IMultimedia)
-    template = ViewPageTemplateFile('multimedia_templates/edit.pt')
+    grok.context(IContentEmbedder)
+    template = ViewPageTemplateFile('contentembedder_templates/edit.pt')
 
     @button.buttonAndHandler(_(u'Apply'), name='save')
     def handleApply(self, action):
@@ -218,13 +220,15 @@ class EditForm(dexterity.EditForm):
                         field = 'IDublinCore.description'
                     elif field == 'title':
                         field = 'IDublinCore.title'
+                    elif field == 'html':
+                        field = 'embed_html'
                     self.widgets[field].value = value
 
     def set_custom_embed_code(self, data):
         """ Return the code that embed the code. Could be with the
             original size or the custom chosen.
         """
-        orig = data['html']
+        orig = data['embed_html']
         width_index = orig.find('width="')
         until = orig.find('"', width_index + 7)
         orig_width = orig[width_index + 7:until]
@@ -239,7 +243,7 @@ class EditForm(dexterity.EditForm):
             html = orig[:width_index + 7] + str(data['width']) + \
                    orig[until_w:height_index + 8] + \
                    str(data['height']) + orig[until_h:]
-            data['html'] = html
+            data['embed_html'] = html
 
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
@@ -257,13 +261,13 @@ class EditForm(dexterity.EditForm):
 
 
 class View(dexterity.DisplayForm):
-    grok.context(IMultimedia)
+    grok.context(IContentEmbedder)
     grok.require('zope2.View')
     grok.name('view')
 
     def get_player_pos_class(self):
         """ Returns the css class based on the position of the embed item.
         """
-        pos = self.context.player_pos
+        pos = self.context.player_position
         css_class = "%s_embedded" % pos.lower()
         return css_class
