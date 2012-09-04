@@ -44,42 +44,6 @@ class MultimediaTestCase(unittest.TestCase):
         self.assertTrue(IContentEmbedder.providedBy(self.multimedia))
         self.assertTrue(verifyObject(IContentEmbedder, self.multimedia))
 
-    def test_addview_oembed_data(self):
-        add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder.content')
-        add_form = add_view.form_instance
-        add_form.update()
-        add_form.actions.update()
-
-        # We check for Vimeo that has a more complete oembed implementation
-        add_form.widgets['url'].value = 'http://vimeo.com/17914974'
-        action = add_form.actions['load']
-
-        # We check first that the fields are empty
-        self.assertEqual(u'',
-                        add_form.widgets['IDublinCore.title'].value)
-        self.assertEqual(u'',
-                        add_form.widgets['IDublinCore.description'].value)
-        self.assertEqual(u'',
-                        add_form.widgets['embed_html'].value)
-        self.assertEqual(u'',
-                        add_form.widgets['width'].value)
-        self.assertEqual(u'',
-                        add_form.widgets['height'].value)
-
-        # Then we request the data and check again to see that isn't empty.
-        add_form.handleLoad(add_form, action)
-        self.assertNotEquals(u'',
-                        add_form.widgets['IDublinCore.title'].value)
-        self.assertNotEquals(u'',
-                        add_form.widgets['IDublinCore.description'].value)
-        self.assertNotEquals(u'',
-                        add_form.widgets['embed_html'].value)
-        self.assertNotEquals(u'',
-                        add_form.widgets['width'].value)
-        self.assertNotEquals(u'',
-                        add_form.widgets['height'].value)
-
     def test_custom_player_size_addform(self):
         """ Check if the custom size applies to the embed code in the
             add form.
@@ -151,3 +115,126 @@ class MultimediaTestCase(unittest.TestCase):
         load_act = edit_view.get_load_action()
         self.assertTrue(ButtonAction, load_act)
         self.assertEqual(load_act.id, 'form-buttons-load')
+
+    def test_vimeo_oembed(self):
+        add_view = self.folder.unrestrictedTraverse(
+                                        '++add++sc.embedder.content')
+        add_form = add_view.form_instance
+        add_form.update()
+        add_form.actions.update()
+
+        add_form.widgets['url'].value = 'http://vimeo.com/17914974'
+        action = add_form.actions['load']
+
+        # We trigger the action of load
+        add_form.handleLoad(add_form, action)
+        iframe = '<iframe src="http://player.vimeo.com/video/17914974" ' + \
+              'width="1280" height="720" frameborder="0" ' + \
+              'webkitAllowFullScreen mozallowfullscreen ' + \
+              'allowFullScreen></iframe>'
+
+        self.assertEqual(u'The Backwater Gospel',
+                        add_form.widgets['IDublinCore.title'].value)
+        self.assertEqual(417,
+                    len(add_form.widgets['IDublinCore.description'].value))
+        self.assertEqual(iframe,
+                        add_form.widgets['embed_html'].value)
+        self.assertEqual(1280,
+                        add_form.widgets['width'].value)
+        self.assertEqual(720,
+                        add_form.widgets['height'].value)
+
+    def test_youtube_oembed(self):
+        add_view = self.folder.unrestrictedTraverse(
+                                        '++add++sc.embedder.content')
+        add_form = add_view.form_instance
+        add_form.update()
+        add_form.actions.update()
+
+        url = 'http://www.youtube.com/watch?v=d8bEU80gIzQ'
+        add_form.widgets['url'].value = url
+        action = add_form.actions['load']
+
+        # We trigger the action of load
+        add_form.handleLoad(add_form, action)
+        iframe = '<iframe width="459" height="344" src="http://www' + \
+                '.youtube.com/embed/d8bEU80gIzQ?fs=1&feature=oembed" ' + \
+                'frameborder="0" allowfullscreen></iframe>'
+        self.assertEqual(u"Introducing Plone",
+                        add_form.widgets['IDublinCore.title'].value)
+        self.assertEqual(iframe,
+                        add_form.widgets['embed_html'].value)
+        self.assertEqual(459,
+                        add_form.widgets['width'].value)
+        self.assertEqual(344,
+                        add_form.widgets['height'].value)
+
+    def test_slideshare_oembed(self):
+        add_view = self.folder.unrestrictedTraverse(
+                                        '++add++sc.embedder.content')
+        add_form = add_view.form_instance
+        add_form.update()
+        add_form.actions.update()
+
+        url = 'http://www.slideshare.net/baekholt/plone-4-and-' + \
+              '5-plans-and-progress'
+
+        add_form.widgets['url'].value = url
+        action = add_form.actions['load']
+
+        # We trigger the action of load
+        add_form.handleLoad(add_form, action)
+
+        iframe = '<iframe src="http://www.slideshare.net/slideshow/' + \
+            'embed_code/1464608" width="427" height="356" frameborder=' + \
+            '"0" marginwidth="0" marginheight="0" scrolling="no" ' + \
+            'style="border:1px solid #CCC;border-width:1px 1px 0;' + \
+            'margin-bottom:5px" allowfullscreen> </iframe> <div ' + \
+            'style="margin-bottom:5px"> <strong> <a href="http://www.' + \
+            'slideshare.net/baekholt/plone-4-and-5-plans-and-progress"' + \
+            ' title="Plone 4 and 5, plans and progress" target="_blank">' + \
+            'Plone 4 and 5, plans and progress</a> </strong> from ' + \
+            '<strong><a href="http://www.slideshare.net/baekholt" ' + \
+            'target="_blank">baekholt</a></strong> </div>'
+
+        self.assertEqual(u'Plone 4 and 5, plans and progress',
+                        add_form.widgets['IDublinCore.title'].value)
+        self.assertEqual(iframe,
+                        add_form.widgets['embed_html'].value)
+        self.assertEqual(425,
+                        add_form.widgets['width'].value)
+        self.assertEqual(355,
+                        add_form.widgets['height'].value)
+
+    def test_soundcloud_oembed(self):
+        add_view = self.folder.unrestrictedTraverse(
+                                        '++add++sc.embedder.content')
+        add_form = add_view.form_instance
+        add_form.update()
+        add_form.actions.update()
+
+        # We check for Vimeo that has a more complete oembed implementation
+        url = 'http://soundcloud.com/nuvru/semi-plone'
+        add_form.widgets['url'].value = url
+        action = add_form.actions['load']
+
+        # We trigger the action of load
+        add_form.handleLoad(add_form, action)
+
+        iframe = '<iframe width="100%" height="166" scrolling="no" ' + \
+                'frameborder="no" src="http://w.soundcloud.com/' + \
+                'player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks' + \
+                '%2F4599497&show_artwork=true"></iframe>'
+
+        self.assertEqual(u'Semi Plone by nuvru',
+                        add_form.widgets['IDublinCore.title'].value)
+        self.assertEqual(u'Well... semi.',
+                        add_form.widgets['IDublinCore.description'].value)
+        self.assertEqual(iframe,
+                        add_form.widgets['embed_html'].value)
+
+        # Sound cloud return percentage values
+        self.assertEqual(u'100%',
+                        add_form.widgets['width'].value)
+        self.assertEqual(166,
+                        add_form.widgets['height'].value)
