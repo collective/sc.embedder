@@ -32,8 +32,8 @@ Add Multimedia
     [arguments]  ${url}
 
     Open Add New Menu
-    Click Link  css=a#sc-embedder-multimedia
-    Page Should Contain  Add Multimedia
+    Click Link  css=a#sc-embedder-content
+    Page Should Contain  Add Content Embedder
     Input Text  css=input#form-widgets-url  ${url}
     Click Button  Load
     Add File  ${PATH_TO_TEST_IMAGES}/image.jpg
@@ -48,4 +48,3 @@ Edit Multimedia
     Input Text  css=textarea#form-widgets-IDublinCore-description  ${description}
     Click Button  Apply
     Page Should Contain  Changes saved
-
