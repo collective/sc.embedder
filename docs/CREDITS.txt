@@ -1,9 +1,11 @@
 Share and Enjoy
 ---------------
 
-sc.content.embedder would not have been possible without the contribution
-of the following people:
+sc.content.embedder would not have been possible without the contribution of
+the following people:
 
 - Alejandro Pereira
+- André Nogueira
+- Héctor Velarde
 
 Development sponsored by Simples Consultoria.
