@@ -9,6 +9,8 @@ Changelog
 
 - i18n was fixed and Spanish translation was updated. [hvelarde]
 
+- Brazilian Prtuguese translation was fixed. [agnogueira]
+
 
 1.0a1 (2012-09-05)
 ^^^^^^^^^^^^^^^^^^^
