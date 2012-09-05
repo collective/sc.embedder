@@ -33,7 +33,7 @@ Test add view cancel button:
     >>> browser.open(portalURL + '/++add++sc.embedder.content')
     >>> browser.getControl(name='form.buttons.cancel').click()
 
-    >>> 'Add New Item operation cancelled' in browser.contents
+    >>> 'Add Content Embedder operation cancelled' in browser.contents
     True
 
 Test edit apply button:
