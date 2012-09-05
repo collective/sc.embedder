@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Functional tests were updated to run with robotframework-selenium2library.
+  [hvelarde]
+
 - i18n was fixed and Spanish translation was updated. [hvelarde]
 
 
