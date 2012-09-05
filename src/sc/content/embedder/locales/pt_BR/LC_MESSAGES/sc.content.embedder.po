@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: sc.content.embedder 1.0\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2012-09-05 10:56-0300\n"
 "Last-Translator: Andre Nogueira <andre@simplesconsultoria.com.br>\n"
@@ -12,97 +12,94 @@ msgstr ""
 "Language-Code: pt-BR\n"
 "Language-Name: Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: sc.content.embedder\n"
 
-#: sc/content/embedder/configure.zcml:9
-msgid "sc.content.embedder: Add Content Embedder"
-msgstr "sc.content.embedder: Adicionar Embed de Multimídia"
+#: sc/content/embedder/profiles/default/types/sc.embedder.content.xml
+msgid "A content embedder"
+msgstr ""
 
-#: sc/content/embedder/profiles.zcml:9
-msgid "sc.content.embedder: Install"
-msgstr "sc.content.embedder: Instalar"
-
-#: sc/content/embedder/profiles.zcml:18
-msgid "sc.content.embedder: Uninstall"
-msgstr "sc.content.embedder: Desinstalar"
-
-#: sc/content/embedder/content/multimedia.py:38
-msgid "The URL for your multimedia file. Can be a URL from Youtube, Vimeo, Slideshare, SounCloud or other main multimedia websites."
-msgstr "A URL do seu arquivo multimídia. Pode ser uma URL do Youtube, Vimeo, Slideshare, SoundCloud ou outros dos principais sites multimídia."
-
-#: sc/content/embedder/content/multimedia.py:46
-msgid "Width"
-msgstr "Largura"
-
-#: sc/content/embedder/content/multimedia.py:52
-msgid "Height"
-msgstr "Altura"
-
-#: sc/content/embedder/content/multimedia.py:66
-msgid "Embed html code"
-msgstr "Código html incorporado"
-
-#: sc/content/embedder/content/multimedia.py:67
-msgid "This code take care of render the embed multimedia item"
-msgstr "Este código cuida de processar o item multimídia"
-
-#: sc/content/embedder/content/multimedia.py:70
-msgid "Player position"
-msgstr "Posição do player"
-
-#: sc/content/embedder/content/multimedia.py:70
-msgid "Top"
-msgstr "Início"
-
-#: sc/content/embedder/content/multimedia.py:70
-msgid "Bottom"
-msgstr "Final"
-
-#: sc/content/embedder/content/multimedia.py:70
-msgid "Left"
-msgstr "Esquerda"
-
-#: sc/content/embedder/content/multimedia.py:70
-msgid "Right"
-msgstr "Direita"
-
-#: sc/content/embedder/content/multimedia.py:74
-msgid "Body text"
-msgstr "Corpo do texto"
-
-#: sc/content/embedder/content/multimedia.py:79
-msgid "Alternative content"
-msgstr "Conteúdo alternativo"
-
-#: sc/content/embedder/content/multimedia.py:80
-msgid "Description or transcription to an individual that is no able to see or hear."
-msgstr "Descrição ou transcrição para pessoas que não podem ver ou ouvir."
-
-#: sc/content/embedder/content/multimedia.py:86
-msgid "Image"
-msgstr "Imagem"
-
-#: sc/content/embedder/content/multimedia.py:87
+#: sc/content/embedder/content/contentembedder.py:87
 msgid "A image to be used when listing content."
 msgstr "A imagem que será utilizada nas listagens de conteúdo."
 
-#: sc/content/embedder/content/multimedia.py:104
-msgid "Save"
-msgstr "Salvar"
+#: sc/content/embedder/content/contentembedder.py:121
+msgid "Add Content Embedder operation cancelled"
+msgstr ""
 
-#: sc/content/embedder/content/multimedia.py:117
-msgid "Cancel"
-msgstr "Cancelar"
+#: sc/content/embedder/content/contentembedder.py:79
+#: sc/content/embedder/content/contentembedder_templates/view.pt:38
+msgid "Alternate content"
+msgstr ""
 
-#: sc/content/embedder/content/multimedia.py:124
-msgid "Load"
-msgstr "Carregar"
-
-#: sc/content/embedder/content/multimedia.py:163
+#: sc/content/embedder/content/contentembedder.py:186
 msgid "Apply"
 msgstr "Aplicar"
 
-#: sc/content/embedder/profiles/default/types/sc.embedder.content:8
+#: sc/content/embedder/content/contentembedder.py:74
+msgid "Body text"
+msgstr "Corpo do texto"
+
+#: sc/content/embedder/content/contentembedder.py:118
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: sc/content/embedder/content/contentembedder.py:195
+msgid "Changes saved"
+msgstr ""
+
+#: sc/content/embedder/profiles/default/types/sc.embedder.content.xml
 msgid "Content Embedder"
-msgstr "Embed de Multimídia"
+msgstr ""
+
+#: sc/content/embedder/content/contentembedder.py:80
+msgid "Description or transcription to an individual that is no able to see or hear."
+msgstr "Descrição ou transcrição para pessoas que não podem ver ou ouvir."
+
+#: sc/content/embedder/content/contentembedder.py:202
+msgid "Edit cancelled"
+msgstr ""
+
+#: sc/content/embedder/content/contentembedder.py:59
+msgid "Embed html code"
+msgstr "Código html incorporado"
+
+#: sc/content/embedder/content/contentembedder.py:53
+msgid "Height"
+msgstr "Altura"
+
+#: sc/content/embedder/content/contentembedder.py:86
+msgid "Image"
+msgstr "Imagem"
+
+#: sc/content/embedder/content/contentembedder.py:116
+msgid "Item created"
+msgstr ""
+
+#: sc/content/embedder/content/contentembedder.py:125
+msgid "Load"
+msgstr "Carregar"
+
+#: sc/content/embedder/content/contentembedder.py:39
+msgid "Multimedia URL"
+msgstr ""
+
+#: sc/content/embedder/content/contentembedder.py:66
+msgid "Player position"
+msgstr "Posição do player"
+
+#: sc/content/embedder/content/contentembedder.py:104
+msgid "Save"
+msgstr "Salvar"
+
+#: sc/content/embedder/content/contentembedder.py:40
+msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
+msgstr ""
+
+#: sc/content/embedder/content/contentembedder.py:60
+msgid "This code take care of render the embed multimedia item"
+msgstr "Este código cuida de processar o item multimídia"
+
+#: sc/content/embedder/content/contentembedder.py:47
+msgid "Width"
+msgstr "Largura"
 

@@ -38,7 +38,7 @@ class IContentEmbedder(form.Schema):
     url = schema.TextLine(
         title=_(u"Multimedia URL"),
         description=_(u"The URL for your multimedia file. Can be a URL " + \
-                      u"from Youtube, Vimeo, Slideshare, SoundCloud or " + \
+                      u"from YouTube, Vimeo, SlideShare, SoundCloud or " + \
                       u"other main multimedia websites."),
         required=True,
         )
@@ -57,8 +57,8 @@ class IContentEmbedder(form.Schema):
 
     embed_html = schema.Text(
         title=_(u"Embed html code"),
-        description=_(u"This code take care of render the embed" + \
-                        " multimedia item"),
+        description=_(u"This code take care of render the embed " + \
+                      u"multimedia item"),
         required=True,
         )
 
@@ -76,7 +76,7 @@ class IContentEmbedder(form.Schema):
         )
 
     alternate_content = RichText(
-        title=_(u"Alternative content"),
+        title=_(u"Alternate content"),
         description=_(u"Description or transcription to an individual " + \
                       u"that is no able to see or hear."),
         required=False,
@@ -118,7 +118,7 @@ class AddForm(dexterity.AddForm):
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(
-                            _(u"Add New Item operation cancelled"), "info")
+                    _(u"Add Content Embedder operation cancelled"), "info")
         self.request.response.redirect(self.nextURL())
         notify(AddCancelledEvent(self.context))
 

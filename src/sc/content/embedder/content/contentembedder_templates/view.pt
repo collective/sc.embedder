@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="collective.person">
+      i18n:domain="sc.content.embedder">
     <body>
 
     <metal:main fill-slot="main">
@@ -35,7 +35,7 @@
             </div>
 
             <div id="alt_cont" class="field" tal:condition="context/alternate_content">
-                <a>Alternative content</a>
+                <a i18n:translate="">Alternate content</a>
                 <div class="alt_cont_text" tal:content="structure view/w/alternate_content/render" />
             </div>
 
