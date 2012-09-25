@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 
+from lxml import etree, cssselect
+
 from five import grok
 
 from zope import schema, component
@@ -34,7 +36,9 @@ class IContentEmbedder(form.Schema):
     """
 
     dexteritytextindexer.searchable('text', 'alternate_content')
+
     form.order_before(**{'url': '*'})
+
     url = schema.TextLine(
         title=_(u"Multimedia URL"),
         description=_(u"The URL for your multimedia file. Can be a URL " + \
@@ -147,22 +151,16 @@ class AddForm(dexterity.AddForm):
         """ Return the code that embed the code. Could be with the
             original size or the custom chosen.
         """
-        orig = data['embed_html']
-        width_index = orig.find('width="')
-        until = orig.find('"', width_index + 7)
-        orig_width = orig[width_index + 7:until]
-        height_index = orig.find('height="')
-        until = orig.find('"', height_index + 8)
-        orig_height = orig[height_index + 8:until]
+        tree = etree.HTML(data['embed_html'])
+        sel = cssselect.CSSSelector('body > *')
+        el = sel(tree)[0]
 
-        if orig_width != str(data['width']) or \
-           orig_height != str(data['height']):
-            until_w = orig.find('"', width_index + 7)
-            until_h = orig.find('"', height_index + 8)
-            html = orig[:width_index + 7] + str(data['width']) + \
-                   orig[until_w:height_index + 8] + \
-                   str(data['height']) + orig[until_h:]
-            data['embed_html'] = html
+        if 'width' in data.keys():
+            el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
+        if 'height' in data.keys():
+            el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
+
+        data['embed_html'] = etree.tostring(el)
 
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
@@ -228,22 +226,16 @@ class EditForm(dexterity.EditForm):
         """ Return the code that embed the code. Could be with the
             original size or the custom chosen.
         """
-        orig = data['embed_html']
-        width_index = orig.find('width="')
-        until = orig.find('"', width_index + 7)
-        orig_width = orig[width_index + 7:until]
-        height_index = orig.find('height="')
-        until = orig.find('"', height_index + 8)
-        orig_height = orig[height_index + 8:until]
+        tree = etree.HTML(data['embed_html'])
+        sel = cssselect.CSSSelector('body > *')
+        el = sel(tree)[0]
 
-        if orig_width != str(data['width']) or \
-           orig_height != str(data['height']):
-            until_w = orig.find('"', width_index + 7)
-            until_h = orig.find('"', height_index + 8)
-            html = orig[:width_index + 7] + str(data['width']) + \
-                   orig[until_w:height_index + 8] + \
-                   str(data['height']) + orig[until_h:]
-            data['embed_html'] = html
+        if 'width' in data.keys():
+            el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
+        if 'height' in data.keys():
+            el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
+
+        data['embed_html'] = etree.tostring(el)
 
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
