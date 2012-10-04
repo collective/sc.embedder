@@ -10,7 +10,7 @@ Changelog
 1.0a3 (2012-10-04)
 ^^^^^^^^^^^^^^^^^^
 
-- Fix KeyError: 'width' in save content of the SoundCloud. [davilima6]
+- Fixed KeyError: 'width' when saving embeded HTML with percentages. [davilima6]
 
 
 1.0a2 (2012-09-05)
