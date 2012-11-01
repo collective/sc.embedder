@@ -46,11 +46,12 @@ setup(name='sc.embedder',
           'setuptools',
           'Products.CMFPlone>=4.1',
           'plone.behavior',
+          'plone.directives.dexterity',
           'plone.app.dexterity>=1.2.1',
           'plone.app.referenceablebehavior',
           'collective.dexteritytextindexer',
           'collective.oembed',
-          'lxml'
+          'lxml',
       ],
       extras_require={
         'test': ['plone.app.testing'],

@@ -4,6 +4,8 @@ Changelog
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Update package dependecies for Plone 4.3 compatibility. [hvelarde]
+
 - Fix functional tests. [hvelarde]
 
 - Rename package: was sc.content.embedder and now is sc.embedder. [hvelarde]
