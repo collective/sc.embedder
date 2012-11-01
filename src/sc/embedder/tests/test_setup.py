@@ -7,11 +7,11 @@ from plone.browserlayer.utils import registered_layers
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
-from sc.content.embedder.config import PROJECTNAME
-from sc.content.embedder.testing import INTEGRATION_TESTING
+from sc.embedder.config import PROJECTNAME
+from sc.embedder.testing import INTEGRATION_TESTING
 
 CSS = [
-    "contentembedder.css",
+    "embedder.css",
     ]
 
 

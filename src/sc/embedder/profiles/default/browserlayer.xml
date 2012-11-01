@@ -1,6 +1,5 @@
+<?xml version="1.0"?>
 <layers>
- <layer
-     name="EmbedderLayer"
-     interface="sc.content.embedder.interfaces.IEmbedderLayer"
-     />
+ <layer name="EmbedderLayer"
+    interface="sc.embedder.interfaces.IEmbedderLayer" />
 </layers>

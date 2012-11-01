@@ -1,8 +1,8 @@
 Share and Enjoy
 ---------------
 
-``sc.content.embedder`` would not have been possible without the contribution
-of the following people:
+``sc.embedder`` would not have been possible without the contribution of the
+following people:
 
 - Alejandro Pereira
 - André Nogueira

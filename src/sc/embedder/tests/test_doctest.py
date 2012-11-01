@@ -5,14 +5,14 @@ import doctest
 
 from plone.testing import layered
 
-from sc.content.embedder.testing import FUNCTIONAL_TESTING
+from sc.embedder.testing import FUNCTIONAL_TESTING
 
 
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
         layered(doctest.DocFileSuite('tests/test_buttons.txt',
-                                     package='sc.content.embedder'),
+                                     package='sc.embedder'),
                 layer=FUNCTIONAL_TESTING),
         ])
     return suite

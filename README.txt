@@ -1,6 +1,6 @@
-*******************
-sc.content.embedder
-*******************
+***********
+sc.embedder
+***********
 
 .. contents::
 
@@ -67,9 +67,9 @@ You can check his documentation to see a list of them.
 Mostly Harmless
 ---------------
 
-.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.content.embedder.png
-    :target: http://travis-ci.org/simplesconsultoria/sc.content.embedder
+.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png
+    :target: http://travis-ci.org/simplesconsultoria/sc.embedder
 
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 
-.. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.content.embedder/issues
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.embedder/issues

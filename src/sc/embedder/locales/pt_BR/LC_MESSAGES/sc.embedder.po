@@ -1,0 +1,105 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sc.embedder 1.0\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2012-09-28 13:51-0300\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: pt-BR\n"
+"Language-Name: Portuguese\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sc.embedder\n"
+
+#: sc/embedder/profiles/default/types/sc.embedder.xml
+msgid "A content embedder"
+msgstr "Um Embedder de conteúdo"
+
+#: sc/embedder/content/embedder.py:93
+msgid "A image to be used when listing content."
+msgstr "A imagem que será utilizada nas listagens de conteúdo."
+
+#: sc/embedder/content/embedder.py:85
+#: sc/embedder/content/templates/view.pt:38
+msgid "Alternate content"
+msgstr "Conteúdo alternativo"
+
+#: sc/embedder/content/embedder.py:184
+msgid "Apply"
+msgstr "Aplicar"
+
+#: sc/embedder/content/embedder.py:80
+msgid "Body text"
+msgstr "Corpo do texto"
+
+#: sc/embedder/content/embedder.py:122
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: sc/embedder/content/embedder.py:193
+msgid "Changes saved."
+msgstr "Alterações salvas."
+
+#: sc/embedder/content/embedder.py:86
+msgid "Description or transcription to an individual that is no able to see or hear."
+msgstr "Descrição ou transcrição para pessoas que não podem ver ou ouvir."
+
+#: sc/embedder/content/embedder.py:200
+msgid "Edit cancelled."
+msgstr "Edição cancelada."
+
+#: sc/embedder/content/embedder.py:65
+msgid "Embed html code"
+msgstr "Código html incorporado"
+
+#: sc/embedder/profiles/default/types/sc.embedder.xml
+msgid "Embedder"
+msgstr "Embedder"
+
+#: sc/embedder/content/embedder.py:59
+msgid "Height"
+msgstr "Altura"
+
+#: sc/embedder/content/embedder.py:92
+msgid "Image"
+msgstr "Imagem"
+
+#: sc/embedder/content/embedder.py:120
+msgid "Item created"
+msgstr "Item criado"
+
+#: sc/embedder/content/embedder.py:129
+msgid "Load"
+msgstr "Carregar"
+
+#: sc/embedder/content/embedder.py:45
+msgid "Multimedia URL"
+msgstr "Multimídia URL"
+
+#: sc/embedder/content/embedder.py:125
+msgid "Operation cancelled."
+msgstr "Operação cancelada."
+
+#: sc/embedder/content/embedder.py:72
+msgid "Player position"
+msgstr "Posição do player"
+
+#: sc/embedder/content/embedder.py:108
+msgid "Save"
+msgstr "Salvar"
+
+#: sc/embedder/content/embedder.py:46
+msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
+msgstr "A URL do seu arquivo multimídia. Pode ser uma URL do YouTube, Vimeo, SlideShare, SoundCLoud ou outro dos principais sites de multimídia."
+
+#: sc/embedder/content/embedder.py:66
+msgid "This code take care of render the embed multimedia item"
+msgstr "Este código cuida de processar o item multimídia"
+
+#: sc/embedder/content/embedder.py:53
+msgid "Width"
+msgstr "Largura"
+

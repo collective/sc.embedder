@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="sc.content.embedder">
+      i18n:domain="sc.embedder">
     <body>
 
     <metal:main fill-slot="main">
@@ -40,7 +40,7 @@
             </div>
 
             <div tal:replace="structure provider:plone.belowcontentbody" />
-            <script type="text/javascript" tal:attributes="src string:$portal_url/contentembedder.js"></script>
+            <script type="text/javascript" tal:attributes="src string:$portal_url/embedder.js"></script>
         </tal:main-macro>
     </metal:main>
 

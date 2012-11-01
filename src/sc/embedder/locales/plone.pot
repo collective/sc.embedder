@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sc.content.embedder 1.0\n"
+"Project-Id-Version: sc.embedder 1.0\n"
 "POT-Creation-Date: 2012-09-05 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"

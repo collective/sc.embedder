@@ -19,7 +19,7 @@ Functional test:
 
 Test add view save button:
 
-    >>> browser.open(portalURL + '/++add++sc.embedder.content')
+    >>> browser.open(portalURL + '/++add++sc.embedder')
     >>> browser.getControl(name='form.widgets.IDublinCore.title').value = 'multimedia'
     >>> browser.getControl(name='form.widgets.embed_html').value = '<iframe src="http://www.slideshare.net/slideshow/embed_code/11591441" width="302" height="251" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>'
     >>> browser.getControl(name='form.widgets.url').value = 'Some url'
@@ -30,7 +30,7 @@ Test add view save button:
 
 Test add view cancel button:
 
-    >>> browser.open(portalURL + '/++add++sc.embedder.content')
+    >>> browser.open(portalURL + '/++add++sc.embedder')
     >>> browser.getControl(name='form.buttons.cancel').click()
 
     >>> 'Add Content Embedder operation cancelled' in browser.contents

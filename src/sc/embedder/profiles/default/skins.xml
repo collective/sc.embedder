@@ -2,28 +2,28 @@
 <object name="portal_skins" allow_any="False" cookie_persistence="False"
     default_skin="Sunburst Theme">
 
- <object name="sc_content_embedder_images"
+ <object name="sc_embedder_images"
     meta_type="Filesystem Directory View"
-    directory="sc.content.embedder:skins/images" />
- <object name="sc_content_embedder_styles"
+    directory="sc.embedder:skins/images" />
+ <object name="sc_embedder_styles"
     meta_type="Filesystem Directory View"
-    directory="sc.content.embedder:skins/styles" />
- <object name="sc_content_embedder_javascripts"
+    directory="sc.embedder:skins/styles" />
+ <object name="sc_embedder_javascripts"
     meta_type="Filesystem Directory View"
-    directory="sc.content.embedder:skins/javascripts" />
+    directory="sc.embedder:skins/javascripts" />
 
  <skin-path name="Sunburst Theme">
   <layer
-     name="sc_content_embedder_images"
+     name="sc_embedder_images"
      insert-after="custom"
      />
   <layer
-     name="sc_content_embedder_styles"
-     insert-after="sc_content_embedder_images"
+     name="sc_embedder_styles"
+     insert-after="sc_embedder_images"
      />
   <layer
-      name="sc_content_embedder_javascripts"
-      insert-after="sc_content_embedder_styles"
+      name="sc_embedder_javascripts"
+      insert-after="sc_embedder_styles"
       />
  </skin-path>
 

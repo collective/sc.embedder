@@ -8,8 +8,7 @@ long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
                    open(os.path.join("docs", "HISTORY.txt")).read()
 
-
-setup(name='sc.content.embedder',
+setup(name='sc.embedder',
       version=version,
       description=description,
       long_description=long_description,
@@ -40,7 +39,7 @@ setup(name='sc.content.embedder',
       license='GPLv2',
       packages=find_packages('src'),
       package_dir={'': 'src'},
-      namespace_packages=['sc', 'sc.content'],
+      namespace_packages=['sc'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[

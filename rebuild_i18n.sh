@@ -1,7 +1,7 @@
 #! /bin/sh
 
-I18NDOMAIN="sc.content.embedder"
-BASE_DIRECTORY="src/sc/content/embedder"
+I18NDOMAIN="sc.embedder"
+BASE_DIRECTORY="src/sc/embedder"
 
 # Synchronise the templates and scripts with the .pot.
 i18ndude rebuild-pot --pot ${BASE_DIRECTORY}/locales/${I18NDOMAIN}.pot \
@@ -20,7 +20,7 @@ i18ndude rebuild-pot --pot ${BASE_DIRECTORY}/locales/plone.pot \
     ${BASE_DIRECTORY}/configure.zcml \
     ${BASE_DIRECTORY}/profiles/default/workflows
 
-# Synchronise the plone's pot file (Used for the workflows)
+# Synchronise the Plone's pot file (Used for the workflows)
 for po in ${BASE_DIRECTORY}/locales/*/LC_MESSAGES/plone.po; do
 i18ndude sync --pot ${BASE_DIRECTORY}/locales/plone.pot $po
 done

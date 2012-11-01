@@ -7,11 +7,9 @@ from zope.interface.verify import verifyClass, verifyObject
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
-from sc.content.embedder.content.contentembedder import IContentEmbedder
-from sc.content.embedder.content.contentembedder import ContentEmbedder
-
-from sc.content.embedder.testing import INTEGRATION_TESTING
-
+from sc.embedder.content.embedder import IEmbedder
+from sc.embedder.content.embedder import Embedder
+from sc.embedder.testing import INTEGRATION_TESTING
 
 PROVIDERS = {
      'youtube': 'http://www.youtube.com/watch?v=n-zxaVt6acg&feature=g-all-u',
@@ -33,23 +31,23 @@ class MultimediaTestCase(unittest.TestCase):
         self.portal.invokeFactory('Folder', 'test-folder')
         self.folder = self.portal['test-folder']
 
-        self.folder.invokeFactory('sc.embedder.content', 'multimedia')
+        self.folder.invokeFactory('sc.embedder', 'multimedia')
         self.multimedia = self.folder['multimedia']
 
     def test_adding(self):
-        self.assertTrue(IContentEmbedder.providedBy(self.multimedia))
-        self.assertTrue(verifyClass(IContentEmbedder, ContentEmbedder))
+        self.assertTrue(IEmbedder.providedBy(self.multimedia))
+        self.assertTrue(verifyClass(IEmbedder, Embedder))
 
     def test_interface(self):
-        self.assertTrue(IContentEmbedder.providedBy(self.multimedia))
-        self.assertTrue(verifyObject(IContentEmbedder, self.multimedia))
+        self.assertTrue(IEmbedder.providedBy(self.multimedia))
+        self.assertTrue(verifyObject(IEmbedder, self.multimedia))
 
     def test_custom_player_size_addform(self):
         """ Check if the custom size applies to the embed code in the
             add form.
         """
         add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder.content')
+                                        '++add++sc.embedder')
         dummy_data = {}
         dummy_data['embed_html'] = '<object width="512" height="296"><param ' + \
                         'name="flashvars" value="ap=1"></param></object>'
@@ -118,7 +116,7 @@ class MultimediaTestCase(unittest.TestCase):
 
     def test_vimeo_oembed(self):
         add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder.content')
+                                        '++add++sc.embedder')
         add_form = add_view.form_instance
         add_form.update()
         add_form.actions.update()
@@ -146,7 +144,7 @@ class MultimediaTestCase(unittest.TestCase):
 
     def test_youtube_oembed(self):
         add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder.content')
+                                        '++add++sc.embedder')
         add_form = add_view.form_instance
         add_form.update()
         add_form.actions.update()
@@ -171,7 +169,7 @@ class MultimediaTestCase(unittest.TestCase):
 
     def test_slideshare_oembed(self):
         add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder.content')
+                                        '++add++sc.embedder')
         add_form = add_view.form_instance
         add_form.update()
         add_form.actions.update()
@@ -208,7 +206,7 @@ class MultimediaTestCase(unittest.TestCase):
 
     def test_soundcloud_oembed(self):
         add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder.content')
+                                        '++add++sc.embedder')
         add_form = add_view.form_instance
         add_form.update()
         add_form.actions.update()

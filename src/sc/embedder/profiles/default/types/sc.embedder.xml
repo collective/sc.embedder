@@ -1,24 +1,23 @@
 <?xml version="1.0"?>
-<object name="sc.embedder.content"
+<object name="sc.embedder"
    meta_type="Dexterity FTI"
-   i18n:domain="sc.content.embedder"
+   i18n:domain="sc.embedder"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Content Embedder</property>
+  <property name="title" i18n:translate="">Embedder</property>
   <property name="description" i18n:translate="">A content embedder</property>
-  <property name="content_icon">contentembedder.png</property>
-  <property name="factory">sc.embedder.content</property>
+  <property name="content_icon">embedder.png</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">sc.content.embedder.content.contentembedder.IContentEmbedder</property>
-  <property name="klass">sc.content.embedder.content.contentembedder.ContentEmbedder</property>
+  <property name="schema">sc.embedder.content.embedder.IEmbedder</property>
+  <property name="klass">sc.embedder.content.embedder.Embedder</property>
 
-  <property name="add_permission">sc.content.embedder.AddContentEmbedder</property>
+  <property name="add_permission">sc.embedder.AddEmbedder</property>
 
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />

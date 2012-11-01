@@ -26,13 +26,15 @@ from collective import dexteritytextindexer
 
 from collective.oembed.interfaces import IConsumer
 
-from sc.content.embedder import MessageFactory as _
+from sc.embedder import MessageFactory as _
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+grok.templatedir('templates')
 
-class IContentEmbedder(form.Schema):
-    """ A representation of a Content Embedder content type
+
+class IEmbedder(form.Schema):
+    """ A representation of a content embedder content type
     """
 
     dexteritytextindexer.searchable('text', 'alternate_content')
@@ -93,17 +95,15 @@ class IContentEmbedder(form.Schema):
         )
 
 
-class ContentEmbedder(dexterity.Item):
-    """ A Content Embedder
+class Embedder(dexterity.Item):
+    """ A content embedder
     """
-    grok.implements(IContentEmbedder)
+    grok.implements(IEmbedder)
 
 
 class AddForm(dexterity.AddForm):
-    grok.name('sc.embedder.content')
-
-    template = ViewPageTemplateFile('contentembedder_templates/' + \
-                                    'sc.embedder.content.pt')
+    grok.name('sc.embedder')
+    template = ViewPageTemplateFile('templates/sc.embedder.pt')
 
     @button.buttonAndHandler(_('Save'), name='save')
     def handleAdd(self, action):
@@ -122,7 +122,7 @@ class AddForm(dexterity.AddForm):
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(
-                    _(u"Add Content Embedder operation cancelled"), "info")
+                    _(u"Operation cancelled."), "info")
         self.request.response.redirect(self.nextURL())
         notify(AddCancelledEvent(self.context))
 
@@ -178,8 +178,8 @@ class AddForm(dexterity.AddForm):
 
 
 class EditForm(dexterity.EditForm):
-    grok.context(IContentEmbedder)
-    template = ViewPageTemplateFile('contentembedder_templates/edit.pt')
+    grok.context(IEmbedder)
+    template = ViewPageTemplateFile('templates/edit.pt')
 
     @button.buttonAndHandler(_(u'Apply'), name='save')
     def handleApply(self, action):
@@ -190,14 +190,14 @@ class EditForm(dexterity.EditForm):
             return
         self.applyChanges(data)
         IStatusMessage(self.request).addStatusMessage(
-                                            _(u"Changes saved"), "info")
+                                            _(u"Changes saved."), "info")
         self.request.response.redirect(self.nextURL())
         notify(EditFinishedEvent(self.context))
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(
-                                            _(u"Edit cancelled"), "info")
+                                            _(u"Edit cancelled."), "info")
         self.request.response.redirect(self.nextURL())
         notify(EditCancelledEvent(self.context))
 
@@ -253,7 +253,7 @@ class EditForm(dexterity.EditForm):
 
 
 class View(dexterity.DisplayForm):
-    grok.context(IContentEmbedder)
+    grok.context(IEmbedder)
     grok.require('zope2.View')
     grok.name('view')
 

@@ -32,8 +32,8 @@ Add Multimedia
     [arguments]  ${url}
 
     Open Add New Menu
-    Click Link  css=a#sc-embedder-content
-    Page Should Contain  Add Content Embedder
+    Click Link  css=a#sc-embedder
+    Page Should Contain  Add Embedder
     Input Text  css=input#form-widgets-url  ${url}
     Click Button  Load
     Add File  ${PATH_TO_TEST_IMAGES}/image.jpg
