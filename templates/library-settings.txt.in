@@ -3,4 +3,4 @@
 *** Settings ***
 
 *** Variables ***
-${dollar}{PATH_TO_TEST_IMAGES} =  ${buildout:directory}/src/sc/content/embedder/tests/images
+${dollar}{PATH_TO_TEST_IMAGES} =  ${buildout:directory}/src/sc/embedder/tests/images

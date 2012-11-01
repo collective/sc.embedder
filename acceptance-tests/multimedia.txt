@@ -6,17 +6,15 @@ Suite Setup  Setup
 
 *** Variables ***
 
-${input_identifier} =  input#form-widgets-image-input
-
 *** Test cases ***
 
-Test Add Multimedia
+Test Add Embedder
     Goto Homepage
-    Add Multimedia  http://vimeo.com/17914974
+    Add Embedder  http://vimeo.com/17914974
 
-Test Edit Multimedia
+Test Edit Embedder
     Goto Homepage
-    Edit Multimedia  The Backwater Gospel  Some description
+    Edit Embedder  The Backwater Gospel  Some description
 
 *** Keywords ***
 
@@ -26,9 +24,9 @@ Setup
 Add File
     [arguments]  ${file}
 
-    Choose File  css=${input_identifier}  ${file}
+    Choose File  css=input#form-widgets-image-input  ${file}
 
-Add Multimedia
+Add Embedder
     [arguments]  ${url}
 
     Open Add New Menu
@@ -40,11 +38,11 @@ Add Multimedia
     Click Button  Save
     Page Should Contain  Item created
 
-Edit Multimedia
+Edit Embedder
     [arguments]  ${title}  ${description}
 
     Click Link  ${title}
-    Click Link  Edit
-    Input Text  css=textarea#form-widgets-IDublinCore-description  ${description}
+    Click Link  link=Edit
+    Input Text  css=textarea#form-widgets-IDublinCore-description.textarea-widget  ${description}
     Click Button  Apply
     Page Should Contain  Changes saved
