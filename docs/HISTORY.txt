@@ -4,7 +4,9 @@ Changelog
 1.0a3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix functional tests. [hvelarde]
+
+- Rename package: was sc.content.embedder and now is sc.embedder. [hvelarde]
 
 
 1.0a2 (2012-09-05)
