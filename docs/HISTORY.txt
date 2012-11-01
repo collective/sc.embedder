@@ -1,12 +1,18 @@
 Changelog
 ---------
 
-1.0a3 (unreleased)
+1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
 - Fix functional tests. [hvelarde]
 
 - Rename package: was sc.content.embedder and now is sc.embedder. [hvelarde]
+
+
+1.0a3 (2012-10-04)
+^^^^^^^^^^^^^^^^^^
+
+- Fixed KeyError: 'width' when saving embeded HTML with percentages. [davilima6]
 
 
 1.0a2 (2012-09-05)
