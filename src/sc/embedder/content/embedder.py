@@ -107,6 +107,21 @@ class AddForm(dexterity.AddForm):
 
     @button.buttonAndHandler(_('Save'), name='save')
     def handleAdd(self, action):
+        if self.request.get('form.widgets.url') and \
+           not self.request.get('form.widgets.embed_html'):
+            fields = {'width': 'form.widgets.width',
+                      'height': 'form.widgets.height',
+                      'description': 'form.widgets.IDublinCore.description',
+                      'title': 'form.widgets.IDublinCore.title',
+                      'html': 'form.widgets.embed_html'}
+            consumer = component.getUtility(IConsumer)
+            json_data = consumer.get_data(self.request['form.widgets.url'],
+                                          maxwidth=None,
+                                          maxheight=None,
+                                          format='json')
+            for k, v in fields.iteritems():
+                if json_data.get(k):
+                    self.request[v] = unicode(json_data[k])
         data, errors = self.extractData()
         self.set_custom_embed_code(data)
         if errors:
