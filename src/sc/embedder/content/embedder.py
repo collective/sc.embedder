@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from lxml import etree, cssselect
+from lxml import etree, cssselect, html
 
 from five import grok
 
@@ -198,6 +198,23 @@ class BaseForm(DexterityExtensibleForm):
             if json_data.get('thumbnail_url'):
                 self.set_image(json_data.get('thumbnail_url'))
 
+    def set_custom_embed_code(self, data):
+        """ Return the code that embed the code. Could be with the
+            original size or the custom chosen.
+        """
+        if not data.has_key('embed_html'):
+            return
+        tree = etree.HTML(data['embed_html'])
+        sel = cssselect.CSSSelector('body > *')
+        el = sel(tree)[0]
+
+        if 'width' in data.keys():
+            el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
+        if 'height' in data.keys():
+            el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
+
+        data['embed_html'] = html.tostring(el)
+
 
 class AddForm(BaseForm, dexterity.AddForm):
     grok.name('sc.embedder')
@@ -244,23 +261,6 @@ class AddForm(BaseForm, dexterity.AddForm):
     def handleLoad(self, action):
         self.load_oembed(action)
 
-    def set_custom_embed_code(self, data):
-        """ Return the code that embed the code. Could be with the
-            original size or the custom chosen.
-        """
-        if not data.has_key('embed_html'):
-            return
-        tree = etree.HTML(data['embed_html'])
-        sel = cssselect.CSSSelector('body > *')
-        el = sel(tree)[0]
-
-        if 'width' in data.keys():
-            el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
-        if 'height' in data.keys():
-            el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
-
-        data['embed_html'] = etree.tostring(el)
-
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
                  if key.id == 'form-widgets-url']
@@ -304,21 +304,6 @@ class EditForm(dexterity.EditForm, BaseForm):
                                             _(u"Edit cancelled."), "info")
         self.request.response.redirect(self.nextURL())
         notify(EditCancelledEvent(self.context))
-
-    def set_custom_embed_code(self, data):
-        """ Return the code that embed the code. Could be with the
-            original size or the custom chosen.
-        """
-        tree = etree.HTML(data['embed_html'])
-        sel = cssselect.CSSSelector('body > *')
-        el = sel(tree)[0]
-
-        if 'width' in data.keys():
-            el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
-        if 'height' in data.keys():
-            el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
-
-        data['embed_html'] = etree.tostring(el)
 
     def get_url_widget(self):
         widget = [key for key in self.widgets.values() \
