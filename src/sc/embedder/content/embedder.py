@@ -248,6 +248,8 @@ class AddForm(BaseForm, dexterity.AddForm):
         """ Return the code that embed the code. Could be with the
             original size or the custom chosen.
         """
+        if not data.has_key('embed_html'):
+            return
         tree = etree.HTML(data['embed_html'])
         sel = cssselect.CSSSelector('body > *')
         el = sel(tree)[0]
