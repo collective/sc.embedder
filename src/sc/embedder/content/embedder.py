@@ -32,21 +32,12 @@ from sc.embedder import MessageFactory as _
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import urllib2
-from Products.Five.browser import BrowserView
-from zope.interface import implementer, implements, implementsOnly
-from zope.publisher.interfaces import IPublishTraverse, NotFound
-from Acquisition import Explicit, aq_inner
-from zope.component import adapter, getMultiAdapter
-from z3c.form.interfaces import IFieldWidget, IFormLayer, IDataManager, NOVALUE
+from zope.interface import implementer
+from zope.component import adapter
+from z3c.form.interfaces import IFieldWidget, IFormLayer
 from plone.formwidget.namedfile.widget import NamedImageWidget
-from plone.formwidget.namedfile.interfaces import INamedFileWidget, INamedImageWidget
-from plone.namedfile.interfaces import INamedFileField, INamedImageField, INamed, INamedImage
+from plone.namedfile.interfaces import INamedImageField
 from z3c.form.widget import FieldWidget
-from ZPublisher.HTTPRequest import FileUpload
-try:
-    from  os import SEEK_END
-except ImportError:
-    from posixfile import SEEK_END
 
 
 grok.templatedir('templates')
@@ -160,12 +151,12 @@ class BaseForm(DexterityExtensibleForm):
         try:
             response = opener.open(url)
             self.widgets['image'].url = url
-            self.widgets['image'].value = ImageValueType(data = response.read(),
-                                                         filename = url.split('/')[-1])
-            self.request['form.widgets.image.action']=u'load'
+            self.widgets['image'].value = ImageValueType(data=response.read(),
+                                                         filename=url.split('/')[-1])
+            self.request['form.widgets.image.action'] = u'load'
         except:
             pass
-        
+
     def handle_image(self, data):
         url = self.widgets['url'].value
         action = self.request.get("form.widgets.image.action", None)
@@ -179,8 +170,8 @@ class BaseForm(DexterityExtensibleForm):
                 opener = urllib2.build_opener()
                 try:
                     response = opener.open(json_data.get('thumbnail_url'))
-                    data['image'] = ImageValueType(data = response.read(),
-                                                   filename = json_data.get('thumbnail_url').split('/')[-1])
+                    data['image'] = ImageValueType(data=response.read(),
+                                                   filename=json_data.get('thumbnail_url').split('/')[-1])
                 except:
                     pass
 
@@ -202,7 +193,7 @@ class BaseForm(DexterityExtensibleForm):
         """ Return the code that embed the code. Could be with the
             original size or the custom chosen.
         """
-        if not data.has_key('embed_html'):
+        if not 'embed_html' in data:
             return
         tree = etree.HTML(data['embed_html'])
         sel = cssselect.CSSSelector('body > *')
@@ -283,7 +274,7 @@ class EditForm(dexterity.EditForm, BaseForm):
     @button.buttonAndHandler(_('Load'), name='load')
     def handleLoad(self, action):
         self.load_oembed(action)
-        
+
     @button.buttonAndHandler(_(u'Apply'), name='save')
     def handleApply(self, action):
         data, errors = self.extractData()
