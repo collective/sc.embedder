@@ -216,9 +216,9 @@ class BaseForm(DexterityExtensibleForm):
         sel = cssselect.CSSSelector('body > *')
         el = sel(tree)[0]
 
-        if 'width' in data.keys():
+        if data.get('width', None):
             el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
-        if 'height' in data.keys():
+        if data.get('height', None):
             el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
 
         data['embed_html'] = html.tostring(el)
