@@ -5,6 +5,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="sc.embedder">
 
     <five:registerPackage package="." />
@@ -21,5 +22,14 @@
        id="sc.embedder.AddEmbedder"
        title="sc.embedder: Add Embedder"
     />
+
+    <adapter factory=".content.embedder.EmbedderImageFieldWidget" />
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".content.embedder.EmbedderImageWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="content/image_input.pt"
+        />
 
 </configure>

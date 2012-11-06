@@ -14,5 +14,6 @@ install: prerequisites
 
 tests:
 	bin/test
-	pyflakes sc/
 	pep8 --ignore=$(pep8_ignores) sc/
+	pyflakes src/sc/embedder
+	pep8 --ignore=$(pep8_ignores) src/sc/embedder
