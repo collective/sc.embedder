@@ -14,18 +14,27 @@ ${ZOPE_URL} =  http://localhost:${PORT}
 ${PLONE_URL} =  ${ZOPE_URL}/plone
 ${BROWSER} =  Firefox
 
+${title_selector} =  input#form-widgets-IDublinCore-title
+${description_selector} =  textarea#form-widgets-IDublinCore-description
+${image_load_selector} =  input#form-widgets-image-load
+${image_replace_selector} =  input#form-widgets-image-replace
+${image_input_selector} =  input#form-widgets-image-input
+${url_selector} =  input#form-widgets-url
+
 *** Test cases ***
+
+Test CRUD
+    Create  Nulla in mundo pax sincera
+    Update  Blando colore oculos mundus decepit
+    Delete  nulla-in-mundo-pax-sincera
+
+Test Load
+    Load  http://vimeo.com/17914974
 
 Test Required Fields
     Click Add Embedder
     Click Button  Save
     Page Should Contain  There were some errors
-
-Test CRUD
-    Add Embedder  http://vimeo.com/17914974
-    Goto Homepage
-    Edit Embedder  The Backwater Gospel  Some description
-    Remove Content  the-blackwater-gospel
 
 *** Keywords ***
 
@@ -47,27 +56,43 @@ Click Add Embedder
     Click Link  css=a#sc-embedder
     Page Should Contain  Add Embedder
 
-Add File
+Select File
     [arguments]  ${file}
 
     ${PATH_TO_TESTS} =  Get path to tests
-    Choose File  css=input#form-widgets-image-input  ${PATH_TO_TESTS}/${file}
+    Choose File  css=${image_input_selector}  ${PATH_TO_TESTS}/${file}
 
-Add Embedder
+Create
+    [arguments]  ${title}
+
+    Click Add Embedder
+    Input Text  css=${title_selector}  ${title}
+    # TODO: add all required fields here
+    Click Button  Save
+    Page Should Contain  Item created
+    Page Should Contain  ${title}
+
+Update
+    [arguments]  ${description}
+
+    Click Link  link=Edit
+    Input Text  css=${description_selector}  ${description}
+    Click Element  css=${image_load_selector}
+    Select File  image.jpg
+    Click Button  Save
+    Page Should Contain  Changes saved
+    Page Should Contain  ${description}
+
+Delete
+    [arguments]  ${id}
+
+    Remove Content  ${id}
+
+Load
     [arguments]  ${url}
 
     Click Add Embedder
-    Input Text  css=input#form-widgets-url  ${url}
+    Input Text  css=${url_selector}  ${url}
     Click Button  Load
-    Add File  image.jpg
     Click Button  Save
     Page Should Contain  Item created
-
-Edit Embedder
-    [arguments]  ${title}  ${description}
-
-    Click Link  ${title}
-    Click Link  link=Edit
-    Input Text  css=textarea#form-widgets-IDublinCore-description.textarea-widget  ${description}
-    Click Button  Apply
-    Page Should Contain  Changes saved
