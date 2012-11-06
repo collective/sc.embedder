@@ -16,9 +16,12 @@ ${BROWSER} =  Firefox
 
 ${title_selector} =  input#form-widgets-IDublinCore-title
 ${description_selector} =  textarea#form-widgets-IDublinCore-description
+${width_selector} =  input#form-widgets-width
+${height_selector} =  input#form-widgets-height
+${embed_html_selector} =  textarea#form-widgets-embed_html
 ${image_load_selector} =  input#form-widgets-image-load
 ${image_replace_selector} =  input#form-widgets-image-replace
-${image_input_selector} =  input#form-widgets-image-input
+${image_input_selector} =  input#form-widgets-image-upload
 ${url_selector} =  input#form-widgets-url
 
 *** Test cases ***
@@ -26,7 +29,7 @@ ${url_selector} =  input#form-widgets-url
 Test CRUD
     Create  Nulla in mundo pax sincera
     Update  Blando colore oculos mundus decepit
-    Delete  nulla-in-mundo-pax-sincera
+#    Delete  nulla-in-mundo-pax-sincera
 
 Test Load
     Load  http://vimeo.com/17914974
@@ -67,7 +70,9 @@ Create
 
     Click Add Embedder
     Input Text  css=${title_selector}  ${title}
-    # TODO: add all required fields here
+    Input Text  css=${width_selector}  0
+    Input Text  css=${height_selector}  0
+    Input Text  css=${embed_html_selector}  <br/>
     Click Button  Save
     Page Should Contain  Item created
     Page Should Contain  ${title}
@@ -77,7 +82,7 @@ Update
 
     Click Link  link=Edit
     Input Text  css=${description_selector}  ${description}
-    Click Element  css=${image_load_selector}
+    Click Element  css=${image_input_selector}
     Select File  image.jpg
     Click Button  Save
     Page Should Contain  Changes saved

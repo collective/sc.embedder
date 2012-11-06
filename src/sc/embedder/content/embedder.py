@@ -80,19 +80,19 @@ class IEmbedder(form.Schema):
         description=_(u"The URL for your multimedia file. Can be a URL " + \
                       u"from YouTube, Vimeo, SlideShare, SoundCloud or " + \
                       u"other main multimedia websites."),
-        required=True,
+        required=False,
         )
 
     width = schema.Int(
         title=_(u"Width"),
         description=_(u""),
-        required=False,
+        required=True,
         )
 
     height = schema.Int(
         title=_(u"Height"),
         description=_(u""),
-        required=False,
+        required=True,
         )
 
     embed_html = schema.Text(
@@ -110,6 +110,13 @@ class IEmbedder(form.Schema):
         values=[u'Top', u'Bottom', u'Left', u'Right'],
         )
 
+    form.widget(image=EmbedderImageFieldWidget)
+    image = NamedImage(
+        title=_(u"Image"),
+        description=_(u"A image to be used when listing content."),
+        required=False,
+        )
+
     text = RichText(
         title=_(u"Body text"),
         required=False,
@@ -119,13 +126,6 @@ class IEmbedder(form.Schema):
         title=_(u"Alternate content"),
         description=_(u"Description or transcription to an individual " + \
                       u"that is no able to see or hear."),
-        required=False,
-        )
-
-    form.widget(image=EmbedderImageFieldWidget)
-    image = NamedImage(
-        title=_(u"Image"),
-        description=_(u"A image to be used when listing content."),
         required=False,
         )
 
@@ -292,7 +292,7 @@ class EditForm(dexterity.EditForm, BaseForm):
     def handleLoad(self, action):
         self.load_oembed(action)
 
-    @button.buttonAndHandler(_(u'Apply'), name='save')
+    @button.buttonAndHandler(_(u'Save'), name='save')
     def handleApply(self, action):
         data, errors = self.extractData()
         self.handle_image(data)
