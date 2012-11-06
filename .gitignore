@@ -18,3 +18,4 @@ include/
 lib/
 parts/
 var/
+local.cfg

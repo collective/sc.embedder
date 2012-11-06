@@ -137,9 +137,9 @@ class MultimediaTestCase(unittest.TestCase):
                     len(add_form.widgets['IDublinCore.description'].value))
         self.assertEqual(iframe,
                         add_form.widgets['embed_html'].value)
-        self.assertEqual(1280,
+        self.assertEqual(u'1280',
                         add_form.widgets['width'].value)
-        self.assertEqual(720,
+        self.assertEqual(u'720',
                         add_form.widgets['height'].value)
 
     def test_youtube_oembed(self):
@@ -162,9 +162,9 @@ class MultimediaTestCase(unittest.TestCase):
                         add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(iframe,
                         add_form.widgets['embed_html'].value)
-        self.assertEqual(459,
+        self.assertEqual(u'459',
                         add_form.widgets['width'].value)
-        self.assertEqual(344,
+        self.assertEqual(u'344',
                         add_form.widgets['height'].value)
 
     def test_slideshare_oembed(self):
@@ -187,7 +187,8 @@ class MultimediaTestCase(unittest.TestCase):
             'embed_code/1464608" width="427" height="356" frameborder=' + \
             '"0" marginwidth="0" marginheight="0" scrolling="no" ' + \
             'style="border:1px solid #CCC;border-width:1px 1px 0;' + \
-            'margin-bottom:5px" allowfullscreen> </iframe> <div ' + \
+            'margin-bottom:5px" allowfullscreen webkitallowfullscreen ' + \
+            'mozallowfullscreen> </iframe> <div ' + \
             'style="margin-bottom:5px"> <strong> <a href="http://www.' + \
             'slideshare.net/baekholt/plone-4-and-5-plans-and-progress"' + \
             ' title="Plone 4 and 5, plans and progress" target="_blank">' + \
@@ -199,9 +200,9 @@ class MultimediaTestCase(unittest.TestCase):
                         add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(iframe,
                         add_form.widgets['embed_html'].value)
-        self.assertEqual(425,
+        self.assertEqual(u'425',
                         add_form.widgets['width'].value)
-        self.assertEqual(355,
+        self.assertEqual(u'355',
                         add_form.widgets['height'].value)
 
     def test_soundcloud_oembed(self):
@@ -234,5 +235,5 @@ class MultimediaTestCase(unittest.TestCase):
         # Sound cloud return percentage values
         self.assertEqual(u'100%',
                         add_form.widgets['width'].value)
-        self.assertEqual(166,
+        self.assertEqual(u'166',
                         add_form.widgets['height'].value)
