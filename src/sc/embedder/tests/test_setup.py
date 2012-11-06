@@ -10,8 +10,13 @@ from plone.app.testing import setRoles
 from sc.embedder.config import PROJECTNAME
 from sc.embedder.testing import INTEGRATION_TESTING
 
+JS = [
+    '++resource++sc.embedder/video-js/video.js',
+    ]
+
 CSS = [
-    "embedder.css",
+    'embedder.css',
+    '++resource++sc.embedder/video-js/video-js.css',
     ]
 
 
@@ -31,7 +36,12 @@ class InstallTestCase(unittest.TestCase):
         self.assertTrue('IEmbedderLayer' in layers,
                         'browser layer was not installed')
 
-    def test_cssregistry(self):
+    def test_javascript_registry(self):
+        resource_ids = self.portal.portal_javascripts.getResourceIds()
+        for id in JS:
+            self.assertTrue(id in resource_ids, '%s not installed' % id)
+
+    def test_css_registry(self):
         resource_ids = self.portal.portal_css.getResourceIds()
         for id in CSS:
             self.assertTrue(id in resource_ids, '%s not installed' % id)
@@ -55,7 +65,12 @@ class UninstallTest(unittest.TestCase):
         self.assertTrue('IEmbedderLayer' not in layers,
                         'browser layer was not removed')
 
-    def test_cssregistry_removed(self):
+    def test_javascript_removed(self):
+        resource_ids = self.portal.portal_javascripts.getResourceIds()
+        for id in JS:
+            self.assertTrue(id not in resource_ids, '%s not removed' % id)
+
+    def test_css_removed(self):
         resource_ids = self.portal.portal_css.getResourceIds()
         for id in CSS:
             self.assertTrue(id not in resource_ids, '%s not removed' % id)
