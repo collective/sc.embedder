@@ -16,13 +16,16 @@ ${BROWSER} =  Firefox
 
 *** Test cases ***
 
-Test Add Embedder
-    Goto Homepage
-    Add Embedder  http://vimeo.com/17914974
+Test Required Fields
+    Click Add Embedder
+    Click Button  Save
+    Page Should Contain  There were some errors
 
-#Test Edit Embedder
+Test CRUD
+    Add Embedder  http://vimeo.com/17914974
     Goto Homepage
     Edit Embedder  The Backwater Gospel  Some description
+    Remove Content  the-blackwater-gospel
 
 *** Keywords ***
 
@@ -39,6 +42,11 @@ Start Browser and Log In
     Click Button  Log in
     Goto Homepage
 
+Click Add Embedder
+    Open Add New Menu
+    Click Link  css=a#sc-embedder
+    Page Should Contain  Add Embedder
+
 Add File
     [arguments]  ${file}
 
@@ -48,9 +56,7 @@ Add File
 Add Embedder
     [arguments]  ${url}
 
-    Open Add New Menu
-    Click Link  css=a#sc-embedder
-    Page Should Contain  Add Embedder
+    Click Add Embedder
     Input Text  css=input#form-widgets-url  ${url}
     Click Button  Load
     Add File  image.jpg
