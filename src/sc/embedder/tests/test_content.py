@@ -237,3 +237,29 @@ class MultimediaTestCase(unittest.TestCase):
                         add_form.widgets['width'].value)
         self.assertEqual(u'166',
                         add_form.widgets['height'].value)
+
+    def test_videojs(self):
+        add_view = self.folder.unrestrictedTraverse(
+                                        '++add++sc.embedder')
+        add_form = add_view.form_instance
+        add_form.update()
+        add_form.actions.update()
+
+        url = 'http://video-js.zencoder.com/oceans-clip.webm'
+        add_form.widgets['url'].value = url
+        action = add_form.actions['load']
+
+        # We trigger the action of load
+        add_form.handleLoad(add_form, action)
+        iframe = u'\n<video class="video-js vjs-default-skin" controls\n ' + \
+                  ' preload="auto" data-setup="{}">\n    <source' + \
+                  ' src="http://video-js.zencoder.com/oceans-clip.webm" ' + \
+                  'type="video/webm" />\n</video>\n'
+        self.assertEqual(u"",
+                        add_form.widgets['IDublinCore.title'].value)
+        self.assertEqual(iframe,
+                        add_form.widgets['embed_html'].value)
+        self.assertEqual(u'',
+                        add_form.widgets['width'].value)
+        self.assertEqual(u'',
+                        add_form.widgets['height'].value)

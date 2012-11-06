@@ -16,6 +16,7 @@
 
     <include file="profiles.zcml"/>
     <include file="skins.zcml"/>
+    <include package=".browser"/>
 
     <!-- Permissions -->
     <permission

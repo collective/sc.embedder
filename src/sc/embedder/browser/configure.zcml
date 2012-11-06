@@ -1,0 +1,11 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="sc.embedder">
+
+    <browser:resourceDirectory
+        name="sc.embedder"
+        directory="resources"
+        />
+
+</configure>

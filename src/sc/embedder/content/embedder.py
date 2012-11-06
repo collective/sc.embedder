@@ -175,6 +175,21 @@ class BaseForm(DexterityExtensibleForm):
                 except:
                     pass
 
+    def get_fallback(self, url):
+        supported_mime_types = ('video/mp4', 'video/ogg', 'video/webm')
+        embedder_code = """
+<video class="video-js vjs-default-skin" controls
+  preload="auto" data-setup="{}">
+    <source src="%(url)s" type="%(type)s" />
+</video>
+"""
+        request = urllib2.Request(url)
+        request.get_method = lambda: 'HEAD'
+        opener = urllib2.build_opener()
+        response = opener.open(request)
+        if response.headers.get('content-type') in supported_mime_types:
+            return {'html': embedder_code % {'url': url, 'type': response.headers.get('content-type')}}
+
     def load_oembed(self, action):
         url = self.widgets['url'].value
         if url != '':
@@ -182,7 +197,9 @@ class BaseForm(DexterityExtensibleForm):
             json_data = consumer.get_data(url, maxwidth=None, maxheight=None,
                                           format='json')
             if json_data is None:
-                return
+                json_data = self.get_fallback(url)
+                if json_data is None:
+                    return
             for k, v in self.tr_fields.iteritems():
                 if json_data.get(k):
                     self.widgets[v].value = unicode(json_data[k])
@@ -199,9 +216,9 @@ class BaseForm(DexterityExtensibleForm):
         sel = cssselect.CSSSelector('body > *')
         el = sel(tree)[0]
 
-        if 'width' in data.keys():
+        if data.get('width', None):
             el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
-        if 'height' in data.keys():
+        if data.get('height', None):
             el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
 
         data['embed_html'] = html.tostring(el)
