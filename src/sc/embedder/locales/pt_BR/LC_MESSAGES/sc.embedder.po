@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sc.embedder 1.0\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-09-28 13:51-0300\n"
-"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
+"PO-Revision-Date: 2012-11-07 16:07-0300\n"
+"Last-Translator: Leonardo Rochael Almeida <LeoRochael@simplesconsultoria.com.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -37,7 +37,7 @@ msgstr "Alterações salvas."
 
 #: sc/embedder/content/embedder.py:126
 msgid "Description or transcription for accessibility (WCAG) users."
-msgstr ""
+msgstr "Descrição ou transcrição, para usuários de sistemas acessíveis (WCAG)."
 
 #: sc/embedder/content/embedder.py:310
 msgid "Edit cancelled."
@@ -45,7 +45,7 @@ msgstr "Edição cancelada."
 
 #: sc/embedder/content/embedder.py:99
 msgid "Embedded HTML code"
-msgstr ""
+msgstr "Código HTML a incorporar"
 
 #: sc/embedder/profiles/default/types/sc.embedder.xml
 msgid "Embedder"
@@ -53,7 +53,7 @@ msgstr "Embedder"
 
 #: sc/embedder/content/embedder.py:100
 msgid "HTML code to render the embedded media"
-msgstr ""
+msgstr "Código HTML para renderizar a mídia embarcada"
 
 #: sc/embedder/content/embedder.py:93
 msgid "Height"
@@ -61,7 +61,7 @@ msgstr "Altura"
 
 #: sc/embedder/content/embedder.py:115
 msgid "Image to be used when listing content."
-msgstr ""
+msgstr "Imagem a ser usada em listagens."
 
 #: sc/embedder/content/embedder.py:257
 msgid "Item created"
@@ -85,7 +85,7 @@ msgstr "Posição do player"
 
 #: sc/embedder/content/embedder.py:114
 msgid "Preview image"
-msgstr ""
+msgstr "Imagem de pré-visualização"
 
 #: sc/embedder/content/embedder.py:229
 msgid "Save"
