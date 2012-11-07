@@ -96,9 +96,8 @@ class IEmbedder(form.Schema):
         )
 
     embed_html = schema.Text(
-        title=_(u"Embed html code"),
-        description=_(u"This code take care of render the embed " + \
-                      u"multimedia item"),
+        title=_(u"Embedded HTML code"),
+        description=_(u"HTML code to render the embedded media"),
         required=True,
         )
 
@@ -112,8 +111,8 @@ class IEmbedder(form.Schema):
 
     form.widget(image=EmbedderImageFieldWidget)
     image = NamedImage(
-        title=_(u"Image"),
-        description=_(u"A image to be used when listing content."),
+        title=_(u"Preview image"),
+        description=_(u"Image to be used when listing content."),
         required=False,
         )
 
@@ -124,8 +123,7 @@ class IEmbedder(form.Schema):
 
     alternate_content = RichText(
         title=_(u"Alternate content"),
-        description=_(u"Description or transcription to an individual " + \
-                      u"that is no able to see or hear."),
+        description=_(u"Description or transcription for accessibility (WCAG) users."),
         required=False,
         )
 
