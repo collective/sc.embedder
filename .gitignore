@@ -4,6 +4,8 @@
 *.pyc
 .installed.cfg
 .mr.developer.cfg
+.*project
+.settings
 library-settings.txt
 log.html
 output.xml
