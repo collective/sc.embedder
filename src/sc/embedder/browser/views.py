@@ -1,5 +1,3 @@
-import httplib
-
 from zope.interface import implements
 from zope.component import getUtility
 
@@ -8,11 +6,7 @@ from Products.Five.browser import BrowserView
 from Products.TinyMCE.adapters.interfaces.JSONFolderListing import \
      IJSONFolderListing
 from Products.TinyMCE.adapters.interfaces.JSONSearch import IJSONSearch
-from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
-from Products.TinyMCE.adapters.interfaces.Upload import IUpload
-from Products.TinyMCE.adapters.interfaces.Save import ISave
 from Products.TinyMCE.browser.interfaces.browser import ITinyMCEBrowserView
-from Products.TinyMCE.browser.interfaces.browser import IATDProxyView
 from Products.TinyMCE.interfaces.utility import ITinyMCE
 
 
@@ -24,7 +18,7 @@ class TinyMCEBrowserView(BrowserView):
         """Returns the folderlisting of sc.embedder objects in JSON"""
 
         utility = getUtility(ITinyMCE)
-        portal_types = ['sc.embedder',]
+        portal_types = ['sc.embedder', ]
         portal_types.extend(utility.containsobjects.split('\n'))
 
         object = IJSONFolderListing(self.context, None)
@@ -38,7 +32,7 @@ class TinyMCEBrowserView(BrowserView):
         """Returns the search results of sc.embedder objects in JSON"""
 
         utility = getUtility(ITinyMCE)
-        portal_types = ['sc.embedder',]
+        portal_types = ['sc.embedder', ]
         portal_types.extend(utility.containsobjects.split('\n'))
 
         object = IJSONSearch(self.context, None)

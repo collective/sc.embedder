@@ -56,9 +56,12 @@ class EmbedderImageWidget(NamedImageWidget):
         if self.ignoreContext:
             return None
         if self.filename_encoded:
-            return "%s/++widget++%s/@@download/%s" % (self.request.getURL(), self.name, self.filename_encoded)
+            return "%s/++widget++%s/@@download/%s" % (self.request.getURL(),
+                                                      self.name,
+                                                      self.filename_encoded)
         else:
-            return "%s/++widget++%s/@@download" % (self.request.getURL(), self.name)
+            return "%s/++widget++%s/@@download" % (self.request.getURL(),
+                                                   self.name)
 
 
 @implementer(IFieldWidget)

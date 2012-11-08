@@ -29,7 +29,7 @@ ${url_selector} =  input#form-widgets-url
 Test CRUD
     Create  Nulla in mundo pax sincera
     Update  Blando colore oculos mundus decepit
-    Delete  nulla-in-mundo-pax-sincera
+#    Delete  nulla-in-mundo-pax-sincera
 
 Test Load
     Load  http://vimeo.com/17914974
