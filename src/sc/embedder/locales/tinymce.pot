@@ -1,0 +1,43 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-11-08 19:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: tinymce\n"
+
+#. Default: "Cancel"
+#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:79
+msgid "common_cancel"
+msgstr ""
+
+#. Default: "Insert"
+#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:78
+msgid "common_insert"
+msgstr ""
+
+#. Default: "Insert sc.embedder"
+#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:4
+msgid "scembedder_dlg_dialog_title"
+msgstr ""
+
+#. Default: "Embedded content list"
+#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:49
+msgid "scembedder_dlg_image_list"
+msgstr ""
+
+#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:60
+msgid "scembedder_dlg_preview"
+msgstr ""
+

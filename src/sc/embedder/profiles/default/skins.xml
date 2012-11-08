@@ -11,8 +11,11 @@
  <object name="sc_embedder_javascripts"
     meta_type="Filesystem Directory View"
     directory="sc.embedder:skins/javascripts" />
+ <object name="sc_embedder_tinymce"
+    meta_type="Filesystem Directory View"
+    directory="sc.embedder:skins/tinymce" />
 
- <skin-path name="Sunburst Theme">
+ <skin-path name="*">
   <layer
      name="sc_embedder_images"
      insert-after="custom"
@@ -24,6 +27,10 @@
   <layer
       name="sc_embedder_javascripts"
       insert-after="sc_embedder_styles"
+      />
+  <layer
+      name="sc_embedder_tinymce"
+      insert-after="custom"
       />
  </skin-path>
 

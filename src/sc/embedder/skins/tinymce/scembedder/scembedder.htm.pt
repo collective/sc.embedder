@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" i18n:domain="tinymce">
+<head>
+  <title i18n:translate="scembedder_dlg_dialog_title">Insert sc.embedder</title>
+  <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+  <script type="text/javascript" src="../../utils/mctabs.js"></script>
+  <script type="text/javascript" src="../../utils/form_utils.js"></script>
+  <script type="text/javascript" src="js/scembedder.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/scembedder.css" />
+
+</head>
+<body id="scembedder" style="display: none"
+  tal:define="portal_url context/portal_url; portal_tinymce context/portal_tinymce;">
+  <div class="dialog-wrapper" id="content">
+    <fieldset id="general_panel">
+      <legend i18n:translate="scembedder_dlg_dialog_title">Insert sc.embedder</legend>
+      <div id="internalpath" class="formHelp"></div>
+      <form>
+
+        <fieldset class="column columnlibraries">
+          <legend i18n:domain="plone.tinymce" i18n:translate="">Libraries</legend>
+                <ul class="configlets">
+                    <li id="home">
+              <a href="javascript:SCEmbedderDialog.displayPanel('internal_panel'); SCEmbedderDialog.getFolderListing(tinyMCEPopup.editor.settings.navigation_root_url, 'tinymce-jsonscembedderfolderlisting');">
+                  <img alt="" tal:attributes="src string:$portal_url/logoIcon.gif"/> <span i18n:domain="plone.tinymce" i18n:translate="">Home</span>
+              </a>
+            </li>
+                    <li>
+              <a href="javascript:SCEmbedderDialog.displayPanel('internal_panel'); SCEmbedderDialog.getCurrentFolderListing();">
+                  <img alt="" tal:attributes="src string:$portal_url/site_icon.gif"/> <span i18n:domain="plone.tinymce" i18n:translate="">Current Folder</span>
+              </a>
+            </li>
+                    <!--li>
+              <a href="javascript:SCEmbedderDialog.displayPanel('internal_panel');">
+                  <img alt="" tal:attributes="src string:$portal_url/popup_calendar.gif"/> Recent Items
+              </a>
+            </li-->
+                </ul>
+                <div class="field">
+                  <label for="searchtext" i18n:domain="plone.tinymce" i18n:translate="">Search</label>
+                  <div class="widget">
+                    <input type="text" name="searchtext" id="searchtext" value="" onkeyup="SCEmbedderDialog.checkSearch(event);" size="12"/>
+                    <input type="button" value="Search" i18n:domain="plone.tinymce" i18n:attributes="value" class="searchButton" onclick="SCEmbedderDialog.getFolderListing(tinyMCEPopup.editor.settings.navigation_root_url, 'tinymce-jsonimagesearch');"/>
+                  </div>
+                </div>
+        </fieldset>
+
+        <fieldset id="internal_panel" class="subPanel column">
+          <legend i18n:translate="scembedder_dlg_image_list">Embedded content list</legend>
+          <div class="field">
+            <div class="uponelevel"><a id="uponelevel" class="link-parent" href="javascript:void(0)" i18n:domain="plone.tinymce" i18n:translate="">Up one level</a></div>
+            <div id="internallinkcontainer" class="widget radioscrolllist input-border">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset id="internal_details_panel" class="subPanel column">
+          <legend i18n:domain="plone.tinymce" i18n:translate="">Details</legend>
+          <div class="field">
+            <label i18n:translate="scembedder_dlg_preview"></label>
+            <div class="widget">
+              <div id="previewimagecontainer">
+              </div>
+              <input type="hidden" name="embed_html" id="embed_html" value="" />
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+
+    </fieldset>
+
+    <div class="visualClear"><!-- --></div>
+
+      <form onsubmit="SCEmbedderDialog.insert();return false;" action="#">
+      <div class="mceActionPanel formControls">
+        <span class="actionButtons">
+          <input type="submit" id="insert" class="context" name="insert" i18n:attributes="value common_insert" value="Insert"/>
+          <input type="button" id="cancel" class="standalone" name="cancel" i18n:attributes="value common_cancel" onclick="tinyMCEPopup.close();" value="Cancel"/>
+        </span>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
