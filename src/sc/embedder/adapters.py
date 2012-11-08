@@ -11,8 +11,6 @@ from Products.CMFCore.utils import getToolByName
 
 from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
 
-from plone.outputfilters.browser.resolveuid import uuidFor
-
 
 class JSONDetails(object):
     """Return details of the current object in JSON"""
@@ -26,8 +24,6 @@ class JSONDetails(object):
         """Builds a JSON object based on the details
            of this object.
         """
-
-        portal_types = ('sc.embedder',)
 
         results = {}
         results['title'] = self.context.title_or_id()
