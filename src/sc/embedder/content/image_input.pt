@@ -36,8 +36,8 @@
             tal:content="filename"
             tal:attributes="href download_url"
             >Filename</a>
-        <span class="discreet"> &mdash;
-            <span tal:define="sizekb view/file_size" tal:replace="sizekb">100</span> KB
+        <span class="discreet" i18n:translate=""> &mdash;
+            <span i18n:name="size" tal:define="sizekb view/file_size" tal:replace="sizekb">100</span> KB
         </span>
     </span>
     <div style="padding-top: 1em;">

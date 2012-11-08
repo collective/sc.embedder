@@ -33,4 +33,10 @@
         template="content/image_input.pt"
         />
 
+    <adapter
+        for="sc.embedder.content.embedder.IEmbedder"
+        provides="Products.TinyMCE.adapters.interfaces.JSONDetails.IJSONDetails"
+        factory=".adapters.JSONDetails"
+        />
+
 </configure>
