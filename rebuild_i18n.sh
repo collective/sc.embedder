@@ -27,5 +27,15 @@ for po in ${BASE_DIRECTORY}/locales/*/LC_MESSAGES/plone.po; do
 $I18NDUDE sync --pot ${BASE_DIRECTORY}/locales/plone.pot $po
 done
 
+# Synchronise the templates and scripts with the .pot.
+$I18NDUDE rebuild-pot --pot ${BASE_DIRECTORY}/locales/tinymce.pot \
+    --create tinymce \
+    ${BASE_DIRECTORY}/skins/tinymce
+
+# Synchronise the Plone's pot file (Used for the workflows)
+for po in ${BASE_DIRECTORY}/locales/*/LC_MESSAGES/tinymce.po; do
+$I18NDUDE sync --pot ${BASE_DIRECTORY}/locales/tinymce.pot $po
+done
+
 # Report of errors and suspect untranslated messages
 $I18NDUDE find-untranslated -n ${BASE_DIRECTORY}

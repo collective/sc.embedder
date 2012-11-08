@@ -52,6 +52,7 @@ setup(name='sc.embedder',
           'collective.dexteritytextindexer',
           'collective.oembed',
           'lxml',
+          'Products.TinyMCE',
       ],
       extras_require={
         'test': [
