@@ -29,7 +29,7 @@ ${url_selector} =  input#form-widgets-url
 Test CRUD
     Create  Nulla in mundo pax sincera
     Update  Blando colore oculos mundus decepit
-#    Delete  nulla-in-mundo-pax-sincera
+    Delete
 
 Test Load
     Load  http://vimeo.com/17914974
@@ -40,10 +40,6 @@ Test Required Fields
     Page Should Contain  There were some errors
 
 *** Keywords ***
-
-Goto Homepage
-    Go to   ${PLONE_URL}
-    Page should contain  Plone site
 
 Start Browser and Log In
     Open Browser  ${PLONE_URL}
@@ -89,9 +85,10 @@ Update
     Page Should Contain  ${description}
 
 Delete
-    [arguments]  ${id}
-
-    Remove Content  ${id}
+    Open Action Menu
+    Click Link  css=a#delete
+    Click Button  Delete
+    Page Should Contain  Plone site
 
 Load
     [arguments]  ${url}
