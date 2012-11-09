@@ -51,7 +51,7 @@
                             checked python:(action == 'load') and 'checked' or None;"
             />
         <label
-            tal:attributes="for string:${view/id}-load" i18n:translate="image_load">Load image from oEmbed</label>
+            tal:attributes="for string:${view/id}-load" i18n:translate="image_load">Load image from service provider (if available)</label>
         <br />
     	<tal:noimage condition="not:allow_nochange">
 	        <input
