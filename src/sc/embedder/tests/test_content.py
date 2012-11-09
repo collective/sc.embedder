@@ -251,10 +251,7 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = u'\n<video class="video-js vjs-default-skin" controls\n ' + \
-                  ' preload="auto" data-setup="{}">\n    <source' + \
-                  ' src="http://video-js.zencoder.com/oceans-clip.webm" ' + \
-                  'type="video/webm" />\n</video>\n'
+        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http://video-js.zencoder.com/oceans-clip.webm&type=video/webm"\n        frameborder="0">\n</iframe>\n'
         self.assertEqual(u"",
                         add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(iframe,
