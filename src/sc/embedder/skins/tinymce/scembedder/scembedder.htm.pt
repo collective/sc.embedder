@@ -7,12 +7,6 @@
   <script type="text/javascript" src="../../utils/form_utils.js"></script>
   <script type="text/javascript" src="js/scembedder.js"></script>
   <link rel="stylesheet" type="text/css" href="css/scembedder.css" />
-
-
-<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-<script src="http://vjs.zencdn.net/c/video.js"></script>
-
-
 </head>
 <body id="scembedder" style="display: none"
   tal:define="portal_url context/portal_url; portal_tinymce context/portal_tinymce;">

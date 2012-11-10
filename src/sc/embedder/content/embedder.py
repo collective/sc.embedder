@@ -32,7 +32,7 @@ from sc.embedder import MessageFactory as _
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import urllib2
-from zope.interface import implementer
+from zope.interface import implementer, Interface
 from zope.component import adapter
 from z3c.form.interfaces import IFieldWidget, IFormLayer
 from plone.formwidget.namedfile.widget import NamedImageWidget
@@ -180,6 +180,8 @@ class BaseForm(DexterityExtensibleForm):
         supported_mime_types = ('video/mp4', 'video/ogg', 'video/webm')
         embedder_code = """
 <iframe src="%(context_url)s/@@embedder_videojs?src=%(url)s&type=%(type)s"
+        class="vjs-iframe"
+        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"
         frameborder="0">
 </iframe>
 """
@@ -189,8 +191,8 @@ class BaseForm(DexterityExtensibleForm):
         response = opener.open(request)
         if response.headers.get('content-type') in supported_mime_types:
             return {'html': embedder_code % {'context_url': self.context.absolute_url(),
-                                             'url': url,
-                                             'type': response.headers.get('content-type')}}
+                                             'url': urllib2.quote(url, ''),
+                                             'type': urllib2.quote(response.headers.get('content-type'), '')}}
 
     def load_oembed(self, action):
         url = self.widgets['url'].value
@@ -343,7 +345,7 @@ class View(dexterity.DisplayForm):
         return css_class
 
 
-class EmbedderVideoJS(dexterity.DisplayForm):
-    grok.context(IEmbedder)
+class EmbedderVideoJS(grok.View):
+    grok.context(Interface)
     grok.require('zope2.View')
     grok.name('embedder_videojs')

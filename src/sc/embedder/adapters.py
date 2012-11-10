@@ -7,8 +7,6 @@ from lxml import etree, cssselect, html
 
 from zope.interface import implements
 
-from Products.CMFCore.utils import getToolByName
-
 from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
 
 
@@ -47,9 +45,3 @@ class JSONDetails(object):
            override the default set of results
         """
         return {}
-
-    def _getPloneUrl(self):
-        """Return the URL corresponding to the root of the Plone site."""
-        portal_url = getToolByName(self.context, 'portal_url')
-        portal = portal_url.getPortalObject()
-        return portal.absolute_url()

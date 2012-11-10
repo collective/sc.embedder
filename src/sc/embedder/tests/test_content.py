@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+try:
+    import json
+    assert json  # silence pyflakes
+except ImportError:
+    import simplejson as json
 
 import unittest2 as unittest
 
@@ -33,6 +38,8 @@ class MultimediaTestCase(unittest.TestCase):
 
         self.folder.invokeFactory('sc.embedder', 'multimedia')
         self.multimedia = self.folder['multimedia']
+        self.multimedia.title = 'Multimedia'
+        self.multimedia.reindexObject()
 
     def test_adding(self):
         self.assertTrue(IEmbedder.providedBy(self.multimedia))
@@ -251,7 +258,11 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http://video-js.zencoder.com/oceans-clip.webm&type=video/webm"\n        frameborder="0">\n</iframe>\n'
+        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?\
+src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&\
+type=video%2Fwebm"\n        class="vjs-iframe"\n        \
+allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        \
+frameborder="0">\n</iframe>\n'
         self.assertEqual(u"",
                         add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(iframe,
@@ -260,3 +271,28 @@ class MultimediaTestCase(unittest.TestCase):
                         add_form.widgets['width'].value)
         self.assertEqual(u'',
                         add_form.widgets['height'].value)
+
+        self.folder.invokeFactory('sc.embedder', 'ocean-clip')
+        video = self.folder['ocean-clip']
+
+        video.title = 'Oceans clip'
+        video.width = '640'
+        video.height = '264'
+        video.embed_html = iframe
+
+        self.assertItemsEqual({u'thumb_html': u'<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&amp;type=video%2Fwebm" class="vjs-iframe" allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1" frameborder="0" width="188" height="141">\n</iframe>',
+                               u'embed_html': u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>\n',
+                               u'description': u'',
+                               u'title': u'Oceans clip'
+                               },
+                              json.loads(video.unrestrictedTraverse('@@tinymce-jsondetails')()))
+
+    def test_jsonimagefolderlisting(self):
+        # Now we can get a listing of the images and check if our image is there.e/'})
+        output = self.folder.restrictedTraverse('@@tinymce-jsonscembedderfolderlisting')(False, 'http://nohost/plone/test-folder')
+        self.assertIn('"id": "multimedia"', output)
+
+    def test_jsonimagesearch(self):
+        # The images have a similar search method. Let's find our image.
+        output = self.portal.restrictedTraverse('@@tinymce-jsonscembeddersearch')('Multimedia')
+        self.assertIn('"id": "multimedia"', output)

@@ -45,9 +45,13 @@
 </head>
 
 
-    <body>
-		<video class="video-js vjs-default-skin" controls preload="auto"
-			   data-setup="{}" width="640" height="264"
+    <body class="embeddervideojs-template">
+		<video id="embeded-video-js"
+		       class="video-js vjs-default-skin"
+		       width="0" height="0"
+		       controls preload="auto"
+			   data-setup="{}"
+			   allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen=""
 			   tal:define="type request/type|nothing;
 			               src request/src|nothing;"
 			   tal:condition="python:type and src">
@@ -57,6 +61,14 @@
 					                type type;">
 			</source>
 		</video>
+		<script>
+		  $(function() {
+			  var vjsPlayer = _V_("embeded-video-js");
+			  vjsPlayer.width($(window).width());
+			  vjsPlayer.height($(window).height());
+		  });
+		
+		</script>
     </body>
 </html>
 </metal:page>

@@ -7,6 +7,7 @@
 (function() {
     tinymce.create('tinymce.plugins.SCEmbedderPlugin', {
         init : function(ed, url) {
+        	ed.settings.extended_valid_elements = "iframe[src|title|width|height|allowfullscreen|webkitallowfullscreen|mozallowfullscreen|frameborder]"
             // Register commands
             ed.addCommand('mceSCEmbedder', function() {
                 // Internal image object like a flash placeholder

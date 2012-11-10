@@ -9,4 +9,4 @@
 #uploadfile { width: 100%; }
 #upload_iframe { display: none; }
 #internallinkcontainer { height: 240px; }
-
+.vjs-iframe { background-color: #000; }

@@ -13,6 +13,7 @@ install: prerequisites
 	bin/buildout -c travis.cfg $(options)
 
 tests:
-	bin/test
+	bin/createzopecoverage
 	pyflakes src/sc/embedder
 	pep8 --ignore=$(pep8_ignores) src/sc/embedder
+	./coverage.sh

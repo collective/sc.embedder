@@ -403,8 +403,8 @@ var SCEmbedderDialog = {
                     dimension = elm.options[elm.selectedIndex].value;
                 }
 
-                document.getElementById ('previewimagecontainer').innerHTML = data.thumb_html + '<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet"><script src="http://vjs.zencdn.net/c/video.js"></script>';
-                document.getElementById ('embed_html').value = data.embed_html;
+                document.getElementById ('previewimagecontainer').innerHTML = data.thumb_html;
+                document.getElementById ('embed_html').value = data.embed_html + '<p></p>';
                 this.current_path = path;
                 document.getElementById('internal_details_panel').style.display = 'block';
             }
