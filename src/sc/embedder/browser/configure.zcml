@@ -8,4 +8,12 @@
         directory="resources"
         />
 
+    <browser:pages
+        for="*"
+        class=".views.TinyMCEBrowserView"
+        permission="zope2.View">
+        <browser:page attribute="jsonSCEmbedderFolderListing" name="tinymce-jsonscembedderfolderlisting" />
+        <browser:page attribute="jsonSCEmbedderSearch" name="tinymce-jsonscembeddersearch" />
+    </browser:pages>
+
 </configure>

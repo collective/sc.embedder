@@ -32,7 +32,7 @@ from sc.embedder import MessageFactory as _
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import urllib2
-from zope.interface import implementer
+from zope.interface import implementer, Interface
 from zope.component import adapter
 from z3c.form.interfaces import IFieldWidget, IFormLayer
 from plone.formwidget.namedfile.widget import NamedImageWidget
@@ -56,9 +56,12 @@ class EmbedderImageWidget(NamedImageWidget):
         if self.ignoreContext:
             return None
         if self.filename_encoded:
-            return "%s/++widget++%s/@@download/%s" % (self.request.getURL(), self.name, self.filename_encoded)
+            return "%s/++widget++%s/@@download/%s" % (self.request.getURL(),
+                                                      self.name,
+                                                      self.filename_encoded)
         else:
-            return "%s/++widget++%s/@@download" % (self.request.getURL(), self.name)
+            return "%s/++widget++%s/@@download" % (self.request.getURL(),
+                                                   self.name)
 
 
 @implementer(IFieldWidget)
@@ -176,17 +179,20 @@ class BaseForm(DexterityExtensibleForm):
     def get_fallback(self, url):
         supported_mime_types = ('video/mp4', 'video/ogg', 'video/webm')
         embedder_code = """
-<video class="video-js vjs-default-skin" controls
-  preload="auto" data-setup="{}">
-    <source src="%(url)s" type="%(type)s" />
-</video>
+<iframe src="%(context_url)s/@@embedder_videojs?src=%(url)s&type=%(type)s"
+        class="vjs-iframe"
+        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"
+        frameborder="0">
+</iframe>
 """
         request = urllib2.Request(url)
         request.get_method = lambda: 'HEAD'
         opener = urllib2.build_opener()
         response = opener.open(request)
         if response.headers.get('content-type') in supported_mime_types:
-            return {'html': embedder_code % {'url': url, 'type': response.headers.get('content-type')}}
+            return {'html': embedder_code % {'context_url': self.context.absolute_url(),
+                                             'url': urllib2.quote(url, ''),
+                                             'type': urllib2.quote(response.headers.get('content-type'), '')}}
 
     def load_oembed(self, action):
         url = self.widgets['url'].value
@@ -337,3 +343,9 @@ class View(dexterity.DisplayForm):
         pos = self.context.player_position
         css_class = "%s_embedded" % pos.lower()
         return css_class
+
+
+class EmbedderVideoJS(grok.View):
+    grok.context(Interface)
+    grok.require('zope2.View')
+    grok.name('embedder_videojs')

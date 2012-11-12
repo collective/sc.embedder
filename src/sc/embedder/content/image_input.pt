@@ -36,8 +36,8 @@
             tal:content="filename"
             tal:attributes="href download_url"
             >Filename</a>
-        <span class="discreet"> &mdash;
-            <span tal:define="sizekb view/file_size" tal:replace="sizekb">100</span> KB
+        <span class="discreet" i18n:translate=""> &mdash;
+            <span i18n:name="size" tal:define="sizekb view/file_size" tal:replace="sizekb">100</span> KB
         </span>
     </span>
     <div style="padding-top: 1em;">
@@ -51,7 +51,7 @@
                             checked python:(action == 'load') and 'checked' or None;"
             />
         <label
-            tal:attributes="for string:${view/id}-load" i18n:translate="image_load">Load image from oEmbed</label>
+            tal:attributes="for string:${view/id}-load" i18n:translate="image_load">Load image from service provider (if available)</label>
         <br />
     	<tal:noimage condition="not:allow_nochange">
 	        <input

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import-steps>
+  <import-step
+    id="sc.embedder-portal_transforms"
+    handler="sc.embedder.setuphandlers.setup_portal_transforms"
+    title="sc.embedder portal_transforms setup"
+    version="1.0">
+    <dependency step="plone-final"/>
+  </import-step>
+</import-steps>
