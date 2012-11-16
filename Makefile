@@ -1,11 +1,14 @@
 # convenience makefile to boostrap & run buildout
 # use `make options=-v` to run buildout with extra options
 
-pep8_ignores = E501
 options = -N -q -t 3
+pep8_ignores = E501
+src = src/sc/embedder/
+minimum_coverage = 80
 
 prerequisites:
-	sudo apt-get install -qq pep8 pyflakes
+	sudo apt-get install -q pep8 pyflakes
+	pip install -q createzopecoverage
 	mkdir -p buildout-cache/downloads
 
 install: prerequisites
@@ -13,7 +16,7 @@ install: prerequisites
 	bin/buildout -c travis.cfg $(options)
 
 tests:
-	bin/createzopecoverage
-	pyflakes src/sc/embedder
-	pep8 --ignore=$(pep8_ignores) src/sc/embedder
-	./coverage.sh
+	bin/test
+	pep8 --ignore=$(pep8_ignores) $(src)
+	pyflakes $(src)
+	./coverage.sh $(minimum_coverage)

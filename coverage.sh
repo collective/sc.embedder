@@ -4,6 +4,8 @@
 MINIMUM=80
 REPORT="coverage/reports/all.html"
 
+createzopecoverage
+
 if [ ! -f ${REPORT} ]; then
     echo "No test coverage report present; skipping test coverage validation"
     exit 0
