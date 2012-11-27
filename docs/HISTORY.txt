@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-1.0a4 (unreleased)
+1.0b1 (2012-11-27)
 ^^^^^^^^^^^^^^^^^^
 
 - Update package dependecies for Plone 4.3 compatibility. [hvelarde]
