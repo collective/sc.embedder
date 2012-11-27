@@ -61,8 +61,8 @@ views or covers.
 Providers
 ^^^^^^^^^
 
-This product use `collective.oembed <http://pypi.python.org/pypi/collective.oembed>`_.
-You can check his documentation to see a list of them.
+This product use `collective.oembed`_. You can check its documentation to see
+a list of them.
 
 Mostly Harmless
 ---------------
@@ -73,3 +73,4 @@ Mostly Harmless
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.embedder/issues
+.. _`collective.oembed`: http://pypi.python.org/pypi/collective.oembed

@@ -10,18 +10,24 @@ Changelog
 
 - Rename package: was sc.content.embedder and now is sc.embedder. [hvelarde]
 
-- Support for VideoJS as fallback if static file and no supported provider. [jpgimenez]
+- Support for VideoJS as fallback if static file and no supported provider.
+  [jpgimenez]
 
-- Fixed the rendering of the embedded code to not break the main view. [jpgimenez]
+- Fixed the rendering of the embedded code to not break the main view.
+  [jpgimenez]
 
-- Allow selecting, embedding and rendering sc.embedder content into TinyMCE widgets as if it were images. [jpgimenez]
+- Allow selecting, embedding and rendering sc.embedder content into TinyMCE
+  widgets as if it were images. [jpgimenez]
 
-- VideoJS embedder code implemented as an iframe, to simplify the integration with TinyMCE. [jpgimenez]
+- VideoJS embedder code implemented as an iframe, to simplify the integration
+  with TinyMCE. [jpgimenez]
+
 
 1.0a3 (2012-10-04)
 ^^^^^^^^^^^^^^^^^^
 
-- Fixed KeyError: 'width' when saving embeded HTML with percentages. [davilima6]
+- Fixed KeyError: 'width' when saving embeded HTML with percentages.
+  [davilima6]
 
 
 1.0a2 (2012-09-05)
