@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0b1'
+version = '1.0b2.dev0'
 description = "A multimedia content type for Plone"
 long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "INSTALL.txt")).read() + "\n" + \
