@@ -4,7 +4,7 @@ Changelog
 1.0b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix a conflict with plone.formwidget.namedfile NamedImage widget implementation. [jpgimenez]
 
 
 1.0b1 (2012-11-27)
