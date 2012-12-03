@@ -14,7 +14,7 @@ from plone.app.textfield import RichText
 from plone.directives import dexterity
 from plone.directives import form
 
-from plone.namedfile.field import NamedImage
+from plone.namedfile.field import NamedImage as BaseNamedImage
 from plone.namedfile.file import NamedImage as ImageValueType
 
 from plone.dexterity.events import AddCancelledEvent
@@ -36,7 +36,6 @@ from zope.interface import implementer, Interface
 from zope.component import adapter
 from z3c.form.interfaces import IFieldWidget, IFormLayer
 from plone.formwidget.namedfile.widget import NamedImageWidget
-from plone.namedfile.interfaces import INamedImageField
 from z3c.form.widget import FieldWidget
 
 
@@ -64,8 +63,14 @@ class EmbedderImageWidget(NamedImageWidget):
                                                    self.name)
 
 
+class NamedImage(BaseNamedImage):
+    """
+    Do not conflict with plone.formwidget.namedfile widget implementation.
+    """
+
+
 @implementer(IFieldWidget)
-@adapter(INamedImageField, IFormLayer)
+@adapter(NamedImage, IFormLayer)
 def EmbedderImageFieldWidget(field, request):
     return FieldWidget(field, EmbedderImageWidget(request))
 
