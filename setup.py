@@ -48,16 +48,17 @@ setup(name='sc.embedder',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          'Products.CMFPlone>=4.1',
-          'plone.behavior',
-          'plone.directives.dexterity',
-          'plone.app.dexterity>=1.2.1',
-          'plone.app.referenceablebehavior',
           'collective.dexteritytextindexer',
           'collective.oembed',
           'lxml',
+          'Pillow'
+          'plone.app.dexterity>=1.2.1',
+          'plone.app.referenceablebehavior',
+          'plone.behavior',
+          'plone.directives.dexterity',
+          'Products.CMFPlone>=4.1',
           'Products.TinyMCE',
+          'setuptools',
       ],
       extras_require={
           'test': [
