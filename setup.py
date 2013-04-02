@@ -51,7 +51,7 @@ setup(name='sc.embedder',
           'collective.dexteritytextindexer',
           'collective.oembed',
           'lxml',
-          'Pillow'
+          'Pillow',
           'plone.app.dexterity>=1.2.1',
           'plone.app.referenceablebehavior',
           'plone.behavior',
