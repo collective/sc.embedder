@@ -70,7 +70,7 @@ Mostly Harmless
 .. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png
     :target: http://travis-ci.org/simplesconsultoria/sc.embedder
 
-Have an idea? Found a bug? Let us know by `opening a support ticket`_.
+Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.embedder/issues
 .. _`collective.oembed`: http://pypi.python.org/pypi/collective.oembed
