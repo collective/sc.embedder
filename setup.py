@@ -49,7 +49,7 @@ setup(name='sc.embedder',
       zip_safe=False,
       install_requires=[
           'collective.dexteritytextindexer',
-          'collective.oembed',
+          'collective.oembed<2.0a1',
           'lxml',
           'Pillow',
           'plone.app.dexterity>=1.2.1',
