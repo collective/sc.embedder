@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
-try:
-    import json
-    assert json  # silence pyflakes
-except ImportError:
-    import simplejson as json
 
-import unittest2 as unittest
-
-from zope.interface.verify import verifyClass, verifyObject
-
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-
-from sc.embedder.content.embedder import IEmbedder
+from plone.app.testing import TEST_USER_ID
+from plone.namedfile.file import NamedBlobImage
 from sc.embedder.content.embedder import Embedder
+from sc.embedder.content.embedder import IEmbedder
 from sc.embedder.testing import INTEGRATION_TESTING
+from zope.interface.verify import verifyClass
+from zope.interface.verify import verifyObject
+
+import json
+import os
+import unittest2 as unittest
 
 PROVIDERS = {
      'youtube': 'http://www.youtube.com/watch?v=n-zxaVt6acg&feature=g-all-u',
@@ -22,6 +19,12 @@ PROVIDERS = {
      'slideshare': 'http://www.slideshare.net/cgiorgi/secrets-of-a-good-pitch',
      'instagram': 'http://www.flickr.com/photos/jup3nep/6796214503/?f=hp',
      }
+
+YOUTUBE_EMBED = """
+<iframe width="459" height="344" \
+src="http://www.youtube.com/embed/d8bEU80gIzQ?feature=oembed" \
+frameborder="0" allowfullscreen></iframe>
+""".strip('\n')
 
 
 class MultimediaTestCase(unittest.TestCase):
@@ -39,6 +42,12 @@ class MultimediaTestCase(unittest.TestCase):
         self.folder.invokeFactory('sc.embedder', 'multimedia')
         self.multimedia = self.folder['multimedia']
         self.multimedia.title = 'Multimedia'
+
+        # Setup image
+        path = os.path.dirname(__file__)
+        data = open(os.path.join(path, 'image.jpg')).read()
+        image = NamedBlobImage(data, 'image/jpeg', u'image.jpg')
+        self.multimedia.image = image
         self.multimedia.reindexObject()
 
     def test_adding(self):
@@ -150,8 +159,7 @@ class MultimediaTestCase(unittest.TestCase):
                         add_form.widgets['height'].value)
 
     def test_youtube_oembed(self):
-        add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder')
+        add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
         add_form = add_view.form_instance
         add_form.update()
         add_form.actions.update()
@@ -162,17 +170,14 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = '<iframe width="459" height="344" src="http://www' + \
-                '.youtube.com/embed/d8bEU80gIzQ?feature=oembed" ' + \
-                'frameborder="0" allowfullscreen></iframe>'
-        self.assertEqual(u"Introducing Plone",
-                        add_form.widgets['IDublinCore.title'].value)
-        self.assertEqual(iframe,
-                        add_form.widgets['embed_html'].value)
-        self.assertEqual(u'459',
-                        add_form.widgets['width'].value)
-        self.assertEqual(u'344',
-                        add_form.widgets['height'].value)
+        self.assertEqual(
+            add_form.widgets['IDublinCore.title'].value, u"Introducing Plone")
+        self.assertEqual(
+            add_form.widgets['embed_html'].value, YOUTUBE_EMBED)
+        self.assertEqual(
+            add_form.widgets['width'].value, u'459')
+        self.assertEqual(
+            add_form.widgets['height'].value, u'344')
 
     def test_slideshare_oembed(self):
         add_view = self.folder.unrestrictedTraverse(
@@ -296,3 +301,43 @@ frameborder="0">\n</iframe>\n'
         # The images have a similar search method. Let's find our image.
         output = self.portal.restrictedTraverse('@@tinymce-jsonscembeddersearch')('Multimedia')
         self.assertIn('"id": "multimedia"', output)
+
+    def test_image_thumb(self):
+        ''' Test if traversing to image_thumb returns an image
+        '''
+        content = self.multimedia
+        self.assertIsNotNone(content.restrictedTraverse('image_thumb')().read())
+
+    def test_image_thumb_no_image(self):
+        ''' Test if traversing to image_thumb returns None
+        '''
+        content = self.multimedia
+        content.image = None
+        self.assertIsNone(content.restrictedTraverse('image_thumb')())
+
+        # set an empty image file
+        content.image = NamedBlobImage('', 'image/jpeg', u'picture.jpg')
+        self.assertIsNone(content.restrictedTraverse('image_thumb')())
+
+    def test_image_tag(self):
+        ''' Test if tag method works as expected
+        '''
+        content = self.multimedia
+        expected = u'<img src="http://nohost/plone/test-folder/' + \
+                   u'multimedia/@@images/'
+        self.assertTrue(content.tag().startswith(expected))
+
+        expected = u'height="90" width="120" class="tileImage" />'
+        self.assertTrue(content.tag().endswith(expected))
+
+    def test_image_tag_no_image(self):
+        ''' Tag should return a default image if no picture available
+        '''
+        content = self.multimedia
+        content.image = None
+        expected = u''
+        self.assertEqual(content.tag(), expected)
+
+        # set an empty image file
+        content.image = NamedBlobImage('', 'image/jpeg', u'picture.jpg')
+        self.assertEqual(content.tag(), expected)
