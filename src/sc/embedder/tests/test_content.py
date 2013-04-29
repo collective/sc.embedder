@@ -22,6 +22,12 @@ PROVIDERS = {
      'instagram': 'http://www.flickr.com/photos/jup3nep/6796214503/?f=hp',
      }
 
+YOUTUBE_EMBED = """
+<iframe width="459" height="344" \
+src="http://www.youtube.com/embed/d8bEU80gIzQ?feature=oembed" \
+frameborder="0" allowfullscreen></iframe>
+""".strip('\n')
+
 
 class MultimediaTestCase(unittest.TestCase):
 
@@ -155,8 +161,7 @@ class MultimediaTestCase(unittest.TestCase):
                         add_form.widgets['height'].value)
 
     def test_youtube_oembed(self):
-        add_view = self.folder.unrestrictedTraverse(
-                                        '++add++sc.embedder')
+        add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
         add_form = add_view.form_instance
         add_form.update()
         add_form.actions.update()
@@ -167,17 +172,14 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = '<iframe width="459" height="344" src="http://www' + \
-                '.youtube.com/embed/d8bEU80gIzQ?feature=oembed" ' + \
-                'frameborder="0" allowfullscreen></iframe>'
-        self.assertEqual(u"Introducing Plone",
-                        add_form.widgets['IDublinCore.title'].value)
-        self.assertEqual(iframe,
-                        add_form.widgets['embed_html'].value)
-        self.assertEqual(u'459',
-                        add_form.widgets['width'].value)
-        self.assertEqual(u'344',
-                        add_form.widgets['height'].value)
+        self.assertEqual(
+            add_form.widgets['IDublinCore.title'].value, u"Introducing Plone")
+        self.assertEqual(
+            add_form.widgets['embed_html'].value, YOUTUBE_EMBED)
+        self.assertEqual(
+            add_form.widgets['width'].value, u'459')
+        self.assertEqual(
+            add_form.widgets['height'].value, u'344')
 
     def test_slideshare_oembed(self):
         add_view = self.folder.unrestrictedTraverse(
