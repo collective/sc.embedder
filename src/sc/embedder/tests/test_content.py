@@ -163,7 +163,7 @@ class MultimediaTestCase(unittest.TestCase):
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
         iframe = '<iframe width="459" height="344" src="http://www' + \
-                '.youtube.com/embed/d8bEU80gIzQ?fs=1&feature=oembed" ' + \
+                '.youtube.com/embed/d8bEU80gIzQ?feature=oembed" ' + \
                 'frameborder="0" allowfullscreen></iframe>'
         self.assertEqual(u"Introducing Plone",
                         add_form.widgets['IDublinCore.title'].value)
