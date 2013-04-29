@@ -4,7 +4,7 @@ Changelog
 1.0b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix an UnicodeDecodeError with our plugin for TinyMCE [ericof]
 
 
 1.0b2 (2012-12-03)
