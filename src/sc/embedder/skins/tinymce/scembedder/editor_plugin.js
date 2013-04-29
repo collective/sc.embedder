@@ -1,7 +1,7 @@
 /**
  * sc.embedder plugin
  *
- * @author Juan Pablo Giménez
+ * @author Juan Pablo Gimenez
  */
 
 (function() {
