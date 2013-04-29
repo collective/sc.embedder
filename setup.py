@@ -7,10 +7,12 @@ import os
 
 version = '1.0b3.dev0'
 description = "A multimedia content type for Plone"
-long_description = (open("README.rst").read() + "\n" +
+long_description = (
+    open("README.rst").read() + "\n" +
     open(os.path.join("docs", "INSTALL.rst")).read() + "\n" +
     open(os.path.join("docs", "CREDITS.rst")).read() + "\n" +
-    open(os.path.join("docs", "HISTORY.rst")).read())
+    open(os.path.join("docs", "HISTORY.rst")).read()
+)
 
 setup(name='sc.embedder',
       version=version,
@@ -50,21 +52,33 @@ setup(name='sc.embedder',
       install_requires=[
           'collective.dexteritytextindexer',
           'collective.oembed<2.0a1',
+          'five.grok',
           'lxml',
           'Pillow',
           'plone.app.dexterity>=1.2.1',
           'plone.app.referenceablebehavior',
-          'plone.behavior',
+          'plone.dexterity',
           'plone.directives.dexterity',
+          'plone.namedfile[blobs]',
+          'Products.CMFCore',
           'Products.CMFPlone>=4.1',
+          'Products.GenericSetup',
           'Products.TinyMCE',
           'setuptools',
+          'zope.component',
+          'zope.event',
+          'zope.i18nmessageid',
+          'zope.interface',
+          'zope.schema',
       ],
       extras_require={
           'test': [
               'plone.app.testing',
-              'robotsuite',
+              'plone.browserlayer',
+              'plone.testing',
               'robotframework-selenium2library',
+              'robotsuite',
+              'unittest2',
           ],
       },
       entry_points="""
