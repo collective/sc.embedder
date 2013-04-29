@@ -309,18 +309,18 @@ frameborder="0">\n</iframe>\n'
         ''' Test if traversing to image_thumb returns an image
         '''
         content = self.multimedia
-        self.assertTrue(content.restrictedTraverse('image_thumb')().read())
+        self.assertIsNotNone(content.restrictedTraverse('image_thumb')().read())
 
     def test_image_thumb_no_image(self):
         ''' Test if traversing to image_thumb returns None
         '''
         content = self.multimedia
         content.image = None
-        self.assertEquals(content.restrictedTraverse('image_thumb')(), None)
+        self.assertIsNone(content.restrictedTraverse('image_thumb')())
 
         # set an empty image file
         content.image = NamedBlobImage('', 'image/jpeg', u'picture.jpg')
-        self.assertEquals(content.restrictedTraverse('image_thumb')(), None)
+        self.assertIsNone(content.restrictedTraverse('image_thumb')())
 
     def test_image_tag(self):
         ''' Test if tag method works as expected
@@ -334,14 +334,13 @@ frameborder="0">\n</iframe>\n'
         self.assertTrue(content.tag().endswith(expected))
 
     def test_image_tag_no_image(self):
-        ''' Tag should return a default image if no
-            picture available at Person
+        ''' Tag should return a default image if no picture available
         '''
         content = self.multimedia
         content.image = None
         expected = u''
-        self.assertEquals(content.tag(), expected)
+        self.assertEqual(content.tag(), expected)
 
         # set an empty image file
         content.image = NamedBlobImage('', 'image/jpeg', u'picture.jpg')
-        self.assertEquals(content.tag(), expected)
+        self.assertEqual(content.tag(), expected)
