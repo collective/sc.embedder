@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import json
-
-import unittest2 as unittest
-
-from zope.interface.verify import verifyClass, verifyObject
-
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-
+from plone.app.testing import TEST_USER_ID
 from plone.namedfile.file import NamedBlobImage
-import os
-from sc.embedder.content.embedder import IEmbedder
 from sc.embedder.content.embedder import Embedder
+from sc.embedder.content.embedder import IEmbedder
 from sc.embedder.testing import INTEGRATION_TESTING
+from zope.interface.verify import verifyClass
+from zope.interface.verify import verifyObject
+
+import json
+import os
+import unittest2 as unittest
 
 PROVIDERS = {
      'youtube': 'http://www.youtube.com/watch?v=n-zxaVt6acg&feature=g-all-u',
