@@ -14,5 +14,5 @@ def test_suite():
         layered(doctest.DocFileSuite('tests/test_buttons.txt',
                                      package='sc.embedder'),
                 layer=FUNCTIONAL_TESTING),
-        ])
+    ])
     return suite

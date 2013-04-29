@@ -12,12 +12,12 @@ from sc.embedder.testing import INTEGRATION_TESTING
 
 JS = [
     '++resource++sc.embedder/video-js/video.js',
-    ]
+]
 
 CSS = [
     'embedder.css',
     '++resource++sc.embedder/video-js/video-js.css',
-    ]
+]
 
 
 class InstallTestCase(unittest.TestCase):

@@ -90,29 +90,29 @@ class IEmbedder(form.Schema):
 
     url = schema.TextLine(
         title=_(u"Multimedia URL"),
-        description=_(u"The URL for your multimedia file. Can be a URL " + \
-                      u"from YouTube, Vimeo, SlideShare, SoundCloud or " + \
+        description=_(u"The URL for your multimedia file. Can be a URL " +
+                      u"from YouTube, Vimeo, SlideShare, SoundCloud or " +
                       u"other main multimedia websites."),
         required=False,
-        )
+    )
 
     width = schema.Int(
         title=_(u"Width"),
         description=_(u""),
         required=True,
-        )
+    )
 
     height = schema.Int(
         title=_(u"Height"),
         description=_(u""),
         required=True,
-        )
+    )
 
     embed_html = schema.Text(
         title=_(u"Embedded HTML code"),
         description=_(u"HTML code to render the embedded media"),
         required=True,
-        )
+    )
 
     player_position = schema.Choice(
         title=_(u"Player position"),
@@ -120,25 +120,25 @@ class IEmbedder(form.Schema):
         default=u'Top',
         required=True,
         values=[u'Top', u'Bottom', u'Left', u'Right'],
-        )
+    )
 
     form.widget(image=EmbedderImageFieldWidget)
     image = NamedImage(
         title=_(u"Preview image"),
         description=_(u"Image to be used when listing content."),
         required=False,
-        )
+    )
 
     text = RichText(
         title=_(u"Body text"),
         required=False,
-        )
+    )
 
     alternate_content = RichText(
         title=_(u"Alternate content"),
         description=_(u"Description or transcription for accessibility (WCAG) users."),
         required=False,
-        )
+    )
 
 
 class Embedder(dexterity.Item):
@@ -288,12 +288,12 @@ class AddForm(BaseForm, dexterity.AddForm):
             # mark only as finished if we get the new object
             self._finishedAdd = True
             IStatusMessage(self.request).addStatusMessage(
-                                                _(u"Item created"), "info")
+                _(u"Item created"), "info")
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(
-                    _(u"Operation cancelled."), "info")
+            _(u"Operation cancelled."), "info")
         self.request.response.redirect(self.nextURL())
         notify(AddCancelledEvent(self.context))
 
@@ -302,15 +302,15 @@ class AddForm(BaseForm, dexterity.AddForm):
         self.load_oembed(action)
 
     def get_url_widget(self):
-        widget = [key for key in self.widgets.values() \
-                 if key.id == 'form-widgets-url']
+        widget = [key for key in self.widgets.values()
+                  if key.id == 'form-widgets-url']
         if widget != []:
             url_w = widget[0]
             return url_w
 
     def get_load_action(self):
-        action = [key for key in self.actions.values() \
-                 if key.id == 'form-buttons-load']
+        action = [key for key in self.actions.values()
+                  if key.id == 'form-buttons-load']
         if action != []:
             load = action[0]
             return load
@@ -334,27 +334,27 @@ class EditForm(dexterity.EditForm, BaseForm):
             return
         self.applyChanges(data)
         IStatusMessage(self.request).addStatusMessage(
-                                            _(u"Changes saved."), "info")
+            _(u"Changes saved."), "info")
         self.request.response.redirect(self.nextURL())
         notify(EditFinishedEvent(self.context))
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(
-                                            _(u"Edit cancelled."), "info")
+            _(u"Edit cancelled."), "info")
         self.request.response.redirect(self.nextURL())
         notify(EditCancelledEvent(self.context))
 
     def get_url_widget(self):
-        widget = [key for key in self.widgets.values() \
-                 if key.id == 'form-widgets-url']
+        widget = [key for key in self.widgets.values()
+                  if key.id == 'form-widgets-url']
         if widget != []:
             url_w = widget[0]
             return url_w
 
     def get_load_action(self):
-        action = [key for key in self.actions.values() \
-                 if key.id == 'form-buttons-load']
+        action = [key for key in self.actions.values()
+                  if key.id == 'form-buttons-load']
         if action != []:
             load = action[0]
             return load
