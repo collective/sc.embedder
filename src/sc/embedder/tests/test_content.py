@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-try:
-    import json
-    assert json  # silence pyflakes
-except ImportError:
-    import simplejson as json
+
+import json
 
 import unittest2 as unittest
 
