@@ -12,6 +12,8 @@ from zope.interface.verify import verifyClass, verifyObject
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
+from plone.namedfile.file import NamedBlobImage
+import os
 from sc.embedder.content.embedder import IEmbedder
 from sc.embedder.content.embedder import Embedder
 from sc.embedder.testing import INTEGRATION_TESTING
@@ -39,6 +41,12 @@ class MultimediaTestCase(unittest.TestCase):
         self.folder.invokeFactory('sc.embedder', 'multimedia')
         self.multimedia = self.folder['multimedia']
         self.multimedia.title = 'Multimedia'
+
+        # Setup image
+        path = os.path.dirname(__file__)
+        data = open(os.path.join(path, 'image.jpg')).read()
+        image = NamedBlobImage(data, 'image/jpeg', u'image.jpg')
+        self.multimedia.image = image
         self.multimedia.reindexObject()
 
     def test_adding(self):
@@ -296,3 +304,44 @@ frameborder="0">\n</iframe>\n'
         # The images have a similar search method. Let's find our image.
         output = self.portal.restrictedTraverse('@@tinymce-jsonscembeddersearch')('Multimedia')
         self.assertIn('"id": "multimedia"', output)
+
+    def test_image_thumb(self):
+        ''' Test if traversing to image_thumb returns an image
+        '''
+        content = self.multimedia
+        self.assertTrue(content.restrictedTraverse('image_thumb')().read())
+
+    def test_image_thumb_no_image(self):
+        ''' Test if traversing to image_thumb returns None
+        '''
+        content = self.multimedia
+        content.image = None
+        self.assertEquals(content.restrictedTraverse('image_thumb')(), None)
+
+        # set an empty image file
+        content.image = NamedBlobImage('', 'image/jpeg', u'picture.jpg')
+        self.assertEquals(content.restrictedTraverse('image_thumb')(), None)
+
+    def test_image_tag(self):
+        ''' Test if tag method works as expected
+        '''
+        content = self.multimedia
+        expected = u'<img src="http://nohost/plone/test-folder/' + \
+                   u'multimedia/@@images/'
+        self.assertTrue(content.tag().startswith(expected))
+
+        expected = u'height="90" width="120" class="tileImage" />'
+        self.assertTrue(content.tag().endswith(expected))
+
+    def test_image_tag_no_image(self):
+        ''' Tag should return a default image if no
+            picture available at Person
+        '''
+        content = self.multimedia
+        content.image = None
+        expected = u''
+        self.assertEquals(content.tag(), expected)
+
+        # set an empty image file
+        content.image = NamedBlobImage('', 'image/jpeg', u'picture.jpg')
+        self.assertEquals(content.tag(), expected)

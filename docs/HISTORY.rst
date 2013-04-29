@@ -4,6 +4,9 @@ Changelog
 1.0b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Add helper methods image_thumb and tag in order to be listed in 
+  folder_summary_view [ericof]
+
 - Fix an UnicodeDecodeError with our plugin for TinyMCE [ericof]
 
 
