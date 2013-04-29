@@ -1,13 +1,10 @@
-try:
-    import json
-    assert json  # silence pyflakes
-except ImportError:
-    import simplejson as json
-from lxml import etree, cssselect, html
+# -*- coding: utf-8 -*-
 
+from lxml import etree, cssselect, html
+from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
 from zope.interface import implements
 
-from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
+import json
 
 
 class JSONDetails(object):
