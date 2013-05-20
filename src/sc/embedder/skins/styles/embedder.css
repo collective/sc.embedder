@@ -73,8 +73,9 @@
     text-align: right;
 }
 
-#alt_cont a{
+#alt_cont a {
     color: #3a679f;
+    cursor: pointer;
     text-decoration: underline;
     font-weight: bold;
 }
