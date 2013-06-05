@@ -436,7 +436,7 @@ var SCEmbedderDialog = {
                         }
                         html += '<div class="' + (i % 2 == 0 ? 'even' : 'odd') + '">';
                         if (data.items[i].is_folderish) {
-                            if (data.items[i].icon.length) {
+                            if (data.items[i].icon !== null && data.items[i].icon.length) {
                                 html += '<img src="' + data.items[i].icon + '" border="0" style="margin-left: 17px" /> ';
                             }
                             html += '<a class="contenttype-' + data.items[i].normalized_type + '" ';
