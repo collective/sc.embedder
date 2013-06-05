@@ -8,6 +8,7 @@ following people:
 - Alejandro Pereira
 - Héctor Velarde
 - Juan Pablo Giménez
+- João S. O. Bueno
 - `et alii`_
 
 Development sponsored by `Simples Consultoria`_.

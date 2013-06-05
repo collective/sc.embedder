@@ -9,6 +9,8 @@ Changelog
 
 - Fix an UnicodeDecodeError with our plugin for TinyMCE [ericof]
 
+- Fix a couple AJAX quoting/unquoting problems on the TinyMCE
+  plugin [jsbueno]
 
 1.0b2 (2012-12-03)
 ^^^^^^^^^^^^^^^^^^
