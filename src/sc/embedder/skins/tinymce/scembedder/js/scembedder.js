@@ -5,7 +5,7 @@ var SCEmbedderDialog = {
     current_class : "",
     labels : "",
     thumb_url : null,
-    
+
     preInit : function() {
         var url;
 
@@ -142,7 +142,7 @@ var SCEmbedderDialog = {
         // Fixes crash in Safari
         if (tinymce.isWebKit)
             ed.getWin().focus();
-        
+
         if (document.getElementById ('embed_html')) {
             ed.execCommand('mceInsertContent', false, document.getElementById ('embed_html').value, {skip_undo : 1});
             ed.undoManager.add();
@@ -154,7 +154,7 @@ var SCEmbedderDialog = {
     checkSearch : function(e) {
         if (document.getElementById('searchtext').value.length >= 3 && (tinyMCEPopup.editor.settings.livesearch || e.keyCode == 13)) {
             SCEmbedderDialog.getFolderListing(tinyMCEPopup.editor.settings.navigation_root_url, 'tinymce-jsonscembeddersearch');
-        } 
+        }
     },
 
     getAttrib : function(e, at) {
@@ -322,7 +322,7 @@ var SCEmbedderDialog = {
     setFormValue : function(name, value, formnr) {
         document.forms[formnr].elements[name].value = value;
     },
-    
+
     getInputValue : function(name, formnr) {
         return document.forms[formnr].elements[name].value;
     },
@@ -363,7 +363,7 @@ var SCEmbedderDialog = {
             }
         }
     },
-    
+
     getSelectValue : function(form_obj, field_name) {
         var elm = form_obj.elements[field_name];
 
@@ -395,6 +395,7 @@ var SCEmbedderDialog = {
             type : 'POST',
             success : function(text) {
                 var html = "";
+                text = SCEmbedderDialog.stripJSON(text);
                 var data = eval('(' + text + ')');
                 var f0 = document.forms[0];
                 var elm = f0.elements['dimensions'];
@@ -403,8 +404,8 @@ var SCEmbedderDialog = {
                     dimension = elm.options[elm.selectedIndex].value;
                 }
 
-                document.getElementById ('previewimagecontainer').innerHTML = data.thumb_html;
-                document.getElementById ('embed_html').value = data.embed_html + '<p></p>';
+                document.getElementById ('previewimagecontainer').innerHTML = decodeURIComponent(data.thumb_html);
+                document.getElementById ('embed_html').value = decodeURIComponent(data.embed_html) + '<p></p>';
                 this.current_path = path;
                 document.getElementById('internal_details_panel').style.display = 'block';
             }
@@ -414,7 +415,7 @@ var SCEmbedderDialog = {
     getCurrentFolderListing : function() {
         this.getFolderListing(tinyMCEPopup.editor.settings.document_base_url, 'tinymce-jsonscembedderfolderlisting');
     },
-    
+
     getFolderListing : function(path, method) {
         // Sends a low level Ajax request
         tinymce.util.XHR.send({
@@ -424,6 +425,7 @@ var SCEmbedderDialog = {
             data : "searchtext=" + document.getElementById('searchtext').value + "&rooted=" + (tinyMCEPopup.editor.settings.rooted ? "True" : "False") + "&document_base_url=" + encodeURIComponent(tinyMCEPopup.editor.settings.document_base_url),
             success : function(text) {
                 var html = "";
+                text = SCEmbedderDialog.stripJSON(text);
                 var data = eval('(' + text + ')');
                 if (data.items.length == 0) {
                     html = labels['label_no_items'];
@@ -448,7 +450,13 @@ var SCEmbedderDialog = {
                             html += data.items[i].url;
                             html += '"/> ';
                             if (data.items[i].icon.length) {
-                                html += '<img src="' + data.items[i].icon + '" border="0"/> ';
+                                var ico = data.items[i].icon;
+                                if (ico.search("<img") != -1) {
+                                    html += ico;
+                                }
+                                else {
+                                    html += '<img src="' + ico + '" border="0"/> ';
+                                }
                             }
                             html += '<span class="contenttype-' + data.items[i].normalized_type + '">' + data.items[i].title + '</span>';
                         }
@@ -513,13 +521,13 @@ var SCEmbedderDialog = {
         if ((link.indexOf('http://') != -1) || (link.indexOf('https://') != -1) || (link.indexOf('ftp://') != -1)) {
             return link;
         }
-    
+
         var base_array = base.split('/');
         var link_array = link.split('/');
-    
+
         // Remove document from base url
         base_array.pop();
-    
+
         while (link_array.length != 0) {
             var item = link_array.shift();
             if (item == ".") {
@@ -538,7 +546,19 @@ var SCEmbedderDialog = {
     displayPanel : function(elm_id) {
         document.getElementById ('internal_panel').style.display = elm_id == 'internal_panel' || elm_id == 'upload_panel' ? 'block' : 'none';
         document.getElementById ('internal_details_panel').style.display = elm_id == 'internal_panel' ? 'block' : 'none';
-    }
+    },
+
+   stripJSON: function(text) {
+       /* Some ajax views are returning a full HTML body instead of raw JSON */
+       if (text.search("!DOCTYPE") != -1) {
+           text = text.slice(
+               text.search(/[\[\{]/),
+               /* the position of the "]" or "}" which has no other "]" and "}" between it and the end of the string */
+               text.search(/[\]}][^\]}]*$/) + 1
+               );
+       }
+       return text;
+   }
 };
 
 SCEmbedderDialog.preInit();

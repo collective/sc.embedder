@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from urllib2 import quote
+
 from lxml import etree, cssselect, html
 from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
 from zope.interface import implements
@@ -23,7 +25,6 @@ class JSONDetails(object):
         results = {}
         results['title'] = self.context.title_or_id()
         results['description'] = self.context.Description()
-        results['embed_html'] = self.context.embed_html
 
         tree = etree.HTML(self.context.embed_html)
         sel = cssselect.CSSSelector('body > *')
@@ -31,7 +32,11 @@ class JSONDetails(object):
         el.attrib['width'] = '188'
         el.attrib['height'] = '141'
 
-        results['thumb_html'] = html.tostring(el)
+        # The raw html bits don't travel nicely over json alone
+        # use javascript's decodeURIComponent on the client side
+        # to get these values back:
+        results['thumb_html'] = quote(html.tostring(el))
+        results['embed_html'] = quote(self.context.embed_html)
 
         results.update(self.additionalDetails())
 
