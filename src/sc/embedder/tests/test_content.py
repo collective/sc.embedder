@@ -229,10 +229,14 @@ class MultimediaTestCase(unittest.TestCase):
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
 
-        iframe = '<iframe width="100%" height="166" scrolling="no" ' + \
-            'frameborder="no" src="http://w.soundcloud.com/' + \
+        # Discontinued direct comparison, as details may vary:
+        
+        """iframe = '<iframe width="100%" height="166" scrolling="no" ' + \
+            'frameborder="no" src="https://w.soundcloud.com/' + \
             'player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks' + \
             '%2F4599497&show_artwork=true"></iframe>'
+        """
+        iframe_bits = ("<iframe", "src=", "api.soundcloud.com", "tracks")
 
         self.assertEqual(
             u'Semi Plone by nuvru',
@@ -240,12 +244,24 @@ class MultimediaTestCase(unittest.TestCase):
         self.assertEqual(
             u'Well... semi.',
             add_form.widgets['IDublinCore.description'].value)
-        self.assertEqual(
-            iframe, add_form.widgets['embed_html'].value)
+
+        #self.assertEqual(
+        #    iframe, add_form.widgets['embed_html'].value)
+        value = add_form.widgets['embed_html'].value
+        for bit in iframe_bits:
+            self.assertTrue(bit in value)
+        # XXX:  create similar or better semantical comparison of
+        # iframe contents on the other tests - no API, neither
+        # product has the obligation of returning the set space-count
+        # inside generated HTML these tests are expecting, nor
+        # are they broken if space count, or other html display
+        # attrributes or order vary.
 
         # Sound cloud return percentage values
         self.assertEqual(
             u'100%', add_form.widgets['width'].value)
+        # XXX: Does asserting a fixed-pixel count
+        # not specified here makes sense?
         self.assertEqual(
             u'166', add_form.widgets['height'].value)
 
