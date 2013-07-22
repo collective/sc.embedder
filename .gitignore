@@ -3,6 +3,7 @@
 *.pyc
 *~
 .*project
+.coverage
 .installed.cfg
 .mr.developer.cfg
 .settings
@@ -11,6 +12,7 @@ coverage/
 develop-eggs/
 downloads/
 eggs/
+htmlcov/
 include/
 lib/
 library-settings.txt
