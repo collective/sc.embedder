@@ -4,11 +4,11 @@ Share and Enjoy
 ``sc.embedder`` would not have been possible without the contribution of the
 following people:
 
-- André Nogueira
 - Alejandro Pereira
+- André Nogueira
 - Héctor Velarde
-- Juan Pablo Giménez
 - João S. O. Bueno
+- Juan Pablo Giménez
 - `et alii`_
 
 Development sponsored by `Simples Consultoria`_.

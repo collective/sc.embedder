@@ -7,12 +7,61 @@ sc.embedder
 Life, the Universe, and Everything
 ----------------------------------
 
-This packages gives you the oportunity to create a Embedder content type for
-systems based on Plone with just few clicks. Bring your multimedia content
-from main multimedia providers to your site, intranet or whatever.
+This packages contains a Dexterity-based content type that allows you to
+embedded content (such as photos or videos) from third parties into your Plone
+site.
+
+You can easily embed content from Flickr, SlideShare, SoundCloud, Vimeo,
+Wikipedia, YouTube, and many other supporting the `oEmbed`_ format
+especification.
+
+Mostly Harmless
+---------------
+
+.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png
+    :target: http://travis-ci.org/simplesconsultoria/sc.embedder
+
+Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 Don't Panic
 -----------
+
+Installation
+^^^^^^^^^^^^
+
+To enable this product in a buildout-based installation:
+
+1. Edit your buildout.cfg and add ``sc.embedder`` to the list of eggs to
+   install ::
+
+    [buildout]
+    ...
+    eggs =
+        sc.embedder
+
+2. If you are using Plone 4.1 you may need to extend a Dexterity known good
+   set (KGS) to make sure that you get the right versions of the packages that
+   make up Dexterity::
+
+    [buildout]
+    ...
+    extends =
+        http://good-py.appspot.com/release/dexterity/1.2.1
+
+After updating the configuration you need to run ''bin/buildout'', which will
+take care of updating your system.
+
+Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+
+Check the box next to `sc.embedder`` and click the 'Activate' button.
+
+.. Note::
+
+	You may have to empty your browser cache and save your resource registries
+	in order to see the effects of the product installation.
+
+Use
+^^^
 
 Once the product is installed you will note that you are available to add a
 Embedder content type. When you attempt to add an item you will see the
@@ -29,7 +78,8 @@ fields:
 - Image
 
 In the URL field you must put the url of you content. Like:
-    * http://vimeo.com/17914974
+
+    http://vimeo.com/17914974
 
 and then click the *load* button. This will bring automatically some data of
 the element from the provider to the form. It depends on each provider what
@@ -64,13 +114,6 @@ Providers
 This product use `collective.oembed`_. You can check its documentation to see
 a list of them.
 
-Mostly Harmless
----------------
-
-.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png
-    :target: http://travis-ci.org/simplesconsultoria/sc.embedder
-
-Got an idea? Found a bug? Let us know by `opening a support ticket`_.
-
+.. _`oEmbed`: http://www.oembed.com/
 .. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.embedder/issues
 .. _`collective.oembed`: http://pypi.python.org/pypi/collective.oembed

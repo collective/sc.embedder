@@ -1,16 +1,17 @@
-Changelog
----------
+There's a frood who really knows where his towel is
+---------------------------------------------------
 
 1.0b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
+
+- Fix a couple AJAX quoting/unquoting problems on the TinyMCE plugin.
+  [jsbueno]
 
 - Add helper methods image_thumb and tag in order to be listed in 
   folder_summary_view [ericof]
 
 - Fix an UnicodeDecodeError with our plugin for TinyMCE [ericof]
 
-- Fix a couple AJAX quoting/unquoting problems on the TinyMCE
-  plugin [jsbueno]
 
 1.0b2 (2012-12-03)
 ^^^^^^^^^^^^^^^^^^
