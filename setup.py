@@ -5,7 +5,7 @@ from setuptools import setup
 
 import os
 
-version = '1.0b3.dev0'
+version = '1.0b3'
 description = "This packages contains a Dexterity-based content type that "
 "allows you to embedded content (such as photos or videos) from third "
 "parties into your Plone site."
