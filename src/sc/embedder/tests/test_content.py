@@ -183,8 +183,7 @@ class MultimediaTestCase(unittest.TestCase):
         add_form.update()
         add_form.actions.update()
 
-        url = 'http://www.slideshare.net/baekholt/plone-4-and-' + \
-            '5-plans-and-progress'
+        url = 'http://www.slideshare.net/baekholt/plone-4-and-5-plans-and-progress'
 
         add_form.widgets['url'].value = url
         action = add_form.actions['load']
@@ -192,24 +191,22 @@ class MultimediaTestCase(unittest.TestCase):
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
 
-        iframe = '<iframe src="http://www.slideshare.net/slideshow/' + \
-            'embed_code/1464608" width="427" height="356" frameborder=' + \
-            '"0" marginwidth="0" marginheight="0" scrolling="no" ' + \
-            'style="border:1px solid #CCC;border-width:1px 1px 0;' + \
-            'margin-bottom:5px" allowfullscreen webkitallowfullscreen ' + \
-            'mozallowfullscreen> </iframe> <div ' + \
-            'style="margin-bottom:5px"> <strong> <a href="http://www.' + \
-            'slideshare.net/baekholt/plone-4-and-5-plans-and-progress"' + \
-            ' title="Plone 4 and 5, plans and progress" target="_blank">' + \
-            'Plone 4 and 5, plans and progress</a> </strong> from ' + \
-            '<strong><a href="http://www.slideshare.net/baekholt" ' + \
-            'target="_blank">baekholt</a></strong> </div>'
-
+        # Search for chunks in the embed code
+        self.assertIn(
+            u'<iframe src="http://www.slideshare.net/slideshow/embed_code/1464608"',
+            add_form.widgets['embed_html'].value)
+        self.assertIn(
+            u'width="427" height="356"',  # XXX: why these values?
+            add_form.widgets['embed_html'].value)
+        self.assertIn(
+            u'<a href="http://www.slideshare.net/baekholt/plone-4-and-5-plans-and-progress"',
+            add_form.widgets['embed_html'].value)
+        self.assertIn(
+            u'title="Plone 4 and 5, plans and progress"',
+            add_form.widgets['embed_html'].value)
         self.assertEqual(
             u'Plone 4 and 5, plans and progress',
             add_form.widgets['IDublinCore.title'].value)
-        self.assertEqual(
-            iframe, add_form.widgets['embed_html'].value)
         self.assertEqual(
             u'425', add_form.widgets['width'].value)
         self.assertEqual(
