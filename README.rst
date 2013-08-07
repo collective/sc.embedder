@@ -18,7 +18,7 @@ especification.
 Mostly Harmless
 ---------------
 
-.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png
+.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png?branch=master
     :target: http://travis-ci.org/simplesconsultoria/sc.embedder
 
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
