@@ -21,6 +21,9 @@ Mostly Harmless
 .. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png?branch=master
     :target: http://travis-ci.org/simplesconsultoria/sc.embedder
 
+.. image:: https://coveralls.io/repos/simplesconsultoria/sc.embedder/badge.png
+    :target: https://coveralls.io/r/simplesconsultoria/sc.embedder?branch=master
+
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 Don't Panic
