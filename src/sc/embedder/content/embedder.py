@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from lxml import etree, cssselect, html
+from lxml.html import builder as E
 
 from five import grok
 
@@ -232,6 +233,39 @@ class BaseForm(DexterityExtensibleForm):
                 json_data = self.get_fallback(url)
                 if json_data is None:
                     return
+
+            ## Acessibility issues
+            # Somethimes python-oembed don't return html attribute
+            # https://github.com/abarmat/python-oembed/blob/master/oembed/__init__.py#L150-L193
+            if json_data.has_key('html'):
+                iframe = html.fromstring(json_data['html'])
+                # Somethimes the embedded data will not be an iframe
+                if iframe.tag == 'iframe':
+                    # If there is not a title we put a placeholder to be reviewed by user
+                    if json_data.has_key('title'):
+                        title = json_data['title']
+                    else:
+                        title = _('ADD THE TITLE OF THE CONTENT HERE')
+                    iframe.attrib['title'] = title
+                    # Some iframe attributes are not valid anymore, second W3C
+                    # http://www.w3.org/TR/html5/embedded-content-0.html#the-iframe-element
+                    if iframe.attrib.has_key('frameborder'):
+                        del(iframe.attrib['frameborder'])
+                    if iframe.attrib.has_key('allowfullscreen'):
+                        del(iframe.attrib['allowfullscreen'])
+                    if iframe.attrib.has_key('mozallowfullscreen'):
+                        del(iframe.attrib['mozallowfullscreen'])
+                    if iframe.attrib.has_key('webkitallowfullscreen'):
+                        del(iframe.attrib['webkitallowfullscreen'])
+                    # WCGA 1.0 and 2.0 validators says that we must add an alternative content
+                    # as an anchor if iframe is not supported by the browser
+                    a = E.A()
+                    a.attrib['href'] = url
+                    a.text = title
+                    iframe.append(a)
+                    json_data['html'] = html.tostring(iframe)
+            ## Acessibility issues
+
             for k, v in self.tr_fields.iteritems():
                 if json_data.get(k):
                     self.widgets[v].value = unicode(json_data[k])
@@ -252,6 +286,11 @@ class BaseForm(DexterityExtensibleForm):
             el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
         if data.get('height', None):
             el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
+        if data.get('IDublinCore.title', None):
+            el.attrib['title'] = data['IDublinCore.title'] and unicode(data['IDublinCore.title']) or el.attrib['title']
+            a = [a for a in el.getchildren() if a.tag == 'a'] # get the anchor
+            if a:
+                a[0].text = data['IDublinCore.title']
 
         data['embed_html'] = html.tostring(el)
 

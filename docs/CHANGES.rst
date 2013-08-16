@@ -4,7 +4,8 @@ There's a frood who really knows where his towel is
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix WCGA and W3C validation issues (iframes) (closes `#8`_).
+  [rodfersou]
 
 
 1.0b3 (2013-07-23)
@@ -70,3 +71,5 @@ There's a frood who really knows where his towel is
 ^^^^^^^^^^^^^^^^^^^
 
 - Initial release.
+
+.. _`#8`: https://github.com/simplesconsultoria/sc.embedder/issues/8

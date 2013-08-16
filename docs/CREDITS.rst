@@ -9,6 +9,7 @@ following people:
 - Héctor Velarde
 - João S. O. Bueno
 - Juan Pablo Giménez
+- Rodrigo Ferreira de Souza
 - `et alii`_
 
 Development sponsored by `Simples Consultoria`_.

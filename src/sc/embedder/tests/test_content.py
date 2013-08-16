@@ -23,7 +23,23 @@ PROVIDERS = {
 YOUTUBE_EMBED = """
 <iframe width="459" height="344" \
 src="http://www.youtube.com/embed/d8bEU80gIzQ?feature=oembed" \
-frameborder="0" allowfullscreen></iframe>
+title="Introducing Plone">\
+<a href="http://www.youtube.com/watch?v=d8bEU80gIzQ">\
+Introducing Plone</a></iframe>
+""".strip('\n')
+
+VIMEO_EMBED = """
+<iframe src="http://player.vimeo.com/video/17914974" \
+width="1280" height="720" title="The Backwater Gospel">\
+<a href="http://vimeo.com/17914974">The Backwater Gospel</a></iframe>
+""".strip('\n')
+
+VIDEOJS_EMBED = """
+<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?\
+src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&amp;type=video%2Fwebm" \
+class="vjs-iframe" title="ADD THE TITLE OF THE CONTENT HERE">\n<a \
+href="http://video-js.zencoder.com/oceans-clip.webm">ADD THE TITLE OF THE CONTENT HERE\
+</a></iframe>
 """.strip('\n')
 
 
@@ -140,17 +156,13 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = '<iframe src="http://player.vimeo.com/video/17914974" ' + \
-            'width="1280" height="720" frameborder="0" ' + \
-            'webkitAllowFullScreen mozallowfullscreen ' + \
-            'allowFullScreen></iframe>'
 
         self.assertEqual(
             u'The Backwater Gospel', add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(
             417, len(add_form.widgets['IDublinCore.description'].value))
         self.assertEqual(
-            iframe, add_form.widgets['embed_html'].value)
+            VIMEO_EMBED, add_form.widgets['embed_html'].value)
         self.assertEqual(
             u'1280', add_form.widgets['width'].value)
         self.assertEqual(
@@ -196,10 +208,10 @@ class MultimediaTestCase(unittest.TestCase):
             u'<iframe src="http://www.slideshare.net/slideshow/embed_code/1464608"',
             add_form.widgets['embed_html'].value)
         self.assertIn(
-            u'width="427" height="356"',  # XXX: why these values?
+            u'width="100%" height="356"',  # XXX: why these values?
             add_form.widgets['embed_html'].value)
         self.assertIn(
-            u'<a href="http://www.slideshare.net/baekholt/plone-4-and-5-plans-and-progress"',
+            u'<a href="https://www.slideshare.net/baekholt/plone-4-and-5-plans-and-progress"',
             add_form.widgets['embed_html'].value)
         self.assertIn(
             u'title="Plone 4 and 5, plans and progress"',
@@ -274,15 +286,10 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?\
-src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&\
-type=video%2Fwebm"\n        class="vjs-iframe"\n        \
-allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        \
-frameborder="0">\n</iframe>\n'
         self.assertEqual(
             u"", add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(
-            iframe, add_form.widgets['embed_html'].value)
+            VIDEOJS_EMBED, add_form.widgets['embed_html'].value.strip('\n'))
         self.assertEqual(
             u'', add_form.widgets['width'].value)
         self.assertEqual(
@@ -294,10 +301,10 @@ frameborder="0">\n</iframe>\n'
         video.title = 'Oceans clip'
         video.width = '640'
         video.height = '264'
-        video.embed_html = iframe
+        video.embed_html = VIDEOJS_EMBED
 
         self.assertItemsEqual({u'thumb_html': u'<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&amp;type=video%2Fwebm" class="vjs-iframe" allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1" frameborder="0" width="188" height="141">\n</iframe>',
-                               u'embed_html': u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>\n',
+                               u'embed_html': u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>',
                                u'description': u'',
                                u'title': u'Oceans clip'
                                },
