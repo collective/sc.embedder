@@ -140,10 +140,11 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = '<iframe src="http://player.vimeo.com/video/17914974" ' + \
+        iframe = u'<iframe src="//player.vimeo.com/video/17914974" ' + \
             'width="1280" height="720" frameborder="0" ' + \
-            'webkitAllowFullScreen mozallowfullscreen ' + \
-            'allowFullScreen></iframe>'
+            'title="The Backwater Gospel" ' + \
+            'webkitallowfullscreen mozallowfullscreen ' + \
+            'allowfullscreen></iframe>'
 
         self.assertEqual(
             u'The Backwater Gospel', add_form.widgets['IDublinCore.title'].value)
