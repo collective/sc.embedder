@@ -243,7 +243,7 @@ class MultimediaTestCase(unittest.TestCase):
             u'Well... semi.',
             add_form.widgets['IDublinCore.description'].value)
 
-        #self.assertEqual(
+        # self.assertEqual(
         #    iframe, add_form.widgets['embed_html'].value)
         value = add_form.widgets['embed_html'].value
         for bit in iframe_bits:
@@ -260,10 +260,10 @@ class MultimediaTestCase(unittest.TestCase):
             u'100%', add_form.widgets['width'].value)
         # XXX: Does asserting a fixed-pixel count
         # not specified here makes sense?
-        # Now this is breaking, we can't test for a value 
+        # Now this is breaking, we can't test for a value
         # that we don't control.
-#         self.assertEqual(
-#             u'166', add_form.widgets['height'].value)
+        # self.assertEqual(
+        #    u'166', add_form.widgets['height'].value)
 
     def test_videojs(self):
         add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')

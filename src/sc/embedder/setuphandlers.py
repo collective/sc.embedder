@@ -16,7 +16,7 @@ def setup_portal_transforms(context):
     tid = 'safe_html'
 
     pt = getToolByName(context, 'portal_transforms')
-    if not tid in pt.objectIds():
+    if tid not in pt.objectIds():
         return
 
     trans = pt[tid]

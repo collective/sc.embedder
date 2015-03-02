@@ -242,7 +242,7 @@ class BaseForm(DexterityExtensibleForm):
         """ Return the code that embed the code. Could be with the
             original size or the custom chosen.
         """
-        if not 'embed_html' in data:
+        if 'embed_html' not in data:
             return
         tree = etree.HTML(data['embed_html'])
         sel = cssselect.CSSSelector('body > *')
