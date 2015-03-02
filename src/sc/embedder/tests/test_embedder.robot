@@ -1,18 +1,14 @@
 *** Settings ***
 
-Resource  keywords.txt
-Library  sc.embedder.tests.test_acceptance.Keywords
+Library  sc.embedder.tests.test_robot.Keywords
+Resource  plone/app/robotframework/keywords.robot
 Variables  plone/app/testing/interfaces.py
+Library  Remote  ${PLONE_URL}/RobotRemote
 
-Suite Setup  Start Browser and Log In
-Suite Teardown  Close Browser
+Test Setup  Open Test Browser
+Test Teardown  Close all browsers
 
 *** Variables ***
-
-${PORT} =  55001
-${ZOPE_URL} =  http://localhost:${PORT}
-${PLONE_URL} =  ${ZOPE_URL}/plone
-${BROWSER} =  Firefox
 
 ${title_selector} =  input#form-widgets-IDublinCore-title
 ${description_selector} =  textarea#form-widgets-IDublinCore-description

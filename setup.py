@@ -73,10 +73,10 @@ setup(name='sc.embedder',
       ],
       extras_require={
           'test': [
-              'plone.app.testing',
+              'plone.app.robotframework',
+              'plone.app.testing [robot] >=4.2.2',
               'plone.browserlayer',
               'plone.testing',
-              'robotframework-selenium2library',
               'robotsuite',
           ],
       },
