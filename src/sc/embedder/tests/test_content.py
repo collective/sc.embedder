@@ -233,7 +233,7 @@ class MultimediaTestCase(unittest.TestCase):
             'player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks' + \
             '%2F4599497&show_artwork=true"></iframe>'
         """
-        iframe_bits = ("<iframe", "src=", "api.soundcloud.com", "tracks")
+        iframe_bits = ('<iframe', 'src=', 'api.soundcloud.com', 'tracks')
 
         self.assertEqual(
             u'Semi Plone by nuvru',
@@ -276,13 +276,9 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?\
-src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&\
-type=video%2Fwebm"\n        class="vjs-iframe"\n        \
-allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        \
-frameborder="0">\n</iframe>\n'
+        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>\n'
         self.assertEqual(
-            u"", add_form.widgets['IDublinCore.title'].value)
+            u'', add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(
             iframe, add_form.widgets['embed_html'].value)
         self.assertEqual(

@@ -18,7 +18,7 @@ class Keywords(object):
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
-        layered(robotsuite.RobotTestSuite("test_embedder.txt"),
+        layered(robotsuite.RobotTestSuite('test_embedder.txt'),
                 layer=FUNCTIONAL_TESTING),
     ])
     return suite

@@ -6,13 +6,13 @@ from setuptools import setup
 import os
 
 version = '1.0b4.dev0'
-description = "This packages contains a Dexterity-based content type that "
-"allows you to embedded content (such as photos or videos) from third "
-"parties into your Plone site."
+description = 'This packages contains a Dexterity-based content type that '
+'allows you to embedded content (such as photos or videos) from third '
+'parties into your Plone site.'
 long_description = (
-    open("README.rst").read() + "\n" +
-    open(os.path.join("docs", "CREDITS.rst")).read() + "\n" +
-    open(os.path.join("docs", "CHANGES.rst")).read()
+    open('README.rst').read() + '\n' +
+    open(os.path.join('docs', 'CREDITS.rst')).read() + '\n' +
+    open(os.path.join('docs', 'CHANGES.rst')).read()
 )
 
 setup(name='sc.embedder',
@@ -20,24 +20,24 @@ setup(name='sc.embedder',
       description=description,
       long_description=long_description,
       classifiers=[
-          "Development Status :: 4 - Beta",
-          "Environment :: Web Environment",
-          "Framework :: Plone",
-          "Framework :: Plone :: 4.2",
-          "Framework :: Plone :: 4.3",
-          "Intended Audience :: End Users/Desktop",
-          "Intended Audience :: System Administrators",
-          "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-          "Operating System :: OS Independent",
-          "Programming Language :: JavaScript",
-          "Programming Language :: Python",
-          "Programming Language :: Python :: 2.6",
-          "Programming Language :: Python :: 2.7",
-          "Topic :: Internet :: WWW/HTTP",
-          "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
-          "Topic :: Multimedia",
-          "Topic :: Office/Business",
-          "Topic :: Software Development :: Libraries :: Python Modules",
+          'Development Status :: 4 - Beta',
+          'Environment :: Web Environment',
+          'Framework :: Plone',
+          'Framework :: Plone :: 4.2',
+          'Framework :: Plone :: 4.3',
+          'Intended Audience :: End Users/Desktop',
+          'Intended Audience :: System Administrators',
+          'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+          'Operating System :: OS Independent',
+          'Programming Language :: JavaScript',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
+          'Topic :: Internet :: WWW/HTTP',
+          'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+          'Topic :: Multimedia',
+          'Topic :: Office/Business',
+          'Topic :: Software Development :: Libraries :: Python Modules',
       ],
       keywords='multimedia video audio oembed plone embed embedder',
       author='Simples Consultoria',

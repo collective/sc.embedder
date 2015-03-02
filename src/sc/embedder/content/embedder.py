@@ -60,11 +60,11 @@ class EmbedderImageWidget(NamedImageWidget):
         if self.ignoreContext:
             return None
         if self.filename_encoded:
-            return "%s/++widget++%s/@@download/%s" % (self.request.getURL(),
+            return '%s/++widget++%s/@@download/%s' % (self.request.getURL(),
                                                       self.name,
                                                       self.filename_encoded)
         else:
-            return "%s/++widget++%s/@@download" % (self.request.getURL(),
+            return '%s/++widget++%s/@@download' % (self.request.getURL(),
                                                    self.name)
 
 
@@ -89,34 +89,34 @@ class IEmbedder(form.Schema):
     form.order_before(**{'url': '*'})
 
     url = schema.TextLine(
-        title=_(u"Multimedia URL"),
-        description=_(u"The URL for your multimedia file. Can be a URL " +
-                      u"from YouTube, Vimeo, SlideShare, SoundCloud or " +
-                      u"other main multimedia websites."),
+        title=_(u'Multimedia URL'),
+        description=_(u'The URL for your multimedia file. Can be a URL ' +
+                      u'from YouTube, Vimeo, SlideShare, SoundCloud or ' +
+                      u'other main multimedia websites.'),
         required=False,
     )
 
     width = schema.Int(
-        title=_(u"Width"),
-        description=_(u""),
+        title=_(u'Width'),
+        description=_(u''),
         required=True,
     )
 
     height = schema.Int(
-        title=_(u"Height"),
-        description=_(u""),
+        title=_(u'Height'),
+        description=_(u''),
         required=True,
     )
 
     embed_html = schema.Text(
-        title=_(u"Embedded HTML code"),
-        description=_(u"HTML code to render the embedded media"),
+        title=_(u'Embedded HTML code'),
+        description=_(u'HTML code to render the embedded media'),
         required=True,
     )
 
     player_position = schema.Choice(
-        title=_(u"Player position"),
-        description=_(u""),
+        title=_(u'Player position'),
+        description=_(u''),
         default=u'Top',
         required=True,
         values=[u'Top', u'Bottom', u'Left', u'Right'],
@@ -124,19 +124,19 @@ class IEmbedder(form.Schema):
 
     form.widget(image=EmbedderImageFieldWidget)
     image = NamedImage(
-        title=_(u"Preview image"),
-        description=_(u"Image to be used when listing content."),
+        title=_(u'Preview image'),
+        description=_(u'Image to be used when listing content.'),
         required=False,
     )
 
     text = RichText(
-        title=_(u"Body text"),
+        title=_(u'Body text'),
         required=False,
     )
 
     alternate_content = RichText(
-        title=_(u"Alternate content"),
-        description=_(u"Description or transcription for accessibility (WCAG) users."),
+        title=_(u'Alternate content'),
+        description=_(u'Description or transcription for accessibility (WCAG) users.'),
         required=False,
     )
 
@@ -188,7 +188,7 @@ class BaseForm(DexterityExtensibleForm):
 
     def handle_image(self, data):
         url = self.widgets['url'].value
-        action = self.request.get("form.widgets.image.action", None)
+        action = self.request.get('form.widgets.image.action', None)
         if action == 'load':
             consumer = component.getUtility(IConsumer)
             json_data = consumer.get_data(url,
@@ -288,12 +288,12 @@ class AddForm(BaseForm, dexterity.AddForm):
             # mark only as finished if we get the new object
             self._finishedAdd = True
             IStatusMessage(self.request).addStatusMessage(
-                _(u"Item created"), "info")
+                _(u'Item created'), 'info')
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(
-            _(u"Operation cancelled."), "info")
+            _(u'Operation cancelled.'), 'info')
         self.request.response.redirect(self.nextURL())
         notify(AddCancelledEvent(self.context))
 
@@ -334,14 +334,14 @@ class EditForm(dexterity.EditForm, BaseForm):
             return
         self.applyChanges(data)
         IStatusMessage(self.request).addStatusMessage(
-            _(u"Changes saved."), "info")
+            _(u'Changes saved.'), 'info')
         self.request.response.redirect(self.nextURL())
         notify(EditFinishedEvent(self.context))
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(
-            _(u"Edit cancelled."), "info")
+            _(u'Edit cancelled.'), 'info')
         self.request.response.redirect(self.nextURL())
         notify(EditCancelledEvent(self.context))
 
@@ -369,7 +369,7 @@ class View(dexterity.DisplayForm):
         """ Returns the css class based on the position of the embed item.
         """
         pos = self.context.player_position
-        css_class = "%s_embedded" % pos.lower()
+        css_class = '%s_embedded' % pos.lower()
         return css_class
 
 
