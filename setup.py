@@ -78,7 +78,6 @@ setup(name='sc.embedder',
               'plone.testing',
               'robotframework-selenium2library',
               'robotsuite',
-              'unittest2',
           ],
       },
       entry_points="""

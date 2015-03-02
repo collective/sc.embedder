@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-
-import unittest2 as unittest
-
 from sc.embedder.testing import INTEGRATION_TESTING
+
+import unittest
 
 
 class PermissionsTest(unittest.TestCase):

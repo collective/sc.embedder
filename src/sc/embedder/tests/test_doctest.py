@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-
-import unittest2 as unittest
-import doctest
-
 from plone.testing import layered
-
 from sc.embedder.testing import FUNCTIONAL_TESTING
+
+import doctest
+import unittest
 
 
 def test_suite():

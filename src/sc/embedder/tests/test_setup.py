@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-
-import unittest2 as unittest
-
-from plone.browserlayer.utils import registered_layers
-
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-
+from plone.app.testing import TEST_USER_ID
+from plone.browserlayer.utils import registered_layers
 from sc.embedder.config import PROJECTNAME
 from sc.embedder.testing import INTEGRATION_TESTING
+
+import unittest
 
 JS = [
     '++resource++sc.embedder/video-js/video.js',

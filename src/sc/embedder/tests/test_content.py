@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.namedfile.file import NamedBlobImage
@@ -11,7 +10,7 @@ from zope.interface.verify import verifyObject
 
 import json
 import os
-import unittest2 as unittest
+import unittest
 
 PROVIDERS = {
     'youtube': 'http://www.youtube.com/watch?v=n-zxaVt6acg&feature=g-all-u',
