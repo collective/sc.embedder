@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-
-from urllib2 import quote
-
-from lxml import etree, cssselect, html
+from lxml import cssselect
+from lxml import etree
+from lxml import html
 from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
+from urllib2 import quote
 from zope.interface import implements
 
 import json

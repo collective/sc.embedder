@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-import logging
-
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.Transform import make_config_persistent
 
+import logging
 
 logger = logging.getLogger('sc.embedder.setuphandlers')
 

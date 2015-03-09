@@ -1,39 +1,34 @@
 # -*- coding: utf-8 -*-
-from lxml import etree, cssselect, html
-
+from collective import dexteritytextindexer
+from collective.oembed.interfaces import IConsumer
 from five import grok
-
-from zope import schema, component
-from zope.event import notify
+from lxml import cssselect
+from lxml import etree
+from lxml import html
 from plone import api
 from plone.app.textfield import RichText
-
+from plone.dexterity.browser.base import DexterityExtensibleForm
+from plone.dexterity.events import AddCancelledEvent
+from plone.dexterity.events import EditCancelledEvent
+from plone.dexterity.events import EditFinishedEvent
 from plone.directives import dexterity
 from plone.directives import form
-
+from plone.formwidget.namedfile.widget import NamedImageWidget
 from plone.namedfile.field import NamedImage as BaseNamedImage
 from plone.namedfile.file import NamedImage as ImageValueType
-
-from plone.dexterity.events import AddCancelledEvent
-from plone.dexterity.events import EditFinishedEvent
-from plone.dexterity.events import EditCancelledEvent
-from plone.dexterity.browser.base import DexterityExtensibleForm
-
-from z3c.form import button
-
-from collective import dexteritytextindexer
-
-from collective.oembed.interfaces import IConsumer
-
-from sc.embedder import MessageFactory as _
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-import urllib2
-from zope.interface import implementer, Interface
-from zope.component import adapter
-from z3c.form.interfaces import IFieldWidget, IFormLayer
-from plone.formwidget.namedfile.widget import NamedImageWidget
+from sc.embedder import MessageFactory as _
+from z3c.form import button
+from z3c.form.interfaces import IFormLayer
+from z3c.form.interfaces import IFieldWidget
 from z3c.form.widget import FieldWidget
+from zope import schema, component
+from zope.component import adapter
+from zope.event import notify
+from zope.interface import implementer
+from zope.interface import Interface
+
+import urllib2
 
 
 grok.templatedir('templates')
