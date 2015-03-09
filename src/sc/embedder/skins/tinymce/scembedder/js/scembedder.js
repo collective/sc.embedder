@@ -98,11 +98,11 @@ var SCEmbedderDialog = {
         // selected in the center pane.
         var href = this.getRadioValue('internallink', 0);
 
-        if (href == '') {
+        if (href === '') {
             // The user didn't select an image from the center pane.  So we
             // default to the URL for the thumbnail image in the right pane.
             href = SCEmbedderDialog.thumb_url;
-            if (href != null) {
+            if (href !== null) {
                 href = href.substring(0, href.indexOf('/@@'));
             }
         }
@@ -172,7 +172,7 @@ var SCEmbedderDialog = {
                     break;
 
                 case 'hspace':
-                    v = dom.getStyle(e, 'margin-left')
+                    v = dom.getStyle(e, 'margin-left');
                     v2 = dom.getStyle(e, 'margin-right');
 
                     if (v && v == v2)
@@ -181,7 +181,7 @@ var SCEmbedderDialog = {
                     break;
 
                 case 'vspace':
-                    v = dom.getStyle(e, 'margin-top')
+                    v = dom.getStyle(e, 'margin-top');
                     v2 = dom.getStyle(e, 'margin-bottom');
                     if (v && v == v2)
                         return parseInt(v.replace(/[^0-9]/g, ''));
@@ -295,7 +295,7 @@ var SCEmbedderDialog = {
             return;
         }
 
-        if (f.width.value == "" || f.height.value == "")
+        if (f.width.value === '' || f.height.value === '')
             return;
 
         tp = (parseInt(f.width.value) / parseInt(t.preloadImg.width)) * t.preloadImg.height;
@@ -309,7 +309,7 @@ var SCEmbedderDialog = {
             return;
         }
 
-        if (f.width.value == "" || f.height.value == "")
+        if (f.width.value === '' || f.height.value === '')
             return;
 
         tp = (parseInt(f.height.value) / parseInt(t.preloadImg.height)) * t.preloadImg.width;
@@ -367,7 +367,7 @@ var SCEmbedderDialog = {
     getSelectValue : function(form_obj, field_name) {
         var elm = form_obj.elements[field_name];
 
-        if (elm == null || elm.options == null)
+        if (elm === null || elm.options === null)
             return "";
 
         return elm.options[elm.selectedIndex].value;
@@ -400,7 +400,7 @@ var SCEmbedderDialog = {
                 var f0 = document.forms[0];
                 var elm = f0.elements['dimensions'];
                 var dimension = "";
-                if (elm != null && elm.options != null) {
+                if (elm !== null && elm.options !== null) {
                     dimension = elm.options[elm.selectedIndex].value;
                 }
 
@@ -427,14 +427,14 @@ var SCEmbedderDialog = {
                 var html = "";
                 text = SCEmbedderDialog.stripJSON(text);
                 var data = eval('(' + text + ')');
-                if (data.items.length == 0) {
+                if (data.items.length === 0) {
                     html = labels['label_no_items'];
                 } else {
                     for (var i = 0; i < data.items.length; i++) {
                         if (data.items[i].url == SCEmbedderDialog.current_link && tinyMCEPopup.editor.settings.link_using_uids) {
                             SCEmbedderDialog.current_link = 'resolveuid/' + data.items[i].uid;
                         }
-                        html += '<div class="' + (i % 2 == 0 ? 'even' : 'odd') + '">';
+                        html += '<div class="' + (i % 2 === 0 ? 'even' : 'odd') + '">';
                         if (data.items[i].is_folderish) {
                             if (data.items[i].icon !== null && data.items[i].icon.length) {
                                 html += '<img src="' + data.items[i].icon + '" border="0" style="margin-left: 17px" /> ';
@@ -464,7 +464,7 @@ var SCEmbedderDialog = {
                     }
                 }
                 document.getElementById ('internallinkcontainer').innerHTML = html;
-                if (data.parent_url == "") {
+                if (data.parent_url === '') {
                     document.getElementById ('uponelevel').style.display = 'none';
                     document.getElementById ('uponelevel').href = 'javascript:void(0)';
                 } else {
@@ -474,7 +474,7 @@ var SCEmbedderDialog = {
 
                 html = "";
                 for (var i = 0; i < data.path.length; i++) {
-                    if (i != 0) {
+                    if (i !== 0) {
                         html += " &rarr; ";
                     }
                     if (i == data.path.length - 1) {
@@ -492,7 +492,7 @@ var SCEmbedderDialog = {
                 document.forms[1].action = SCEmbedderDialog.current_path + '/tinymce-upload';
                 SCEmbedderDialog.setRadioValue('internallink', SCEmbedderDialog.current_link, 0);
 
-                if (SCEmbedderDialog.current_link != "") {
+                if (SCEmbedderDialog.current_link !== '') {
                     if (SCEmbedderDialog.current_link.indexOf('resolveuid') != -1) {
                         current_uid = SCEmbedderDialog.current_link.split('resolveuid/')[1];
                         tinymce.util.XHR.send({
@@ -528,7 +528,7 @@ var SCEmbedderDialog = {
         // Remove document from base url
         base_array.pop();
 
-        while (link_array.length != 0) {
+        while (link_array.length !== 0) {
             var item = link_array.shift();
             if (item == ".") {
                 // Do nothing

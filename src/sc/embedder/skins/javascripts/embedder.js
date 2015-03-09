@@ -1,14 +1,14 @@
 $(document).ready(function() {
-    $('#alt_cont .alt_cont_text').hide()
+    $('#alt_cont .alt_cont_text').hide();
     $('#alt_cont a').click(function(){
-        $('#alt_cont .alt_cont_text').toggleFade()
+        $('#alt_cont .alt_cont_text').toggleFade();
     });
 });
 
 (function($) {
     $.fn.toggleFade = function(settings)
     {
-        if(settings==undefined) {
+        if(settings === undefined) {
             settings={ speedIn : 'fast'};
         }
 
