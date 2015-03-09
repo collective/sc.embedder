@@ -6,9 +6,7 @@ from five import grok
 
 from zope import schema, component
 from zope.event import notify
-
-from Products.statusmessages.interfaces import IStatusMessage
-
+from plone import api
 from plone.app.textfield import RichText
 
 from plone.directives import dexterity
@@ -287,13 +285,13 @@ class AddForm(BaseForm, dexterity.AddForm):
         if obj is not None:
             # mark only as finished if we get the new object
             self._finishedAdd = True
-            IStatusMessage(self.request).addStatusMessage(
-                _(u'Item created'), 'info')
+            api.portal.show_message(
+                _(u'Item created'), self.request, type='info')
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
-        IStatusMessage(self.request).addStatusMessage(
-            _(u'Operation cancelled.'), 'info')
+        api.portal.show_message(
+            _(u'Add New Item operation cancelled.'), self.request, type='info')
         self.request.response.redirect(self.nextURL())
         notify(AddCancelledEvent(self.context))
 
@@ -333,15 +331,15 @@ class EditForm(dexterity.EditForm, BaseForm):
             self.status = self.formErrorsMessage
             return
         self.applyChanges(data)
-        IStatusMessage(self.request).addStatusMessage(
-            _(u'Changes saved.'), 'info')
+        api.portal.show_message(
+            _(u'Changes saved.'), self.request, type='info')
         self.request.response.redirect(self.nextURL())
         notify(EditFinishedEvent(self.context))
 
     @button.buttonAndHandler(_(u'Cancel'), name='cancel')
     def handleCancel(self, action):
-        IStatusMessage(self.request).addStatusMessage(
-            _(u'Edit cancelled.'), 'info')
+        api.portal.show_message(
+            _(u'Edit cancelled.'), self.request, type='info')
         self.request.response.redirect(self.nextURL())
         notify(EditCancelledEvent(self.context))
 

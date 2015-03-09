@@ -76,7 +76,7 @@ msgid "Multimedia URL"
 msgstr "Multimídia URL"
 
 #: sc/embedder/content/embedder.py:262
-msgid "Operation cancelled."
+msgid "Add New Item operation cancelled."
 msgstr "Operação cancelada."
 
 #: sc/embedder/content/embedder.py:105
