@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
+from plone import api
 from Products.PortalTransforms.Transform import make_config_persistent
 
 import logging
@@ -15,7 +15,7 @@ def setup_portal_transforms(context):
 
     tid = 'safe_html'
 
-    pt = getToolByName(context, 'portal_transforms')
+    pt = api.portal.get_tool('portal_transforms')
     if tid not in pt.objectIds():
         return
 
