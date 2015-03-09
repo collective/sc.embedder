@@ -1,5 +1,4 @@
-# -*- coding:utf-8 -*-
-
+# -*- coding: utf-8 -*-
 from lxml import etree, cssselect, html
 
 from five import grok
