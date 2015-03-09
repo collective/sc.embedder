@@ -23,28 +23,25 @@ ${url_selector} =  input#form-widgets-url
 *** Test cases ***
 
 Test CRUD
+    Enable Autologin as  Site Administrator
+    Go to Homepage
     Create  Nulla in mundo pax sincera
     Update  Blando colore oculos mundus decepit
     Delete
 
 Test Load
+    Enable Autologin as  Site Administrator
+    Go to Homepage
     Load  http://vimeo.com/17914974
 
 Test Required Fields
+    Enable Autologin as  Site Administrator
+    Go to Homepage
     Click Add Embedder
     Click Button  Save
     Page Should Contain  There were some errors
 
 *** Keywords ***
-
-Start Browser and Log In
-    Open Browser  ${PLONE_URL}
-    Go to  ${PLONE_URL}/login_form
-    Page should contain element  __ac_name
-    Input text  __ac_name  ${SITE_OWNER_NAME}
-    Input text  __ac_password  ${SITE_OWNER_PASSWORD}
-    Click Button  Log in
-    Goto Homepage
 
 Click Add Embedder
     Open Add New Menu

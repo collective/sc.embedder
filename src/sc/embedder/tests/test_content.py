@@ -19,12 +19,6 @@ PROVIDERS = {
     'instagram': 'http://www.flickr.com/photos/jup3nep/6796214503/?f=hp',
 }
 
-YOUTUBE_EMBED = """
-<iframe width="459" height="344" \
-src="http://www.youtube.com/embed/d8bEU80gIzQ?feature=oembed" \
-frameborder="0" allowfullscreen></iframe>
-""".strip('\n')
-
 
 class MultimediaTestCase(unittest.TestCase):
 
@@ -136,25 +130,18 @@ class MultimediaTestCase(unittest.TestCase):
 
         add_form.widgets['url'].value = 'http://vimeo.com/17914974'
         action = add_form.actions['load']
-
-        # We trigger the action of load
-        add_form.handleLoad(add_form, action)
-        iframe = u'<iframe src="//player.vimeo.com/video/17914974" ' + \
-            'width="1280" height="720" frameborder="0" ' + \
-            'title="The Backwater Gospel" ' + \
-            'webkitallowfullscreen mozallowfullscreen ' + \
-            'allowfullscreen></iframe>'
+        add_form.handleLoad(add_form, action)  # trigger load action
 
         self.assertEqual(
-            u'The Backwater Gospel', add_form.widgets['IDublinCore.title'].value)
-        self.assertEqual(
-            417, len(add_form.widgets['IDublinCore.description'].value))
-        self.assertEqual(
-            iframe, add_form.widgets['embed_html'].value)
-        self.assertEqual(
-            u'1280', add_form.widgets['width'].value)
-        self.assertEqual(
-            u'720', add_form.widgets['height'].value)
+            add_form.widgets['IDublinCore.title'].value, u'The Backwater Gospel')
+        self.assertNotEqual(
+            add_form.widgets['IDublinCore.description'].value, u'')
+        self.assertEqual(add_form.widgets['width'].value, u'1280')
+        self.assertEqual(add_form.widgets['height'].value, u'720')
+        self.assertIn(
+            u'player.vimeo.com/video/17914974',
+            add_form.widgets['embed_html'].value
+        )
 
     def test_youtube_oembed(self):
         add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
@@ -165,17 +152,18 @@ class MultimediaTestCase(unittest.TestCase):
         url = 'http://www.youtube.com/watch?v=d8bEU80gIzQ'
         add_form.widgets['url'].value = url
         action = add_form.actions['load']
+        add_form.handleLoad(add_form, action)  # trigger load action
 
-        # We trigger the action of load
-        add_form.handleLoad(add_form, action)
         self.assertEqual(
             add_form.widgets['IDublinCore.title'].value, u"Introducing Plone")
         self.assertEqual(
-            add_form.widgets['embed_html'].value, YOUTUBE_EMBED)
-        self.assertEqual(
-            add_form.widgets['width'].value, u'459')
-        self.assertEqual(
-            add_form.widgets['height'].value, u'344')
+            add_form.widgets['IDublinCore.description'].value, u'')
+        self.assertEqual(add_form.widgets['width'].value, u'459')
+        self.assertEqual(add_form.widgets['height'].value, u'344')
+        self.assertIn(
+            u'www.youtube.com/embed/d8bEU80gIzQ',
+            add_form.widgets['embed_html'].value
+        )
 
     def test_slideshare_oembed(self):
         add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
