@@ -28,7 +28,7 @@
             ed.addButton('scembedder', {
                 title : 'advanced.scembedder_desc',
                 cmd : 'mceSCEmbedder',
-                image : url + '/embedder.png'                
+                image : url + '/embedder.png'
             });
         },
 

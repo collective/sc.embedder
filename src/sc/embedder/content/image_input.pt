@@ -53,58 +53,58 @@
         <label
             tal:attributes="for string:${view/id}-load" i18n:translate="image_load">Load image from service provider (if available)</label>
         <br />
-    	<tal:noimage condition="not:allow_nochange">
-	        <input
-	            type="radio"
-	            value="upload"
-	            class="noborder"
-	            tal:attributes="name string:${view/name}.action;
-	                            id string:${view/id}-upload;
-                            	onclick string:document.getElementById('${view/id}-input').disabled=false;
-	                            checked python:(action != 'load') and 'checked' or None;"
-	            />
-	        <label
-	            tal:attributes="for string:${view/id}-upload" i18n:translate="image_upload">Upload image</label>
-	        <br />
-		</tal:noimage>
-    	<tal:allow_nochange condition="allow_nochange">
-	        <input
-	            type="radio"
-	            value="nochange"
-	            class="noborder"
-	            tal:attributes="name string:${view/name}.action;
-	                            id string:${view/id}-nochange;
-	                            onclick string:document.getElementById('${view/id}-input').disabled=true;
-	                            checked python:(action == 'nochange') and 'checked' or None;"
-	            />
-	        <label
-	            tal:attributes="for string:${view/id}-nochange" i18n:translate="image_keep">Keep existing image</label>
-	        <tal:block condition="not:view/field/required">
-	            <br />
-	            <input
-	                type="radio"
-	                value="remove"
-	                class="noborder"
-	                tal:attributes="name string:${view/name}.action;
-	                                id string:${view/id}-remove;
-	                                onclick string:document.getElementById('${view/id}-input').disabled=true;
-	                                checked python:action== 'remove' and 'checked' or None;"
-	                />
-	            <label
-	                tal:attributes="for string:${view/id}-remove" i18n:translate="image_remove">Remove existing image</label>
-	        </tal:block>
-	        <br />
-	        <input
-	            type="radio"
-	            value="replace"
-	            class="noborder"
-	            tal:attributes="name string:${view/name}.action;
-	                            id string:${view/id}-replace;
-	                            onclick string:document.getElementById('${view/id}-input').disabled=false;
-	                            checked python:action == 'replace' and 'checked' or None;" />
-	        <label
-	            tal:attributes="for string:${view/id}-replace" i18n:translate="image_replace">Replace with new image</label>
-		</tal:allow_nochange>
+        <tal:noimage condition="not:allow_nochange">
+            <input
+                type="radio"
+                value="upload"
+                class="noborder"
+                tal:attributes="name string:${view/name}.action;
+                                id string:${view/id}-upload;
+                                onclick string:document.getElementById('${view/id}-input').disabled=false;
+                                checked python:(action != 'load') and 'checked' or None;"
+                />
+            <label
+                tal:attributes="for string:${view/id}-upload" i18n:translate="image_upload">Upload image</label>
+            <br />
+        </tal:noimage>
+        <tal:allow_nochange condition="allow_nochange">
+            <input
+                type="radio"
+                value="nochange"
+                class="noborder"
+                tal:attributes="name string:${view/name}.action;
+                                id string:${view/id}-nochange;
+                                onclick string:document.getElementById('${view/id}-input').disabled=true;
+                                checked python:(action == 'nochange') and 'checked' or None;"
+                />
+            <label
+                tal:attributes="for string:${view/id}-nochange" i18n:translate="image_keep">Keep existing image</label>
+            <tal:block condition="not:view/field/required">
+                <br />
+                <input
+                    type="radio"
+                    value="remove"
+                    class="noborder"
+                    tal:attributes="name string:${view/name}.action;
+                                    id string:${view/id}-remove;
+                                    onclick string:document.getElementById('${view/id}-input').disabled=true;
+                                    checked python:action== 'remove' and 'checked' or None;"
+                    />
+                <label
+                    tal:attributes="for string:${view/id}-remove" i18n:translate="image_remove">Remove existing image</label>
+            </tal:block>
+            <br />
+            <input
+                type="radio"
+                value="replace"
+                class="noborder"
+                tal:attributes="name string:${view/name}.action;
+                                id string:${view/id}-replace;
+                                onclick string:document.getElementById('${view/id}-input').disabled=false;
+                                checked python:action == 'replace' and 'checked' or None;" />
+            <label
+                tal:attributes="for string:${view/id}-replace" i18n:translate="image_replace">Replace with new image</label>
+        </tal:allow_nochange>
     </div>
     <div style="padding-left: 1.5em; padding-top: 0.5em;">
         <input
