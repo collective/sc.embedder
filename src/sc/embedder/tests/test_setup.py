@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
 from plone.browserlayer.utils import registered_layers
 from sc.embedder.config import PROJECTNAME
 from sc.embedder.testing import INTEGRATION_TESTING
@@ -30,8 +28,7 @@ class InstallTestCase(unittest.TestCase):
 
     def test_browserlayer(self):
         layers = [l.getName() for l in registered_layers()]
-        self.assertTrue('IEmbedderLayer' in layers,
-                        'browser layer was not installed')
+        self.assertIn('IEmbedderLayer', layers)
 
     def test_javascript_registry(self):
         resource_ids = self.portal.portal_javascripts.getResourceIds()
@@ -43,6 +40,13 @@ class InstallTestCase(unittest.TestCase):
         for id in CSS:
             self.assertTrue(id in resource_ids, '%s not installed' % id)
 
+    def test_add_permissions(self):
+        permission = 'sc.embedder: Add Embedder'
+        roles = self.portal.rolesOfPermission(permission)
+        roles = [r['name'] for r in roles if r['selected']]
+        expected = ['Contributor', 'Manager', 'Owner', 'Site Administrator']
+        self.assertListEqual(roles, expected)
+
 
 class UninstallTest(unittest.TestCase):
 
@@ -50,8 +54,7 @@ class UninstallTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.qi = getattr(self.portal, 'portal_quickinstaller')
+        self.qi = self.portal['portal_quickinstaller']
         self.qi.uninstallProducts(products=[PROJECTNAME])
 
     def test_uninstalled(self):
@@ -59,15 +62,14 @@ class UninstallTest(unittest.TestCase):
 
     def test_browserlayer_removed(self):
         layers = [l.getName() for l in registered_layers()]
-        self.assertTrue('IEmbedderLayer' not in layers,
-                        'browser layer was not removed')
+        self.assertNotIn('IEmbedderLayer', layers)
 
     def test_javascript_removed(self):
         resource_ids = self.portal.portal_javascripts.getResourceIds()
         for id in JS:
-            self.assertTrue(id not in resource_ids, '%s not removed' % id)
+            self.assertNotIn(id, resource_ids, '%s not removed' % id)
 
     def test_css_removed(self):
         resource_ids = self.portal.portal_css.getResourceIds()
         for id in CSS:
-            self.assertTrue(id not in resource_ids, '%s not removed' % id)
+            self.assertNotIn(id, resource_ids, '%s not removed' % id)
