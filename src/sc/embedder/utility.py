@@ -11,12 +11,10 @@ See: https://github.com/itteco/iframely/blob/master/lib/plugins/system/oembed/pr
 """
 from sc.embedder.config import PROJECTNAME
 from sc.embedder.interfaces import IConsumer
-from urllib2 import URLError
 from zope.interface import implements
 
 import logging
 import oembed
-import urllib2
 
 logger = logging.getLogger(PROJECTNAME)
 
@@ -49,11 +47,6 @@ class Consumer(object):
         except oembed.OEmbedError, e:
             # often a mimetype error
             logger.info(e)
-        except urllib2.HTTPError, e:
-            logger.info(e)
-        except URLError, e:
-            # support offline mode
-            logger.info('offline mode')
 
     def initialize_consumer(self):
         if self.consumer is None:

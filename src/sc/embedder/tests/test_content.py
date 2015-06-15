@@ -307,6 +307,36 @@ class MultimediaTestCase(unittest.TestCase):
         expected = u'Invalid URL'
         self.assertEqual(msg[0].message, expected)
 
+    def test_unauthorized_request(self):
+        add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
+        add_form = add_view.form_instance
+        add_form.update()
+        add_form.actions.update()
+
+        add_form.widgets['url'].value = 'https://www.youtube.com/watch?v=cwWzpkgwWuU'
+        action = add_form.actions['load']
+        add_form.handleLoad(add_form, action)  # trigger load action
+
+        msg = IStatusMessage(self.request).show()
+        self.assertEqual(len(msg), 1)
+        expected = u'Unauthorized request'
+        self.assertEqual(msg[0].message, expected)
+
+    def test_url_not_found(self):
+        add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
+        add_form = add_view.form_instance
+        add_form.update()
+        add_form.actions.update()
+
+        add_form.widgets['url'].value = 'https://www.youtube.com/watch?v=fpDw3s7XJKo'
+        action = add_form.actions['load']
+        add_form.handleLoad(add_form, action)  # trigger load action
+
+        msg = IStatusMessage(self.request).show()
+        self.assertEqual(len(msg), 1)
+        expected = u'URL not found'
+        self.assertEqual(msg[0].message, expected)
+
     def test_jsonimagefolderlisting(self):
         # Now we can get a listing of the images and check if our image is there.e/'})
         output = self.folder.restrictedTraverse('@@tinymce-jsonscembedderfolderlisting')(False, 'http://nohost/plone/test-folder')

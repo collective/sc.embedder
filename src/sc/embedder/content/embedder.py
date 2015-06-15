@@ -18,7 +18,9 @@ from plone.namedfile.file import NamedImage as ImageValueType
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.validation import validation
 from sc.embedder import MessageFactory as _
+from sc.embedder.config import PROJECTNAME
 from sc.embedder.interfaces import IConsumer
+from urllib2 import URLError
 from z3c.form import button
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import IFormLayer
@@ -29,7 +31,10 @@ from zope.event import notify
 from zope.interface import implementer
 from zope.interface import Interface
 
+import logging
 import urllib2
+
+logger = logging.getLogger(PROJECTNAME)
 
 
 grok.templatedir('templates')
@@ -179,15 +184,39 @@ class BaseForm(DexterityExtensibleForm):
         except:
             pass
 
-    def handle_image(self, data):
-        url = self.widgets['url'].value
-        action = self.request.get('form.widgets.image.action', None)
-        if action == 'load':
-            consumer = component.getUtility(IConsumer)
+    def get_data(self, url, maxwidth=None, maxheight=None, format='json'):
+        """Return the data provided by the endpoint."""
+
+        consumer = component.getUtility(IConsumer)
+        json_data = None
+        try:
             json_data = consumer.get_data(url,
                                           maxwidth=None,
                                           maxheight=None,
                                           format='json')
+        except urllib2.HTTPError, e:
+            if e.code == 401:
+                api.portal.show_message(_(u'Unauthorized request'),
+                                        request=self.request, type='error')
+            elif e.code == 404:
+                api.portal.show_message(_(u'URL not found'),
+                                        request=self.request, type='error')
+            else:
+                logger.info(e)
+        except URLError, e:
+            # support offline mode
+            logger.info('offline mode')
+
+        return json_data
+
+    def handle_image(self, data):
+        url = self.widgets['url'].value
+        action = self.request.get('form.widgets.image.action', None)
+        if action == 'load':
+            json_data = self.get_data(url,
+                                      maxwidth=None,
+                                      maxheight=None,
+                                      format='json')
             if json_data.get('thumbnail_url'):
                 opener = urllib2.build_opener()
                 try:
@@ -224,9 +253,8 @@ class BaseForm(DexterityExtensibleForm):
                 _(u'Invalid URL'), request=self.request, type='error')
             return
 
-        consumer = component.getUtility(IConsumer)
-        json_data = consumer.get_data(
-            url, maxwidth=None, maxheight=None, format='json')
+        json_data = self.get_data(url, maxwidth=None, maxheight=None,
+                                  format='json')
 
         if json_data is None:
             json_data = self.get_fallback(url)

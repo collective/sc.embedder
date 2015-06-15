@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Add portal message instead of log info on http request errors (closes `#14`_).
+  [rodfersou]
+
 - Add validation in URL field to avoid hiding errors when using the Load button (closes `#20`_).
   [rodfersou]
 
@@ -81,4 +84,5 @@ There's a frood who really knows where his towel is.
 - Initial release.
 
 .. _`#3`: https://github.com/simplesconsultoria/sc.embedder/issues/3
+.. _`#14`: https://github.com/simplesconsultoria/sc.embedder/issues/14
 .. _`#20`: https://github.com/simplesconsultoria/sc.embedder/issues/20
