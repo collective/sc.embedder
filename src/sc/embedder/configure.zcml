@@ -39,4 +39,6 @@
         factory=".adapters.JSONDetails"
         />
 
+   <utility factory="sc.embedder.utility.Consumer" />
+
 </configure>

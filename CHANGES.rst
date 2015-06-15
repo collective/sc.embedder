@@ -1,13 +1,15 @@
-There's a frood who really knows where his towel is
----------------------------------------------------
+Changelog
+---------
+
+There's a frood who really knows where his towel is.
 
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Remove dependency on unittest2.
+- Remove dependency on collective.oembed (closes `#3`_).
   [hvelarde]
 
-- Drop support for Plone 4.1.
+- Drop support for Plone 4.1 and remove dependency on unittest2.
   [hvelarde]
 
 
@@ -17,7 +19,7 @@ There's a frood who really knows where his towel is
 - Fix a couple AJAX quoting/unquoting problems on the TinyMCE plugin.
   [jsbueno]
 
-- Add helper methods image_thumb and tag in order to be listed in 
+- Add helper methods image_thumb and tag in order to be listed in
   folder_summary_view [ericof]
 
 - Fix an UnicodeDecodeError with our plugin for TinyMCE [ericof]
@@ -74,3 +76,5 @@ There's a frood who really knows where his towel is
 ^^^^^^^^^^^^^^^^^^^
 
 - Initial release.
+
+.. _`#3`: https://github.com/collective/collective.cover/issues/3

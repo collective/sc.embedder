@@ -11,8 +11,8 @@ description = 'This packages contains a Dexterity-based content type that '
 'parties into your Plone site.'
 long_description = (
     open('README.rst').read() + '\n' +
-    open(os.path.join('docs', 'CREDITS.rst')).read() + '\n' +
-    open(os.path.join('docs', 'CHANGES.rst')).read()
+    open('CONTRIBUTORS.rst').read() + '\n' +
+    open('CHANGES.rst').read()
 )
 
 setup(name='sc.embedder',
@@ -51,7 +51,6 @@ setup(name='sc.embedder',
       zip_safe=False,
       install_requires=[
           'collective.dexteritytextindexer',
-          'collective.oembed <2.0a1',
           'five.grok',
           'lxml',
           'plone.api',
@@ -65,6 +64,7 @@ setup(name='sc.embedder',
           'Products.CMFPlone >=4.2',
           'Products.GenericSetup',
           'Products.TinyMCE',
+          'python-oembed',
           'setuptools',
           'z3c.form',
           'zope.component',
