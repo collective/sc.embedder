@@ -155,7 +155,7 @@ class MultimediaTestCase(unittest.TestCase):
         add_form.handleLoad(add_form, action)  # trigger load action
 
         self.assertEqual(
-            add_form.widgets['IDublinCore.title'].value, u"Introducing Plone")
+            add_form.widgets['IDublinCore.title'].value, u'Introducing Plone')
         self.assertEqual(
             add_form.widgets['IDublinCore.description'].value, u'')
         self.assertEqual(add_form.widgets['width'].value, u'459')
@@ -181,7 +181,7 @@ class MultimediaTestCase(unittest.TestCase):
 
         # Search for chunks in the embed code
         self.assertIn(
-            u'<iframe src="http://www.slideshare.net/slideshow/embed_code/1464608"',
+            u'<iframe src="https://www.slideshare.net/slideshow/embed_code/key/SbXVOykqQSdtA"',
             add_form.widgets['embed_html'].value)
         self.assertIn(
             u'width="427" height="356"',  # XXX: why these values?
