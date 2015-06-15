@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
-from collective.oembed.interfaces import IConsumer
 from five import grok
 from lxml import cssselect
 from lxml import etree
@@ -18,9 +17,10 @@ from plone.namedfile.field import NamedImage as BaseNamedImage
 from plone.namedfile.file import NamedImage as ImageValueType
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.embedder import MessageFactory as _
+from sc.embedder.interfaces import IConsumer
 from z3c.form import button
-from z3c.form.interfaces import IFormLayer
 from z3c.form.interfaces import IFieldWidget
+from z3c.form.interfaces import IFormLayer
 from z3c.form.widget import FieldWidget
 from zope import schema, component
 from zope.component import adapter
