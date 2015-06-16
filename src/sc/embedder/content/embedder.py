@@ -220,13 +220,14 @@ class BaseForm(DexterityExtensibleForm):
 
         v = validation.validatorFor('isURL')
         if v(url) != 1:
-            api.portal.show_message(_(u'Invalid URL'), request=self.request,
-                                    type='error')
+            api.portal.show_message(
+                _(u'Invalid URL'), request=self.request, type='error')
             return
 
         consumer = component.getUtility(IConsumer)
-        json_data = consumer.get_data(url, maxwidth=None, maxheight=None,
-                                      format='json')
+        json_data = consumer.get_data(
+            url, maxwidth=None, maxheight=None, format='json')
+
         if json_data is None:
             json_data = self.get_fallback(url)
             if json_data is None:
