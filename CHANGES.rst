@@ -6,7 +6,7 @@ There's a frood who really knows where his towel is.
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Add validation in URL field (closes `#20`_).
+- Add validation in URL field to avoid hiding errors when using the Load button (closes `#20`_).
   [rodfersou]
 
 - Remove dependency on collective.oembed (closes `#3`_).
