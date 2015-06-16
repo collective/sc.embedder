@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Add validation in URL field to avoid hiding errors when using the Load button (closes `#20`_).
+  [rodfersou]
+
 - Remove dependency on collective.oembed (closes `#3`_).
   [hvelarde]
 
@@ -77,4 +80,5 @@ There's a frood who really knows where his towel is.
 
 - Initial release.
 
-.. _`#3`: https://github.com/collective/collective.cover/issues/3
+.. _`#3`: https://github.com/simplesconsultoria/sc.embedder/issues/3
+.. _`#20`: https://github.com/simplesconsultoria/sc.embedder/issues/20

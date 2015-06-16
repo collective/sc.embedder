@@ -16,6 +16,7 @@ from plone.formwidget.namedfile.widget import NamedImageWidget
 from plone.namedfile.field import NamedImage as BaseNamedImage
 from plone.namedfile.file import NamedImage as ImageValueType
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.validation import validation
 from sc.embedder import MessageFactory as _
 from sc.embedder.interfaces import IConsumer
 from z3c.form import button
@@ -216,19 +217,26 @@ class BaseForm(DexterityExtensibleForm):
 
     def load_oembed(self, action):
         url = self.widgets['url'].value
-        if url != '':
-            consumer = component.getUtility(IConsumer)
-            json_data = consumer.get_data(url, maxwidth=None, maxheight=None,
-                                          format='json')
+
+        v = validation.validatorFor('isURL')
+        if v(url) != 1:
+            api.portal.show_message(
+                _(u'Invalid URL'), request=self.request, type='error')
+            return
+
+        consumer = component.getUtility(IConsumer)
+        json_data = consumer.get_data(
+            url, maxwidth=None, maxheight=None, format='json')
+
+        if json_data is None:
+            json_data = self.get_fallback(url)
             if json_data is None:
-                json_data = self.get_fallback(url)
-                if json_data is None:
-                    return
-            for k, v in self.tr_fields.iteritems():
-                if json_data.get(k):
-                    self.widgets[v].value = unicode(json_data[k])
-            if json_data.get('thumbnail_url'):
-                self.set_image(json_data.get('thumbnail_url'))
+                return
+        for k, v in self.tr_fields.iteritems():
+            if json_data.get(k):
+                self.widgets[v].value = unicode(json_data[k])
+        if json_data.get('thumbnail_url'):
+            self.set_image(json_data.get('thumbnail_url'))
 
     def set_custom_embed_code(self, data):
         """ Return the code that embed the code. Could be with the
