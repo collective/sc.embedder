@@ -198,10 +198,10 @@ class BaseForm(DexterityExtensibleForm):
                 api.portal.show_message(
                     _(u'URL not found'), request=self.request, type='error')
             else:
-                logger.info(e)
+                logger.warn(e)
         except URLError, e:
             # support offline mode
-            logger.info('offline mode')
+            logger.warn('offline mode')
 
         return json_data
 
