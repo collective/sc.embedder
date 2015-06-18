@@ -2,52 +2,55 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sc.embedder 1.0\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-11-07 16:07-0300\n"
-"Last-Translator: Leonardo Rochael Almeida <LeoRochael@simplesconsultoria.com.br>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2015-06-18 17:45-0300\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
+"Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: pt-BR\n"
 "Language-Name: Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.embedder\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: pt_BR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: sc/embedder/profiles/default/types/sc.embedder.xml
 msgid "A content embedder"
 msgstr "Um Embedder de conteúdo"
 
-#: sc/embedder/content/embedder.py:288
+#: sc/embedder/content/embedder.py:318
 msgid "Add New Item operation cancelled."
 msgstr "Operação cancelada."
 
-#: sc/embedder/content/embedder.py:130
+#: sc/embedder/content/embedder.py:134
 #: sc/embedder/content/templates/view.pt:38
 msgid "Alternate content"
 msgstr "Conteúdo alternativo"
 
-#: sc/embedder/content/embedder.py:125
+#: sc/embedder/content/embedder.py:129
 msgid "Body text"
 msgstr "Corpo do texto"
 
-#: sc/embedder/content/embedder.py:285
+#: sc/embedder/content/embedder.py:315
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: sc/embedder/content/embedder.py:329
+#: sc/embedder/content/embedder.py:359
 msgid "Changes saved."
 msgstr "Alterações salvas."
 
-#: sc/embedder/content/embedder.py:131
+#: sc/embedder/content/embedder.py:135
 msgid "Description or transcription for accessibility (WCAG) users."
 msgstr "Descrição ou transcrição, para usuários de sistemas acessíveis (WCAG)."
 
-#: sc/embedder/content/embedder.py:336
+#: sc/embedder/content/embedder.py:366
 msgid "Edit cancelled."
 msgstr "Edição cancelada."
 
-#: sc/embedder/content/embedder.py:104
+#: sc/embedder/content/embedder.py:108
 msgid "Embedded HTML code"
 msgstr "Código HTML a incorporar"
 
@@ -55,54 +58,62 @@ msgstr "Código HTML a incorporar"
 msgid "Embedder"
 msgstr "Embedder"
 
-#: sc/embedder/content/embedder.py:105
+#: sc/embedder/content/embedder.py:109
 msgid "HTML code to render the embedded media"
 msgstr "Código HTML para renderizar a mídia embarcada"
 
-#: sc/embedder/content/embedder.py:98
+#: sc/embedder/content/embedder.py:102
 msgid "Height"
 msgstr "Altura"
 
-#: sc/embedder/content/embedder.py:120
+#: sc/embedder/content/embedder.py:124
 msgid "Image to be used when listing content."
 msgstr "Imagem a ser usada em listagens."
 
-#: sc/embedder/content/embedder.py:283
+#: sc/embedder/content/embedder.py:247
+msgid "Invalid URL"
+msgstr "URL não válida"
+
+#: sc/embedder/content/embedder.py:313
 msgid "Item created"
 msgstr "Item criado"
 
-#: sc/embedder/content/embedder.py:292
+#: sc/embedder/content/embedder.py:322
 msgid "Load"
 msgstr "Carregar"
 
-#: sc/embedder/content/embedder.py:84
+#: sc/embedder/content/embedder.py:88
 msgid "Multimedia URL"
 msgstr "Multimídia URL"
 
-#: sc/embedder/content/embedder.py:110
+#: sc/embedder/content/embedder.py:114
 msgid "Player position"
 msgstr "Posição do player"
 
-#: sc/embedder/content/embedder.py:119
+#: sc/embedder/content/embedder.py:123
 msgid "Preview image"
 msgstr "Imagem de pré-visualização"
 
-#: sc/embedder/content/embedder.py:255
+#: sc/embedder/content/embedder.py:285
 msgid "Save"
 msgstr "Salvar"
 
-#: sc/embedder/content/embedder.py:85
-msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
-msgstr "A URL do seu arquivo multimídia. Pode ser uma URL do YouTube, Vimeo, SlideShare, SoundCLoud ou outro dos principais sites de multimídia."
+#: sc/embedder/content/embedder.py:89
+msgid ""
+"The URL for your multimedia file. Can be a URL from YouTube, Vimeo, "
+"SlideShare, SoundCloud or other main multimedia websites."
+msgstr ""
+"A URL do seu arquivo multimídia. Pode ser uma URL do YouTube, Vimeo, "
+"SlideShare, SoundCLoud ou outro dos principais sites de multimídia."
 
-#: sc/embedder/utility.py:59
+#: sc/embedder/content/embedder.py:199
 msgid "URL not found"
 msgstr "URL não encontrada"
 
-#: sc/embedder/utility.py:57
+#: sc/embedder/content/embedder.py:196
 msgid "Unauthorized request"
 msgstr "Requisição não autorizada"
 
-#: sc/embedder/content/embedder.py:92
+#: sc/embedder/content/embedder.py:96
 msgid "Width"
 msgstr "Largura"

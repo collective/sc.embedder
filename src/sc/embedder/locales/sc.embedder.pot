@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.embedder 1.0\n"
-"POT-Creation-Date: 2015-06-16 11:32+0000\n"
+"POT-Creation-Date: 2015-06-18 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.embedder\n"
 
-#: sc/embedder/content/embedder.py:93
+#: sc/embedder/content/embedder.py:97
 msgid ""
 msgstr ""
 
@@ -22,36 +22,36 @@ msgstr ""
 msgid "A content embedder"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:288
+#: sc/embedder/content/embedder.py:318
 msgid "Add New Item operation cancelled."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:130
+#: sc/embedder/content/embedder.py:134
 #: sc/embedder/content/templates/view.pt:38
 msgid "Alternate content"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:125
+#: sc/embedder/content/embedder.py:129
 msgid "Body text"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:285
+#: sc/embedder/content/embedder.py:315
 msgid "Cancel"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:329
+#: sc/embedder/content/embedder.py:359
 msgid "Changes saved."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:131
+#: sc/embedder/content/embedder.py:135
 msgid "Description or transcription for accessibility (WCAG) users."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:336
+#: sc/embedder/content/embedder.py:366
 msgid "Edit cancelled."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:104
+#: sc/embedder/content/embedder.py:108
 msgid "Embedded HTML code"
 msgstr ""
 
@@ -59,55 +59,59 @@ msgstr ""
 msgid "Embedder"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:105
+#: sc/embedder/content/embedder.py:109
 msgid "HTML code to render the embedded media"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:98
+#: sc/embedder/content/embedder.py:102
 msgid "Height"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:120
+#: sc/embedder/content/embedder.py:124
 msgid "Image to be used when listing content."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:283
+#: sc/embedder/content/embedder.py:247
+msgid "Invalid URL"
+msgstr ""
+
+#: sc/embedder/content/embedder.py:313
 msgid "Item created"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:292
+#: sc/embedder/content/embedder.py:322
 msgid "Load"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:84
+#: sc/embedder/content/embedder.py:88
 msgid "Multimedia URL"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:110
+#: sc/embedder/content/embedder.py:114
 msgid "Player position"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:119
+#: sc/embedder/content/embedder.py:123
 msgid "Preview image"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:255
+#: sc/embedder/content/embedder.py:285
 msgid "Save"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:85
+#: sc/embedder/content/embedder.py:89
 msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
 msgstr ""
 
-#: sc/embedder/utility.py:59
+#: sc/embedder/content/embedder.py:199
 msgid "URL not found"
 msgstr ""
 
-#: sc/embedder/utility.py:57
+#: sc/embedder/content/embedder.py:196
 msgid "Unauthorized request"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:92
+#: sc/embedder/content/embedder.py:96
 msgid "Width"
 msgstr ""
 

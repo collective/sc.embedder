@@ -6,7 +6,10 @@ There's a frood who really knows where his towel is.
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Add portal message instead of log info on http request errors (closes `#14`_).
+- Brazilian Portuguese and Spanish translations were updated.
+  [rodfersou, hvelarde]
+
+- Add portal message instead of log info on HTTP request errors (closes `#14`_).
   [rodfersou]
 
 - Add validation in URL field to avoid hiding errors when using the Load button (closes `#20`_).
@@ -75,7 +78,7 @@ There's a frood who really knows where his towel is.
 
 - i18n was fixed and Spanish translation was updated. [hvelarde]
 
-- Brazilian Prtuguese translation was fixed. [agnogueira]
+- Brazilian Portuguese translation was fixed. [agnogueira]
 
 
 1.0a1 (2012-09-05)
