@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from Products.PortalTransforms.Transform import make_config_persistent
-
-import logging
-
-logger = logging.getLogger('sc.embedder.setuphandlers')
+from sc.embedder.logger import logger
 
 
 def setup_portal_transforms(context):

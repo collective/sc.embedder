@@ -18,32 +18,36 @@ msgstr ""
 msgid "A content embedder"
 msgstr "Um Embedder de conteúdo"
 
-#: sc/embedder/content/embedder.py:125
+#: sc/embedder/content/embedder.py:288
+msgid "Add New Item operation cancelled."
+msgstr "Operação cancelada."
+
+#: sc/embedder/content/embedder.py:130
 #: sc/embedder/content/templates/view.pt:38
 msgid "Alternate content"
 msgstr "Conteúdo alternativo"
 
-#: sc/embedder/content/embedder.py:120
+#: sc/embedder/content/embedder.py:125
 msgid "Body text"
 msgstr "Corpo do texto"
 
-#: sc/embedder/content/embedder.py:259
+#: sc/embedder/content/embedder.py:285
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: sc/embedder/content/embedder.py:303
+#: sc/embedder/content/embedder.py:329
 msgid "Changes saved."
 msgstr "Alterações salvas."
 
-#: sc/embedder/content/embedder.py:126
+#: sc/embedder/content/embedder.py:131
 msgid "Description or transcription for accessibility (WCAG) users."
 msgstr "Descrição ou transcrição, para usuários de sistemas acessíveis (WCAG)."
 
-#: sc/embedder/content/embedder.py:310
+#: sc/embedder/content/embedder.py:336
 msgid "Edit cancelled."
 msgstr "Edição cancelada."
 
-#: sc/embedder/content/embedder.py:99
+#: sc/embedder/content/embedder.py:104
 msgid "Embedded HTML code"
 msgstr "Código HTML a incorporar"
 
@@ -51,51 +55,54 @@ msgstr "Código HTML a incorporar"
 msgid "Embedder"
 msgstr "Embedder"
 
-#: sc/embedder/content/embedder.py:100
+#: sc/embedder/content/embedder.py:105
 msgid "HTML code to render the embedded media"
 msgstr "Código HTML para renderizar a mídia embarcada"
 
-#: sc/embedder/content/embedder.py:93
+#: sc/embedder/content/embedder.py:98
 msgid "Height"
 msgstr "Altura"
 
-#: sc/embedder/content/embedder.py:115
+#: sc/embedder/content/embedder.py:120
 msgid "Image to be used when listing content."
 msgstr "Imagem a ser usada em listagens."
 
-#: sc/embedder/content/embedder.py:257
+#: sc/embedder/content/embedder.py:283
 msgid "Item created"
 msgstr "Item criado"
 
-#: sc/embedder/content/embedder.py:266
+#: sc/embedder/content/embedder.py:292
 msgid "Load"
 msgstr "Carregar"
 
-#: sc/embedder/content/embedder.py:79
+#: sc/embedder/content/embedder.py:84
 msgid "Multimedia URL"
 msgstr "Multimídia URL"
 
-#: sc/embedder/content/embedder.py:262
-msgid "Add New Item operation cancelled."
-msgstr "Operação cancelada."
-
-#: sc/embedder/content/embedder.py:105
+#: sc/embedder/content/embedder.py:110
 msgid "Player position"
 msgstr "Posição do player"
 
-#: sc/embedder/content/embedder.py:114
+#: sc/embedder/content/embedder.py:119
 msgid "Preview image"
 msgstr "Imagem de pré-visualização"
 
-#: sc/embedder/content/embedder.py:229
+#: sc/embedder/content/embedder.py:255
 msgid "Save"
 msgstr "Salvar"
 
-#: sc/embedder/content/embedder.py:80
+#: sc/embedder/content/embedder.py:85
 msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
 msgstr "A URL do seu arquivo multimídia. Pode ser uma URL do YouTube, Vimeo, SlideShare, SoundCLoud ou outro dos principais sites de multimídia."
 
-#: sc/embedder/content/embedder.py:87
+#: sc/embedder/utility.py:59
+msgid "URL not found"
+msgstr "URL não encontrada"
+
+#: sc/embedder/utility.py:57
+msgid "Unauthorized request"
+msgstr "Requisição não autorizada"
+
+#: sc/embedder/content/embedder.py:92
 msgid "Width"
 msgstr "Largura"
-

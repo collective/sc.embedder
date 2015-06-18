@@ -9,16 +9,11 @@ TODO: Refactor it to get the list of providers on an alternative way.
 
 See: https://github.com/itteco/iframely/blob/master/lib/plugins/system/oembed/providers.json
 """
-from sc.embedder.config import PROJECTNAME
 from sc.embedder.interfaces import IConsumer
-from urllib2 import URLError
+from sc.embedder.logger import logger
 from zope.interface import implements
 
-import logging
 import oembed
-import urllib2
-
-logger = logging.getLogger(PROJECTNAME)
 
 
 class Consumer(object):
@@ -49,11 +44,6 @@ class Consumer(object):
         except oembed.OEmbedError, e:
             # often a mimetype error
             logger.info(e)
-        except urllib2.HTTPError, e:
-            logger.info(e)
-        except URLError, e:
-            # support offline mode
-            logger.info('offline mode')
 
     def initialize_consumer(self):
         if self.consumer is None:
