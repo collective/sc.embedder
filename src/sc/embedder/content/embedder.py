@@ -18,8 +18,8 @@ from plone.namedfile.file import NamedImage as ImageValueType
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.validation import validation
 from sc.embedder import MessageFactory as _
-from sc.embedder.config import PROJECTNAME
 from sc.embedder.interfaces import IConsumer
+from sc.embedder.logger import logger
 from urllib2 import URLError
 from z3c.form import button
 from z3c.form.interfaces import IFieldWidget
@@ -31,10 +31,7 @@ from zope.event import notify
 from zope.interface import implementer
 from zope.interface import Interface
 
-import logging
 import urllib2
-
-logger = logging.getLogger(PROJECTNAME)
 
 
 grok.templatedir('templates')

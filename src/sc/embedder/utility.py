@@ -9,14 +9,11 @@ TODO: Refactor it to get the list of providers on an alternative way.
 
 See: https://github.com/itteco/iframely/blob/master/lib/plugins/system/oembed/providers.json
 """
-from sc.embedder.config import PROJECTNAME
 from sc.embedder.interfaces import IConsumer
+from sc.embedder.logger import logger
 from zope.interface import implements
 
-import logging
 import oembed
-
-logger = logging.getLogger(PROJECTNAME)
 
 
 class Consumer(object):
