@@ -20,6 +20,7 @@ from Products.validation import validation
 from sc.embedder import MessageFactory as _
 from sc.embedder.interfaces import IConsumer
 from sc.embedder.logger import logger
+from urllib2 import HTTPError
 from urllib2 import URLError
 from z3c.form import button
 from z3c.form.interfaces import IFieldWidget
@@ -187,17 +188,15 @@ class BaseForm(DexterityExtensibleForm):
         consumer = component.getUtility(IConsumer)
         json_data = None
         try:
-            json_data = consumer.get_data(url,
-                                          maxwidth=None,
-                                          maxheight=None,
-                                          format='json')
-        except urllib2.HTTPError, e:
+            json_data = consumer.get_data(
+                url, maxwidth=None, maxheight=None, format='json')
+        except HTTPError, e:
             if e.code == 401:
-                api.portal.show_message(_(u'Unauthorized request'),
-                                        request=self.request, type='error')
+                api.portal.show_message(
+                    _(u'Unauthorized request'), request=self.request, type='error')
             elif e.code == 404:
-                api.portal.show_message(_(u'URL not found'),
-                                        request=self.request, type='error')
+                api.portal.show_message(
+                    _(u'URL not found'), request=self.request, type='error')
             else:
                 logger.info(e)
         except URLError, e:
@@ -210,10 +209,8 @@ class BaseForm(DexterityExtensibleForm):
         url = self.widgets['url'].value
         action = self.request.get('form.widgets.image.action', None)
         if action == 'load':
-            json_data = self.get_data(url,
-                                      maxwidth=None,
-                                      maxheight=None,
-                                      format='json')
+            json_data = self.get_data(
+                url, maxwidth=None, maxheight=None, format='json')
             if json_data.get('thumbnail_url'):
                 opener = urllib2.build_opener()
                 try:
@@ -250,8 +247,8 @@ class BaseForm(DexterityExtensibleForm):
                 _(u'Invalid URL'), request=self.request, type='error')
             return
 
-        json_data = self.get_data(url, maxwidth=None, maxheight=None,
-                                  format='json')
+        json_data = self.get_data(
+            url, maxwidth=None, maxheight=None, format='json')
 
         if json_data is None:
             json_data = self.get_fallback(url)
