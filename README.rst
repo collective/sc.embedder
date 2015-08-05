@@ -80,19 +80,18 @@ fields:
 - Alternate content
 - Image
 
-In the URL field you must put the url of you content. Like:
+In the URL field you must put the url of you content. For example:
 
     http://vimeo.com/17914974
 
-and then click the *load* button. This will bring automatically some data of
-the element from the provider to the form. It depends on each provider what
-data it going to add. But generally the fields title, description, width,
-height and embed html fields are the one to be filled.
+and then click the *load* button. This will automatically populate the form 
+with some data from the third party content. Which fields are populated depends 
+on the individual provider. But in most cases the fields: title, description, width,
+height and embed html fields will be filled.
 
 **Note**: *Some providers only support width, height and title. So the fields
-like description or html embed code are necessarily to be filled manually.
-This information is normally encountered in the page where the url is pointing
-to*.
+like description or html embed code will need to be filled manually.
+This information is normally found in the page where the url points to*.
 
 Layout
 ^^^^^^
@@ -114,8 +113,8 @@ views or covers.
 Providers
 ^^^^^^^^^
 
-This product use `collective.oembed`_. You can check its documentation to see
-a list of them.
+This product uses `collective.oembed`_. You can check its documentation to see
+a list of supported providers.
 
 .. _`oEmbed`: http://www.oembed.com/
 .. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.embedder/issues
