@@ -16,7 +16,6 @@ from plone.formwidget.namedfile.widget import NamedImageWidget
 from plone.namedfile.field import NamedImage as BaseNamedImage
 from plone.namedfile.file import NamedImage as ImageValueType
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.validation import validation
 from sc.embedder import MessageFactory as _
 from sc.embedder.interfaces import IConsumer
 from sc.embedder.logger import logger
@@ -32,7 +31,9 @@ from zope.event import notify
 from zope.interface import implementer
 from zope.interface import Interface
 
+import requests
 import urllib2
+import urlparse
 
 
 grok.templatedir('templates')
@@ -84,7 +85,7 @@ class IEmbedder(form.Schema):
 
     form.order_before(**{'url': '*'})
 
-    url = schema.TextLine(
+    url = schema.ASCIILine(
         title=_(u'Multimedia URL'),
         description=_(u'The URL for your multimedia file. Can be a URL ' +
                       u'from YouTube, Vimeo, SlideShare, SoundCloud or ' +
@@ -229,20 +230,32 @@ class BaseForm(DexterityExtensibleForm):
         frameborder="0">
 </iframe>
 """
-        request = urllib2.Request(url)
-        request.get_method = lambda: 'HEAD'
-        opener = urllib2.build_opener()
-        response = opener.open(request)
-        if response.headers.get('content-type') in supported_mime_types:
+        r = requests.head(url)
+        if r.headers.get('content-type') in supported_mime_types:
             return {'html': embedder_code % {'context_url': self.context.absolute_url(),
                                              'url': urllib2.quote(url, ''),
-                                             'type': urllib2.quote(response.headers.get('content-type'), '')}}
+                                             'type': urllib2.quote(r.headers.get('content-type'), '')}}
+
+    def _validate_url(self, url):
+        """Validate if is a valid URL for site.
+
+        :param url: [required] URL to validate.
+        :type url: unicode
+        :returns: True if valid site URL
+        :rtype: bool
+        """
+        pieces = urlparse.urlparse(url)
+        # Must have a net location (ex: www.youtube.com)
+        if pieces.netloc == '':
+            return False
+        if pieces.scheme not in ('http', 'https'):
+            return False
+        return True
 
     def load_oembed(self, action):
         url = self.widgets['url'].value
 
-        v = validation.validatorFor('isURL')
-        if v(url) != 1:
+        if not self._validate_url(url):
             api.portal.show_message(
                 _(u'Invalid URL'), request=self.request, type='error')
             return
