@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from httmock import all_requests
+from httmock import HTTMock
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.namedfile.file import NamedBlobImage
@@ -19,6 +21,17 @@ PROVIDERS = {
     'slideshare': 'http://www.slideshare.net/cgiorgi/secrets-of-a-good-pitch',
     'instagram': 'http://www.flickr.com/photos/jup3nep/6796214503/?f=hp',
 }
+
+
+@all_requests
+def youtube_mock(url, request):
+    """XXX: Avoid "HTTP Error 429: Too Many Requests" from YouTube when
+    running on Travis CI.
+    """
+    if url.query == 'v=cwWzpkgwWuU':
+        return dict(status_code=401)
+    elif url.query == 'v=fpDw3s7XJKo':
+        return dict(status_code=404)
 
 
 class MultimediaTestCase(unittest.TestCase):
@@ -315,7 +328,9 @@ class MultimediaTestCase(unittest.TestCase):
 
         add_form.widgets['url'].value = 'https://www.youtube.com/watch?v=cwWzpkgwWuU'
         action = add_form.actions['load']
-        add_form.handleLoad(add_form, action)  # trigger load action
+
+        with HTTMock(youtube_mock):
+            add_form.handleLoad(add_form, action)  # trigger load action
 
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
@@ -330,7 +345,9 @@ class MultimediaTestCase(unittest.TestCase):
 
         add_form.widgets['url'].value = 'https://www.youtube.com/watch?v=fpDw3s7XJKo'
         action = add_form.actions['load']
-        add_form.handleLoad(add_form, action)  # trigger load action
+
+        with HTTMock(youtube_mock):
+            add_form.handleLoad(add_form, action)  # trigger load action
 
         msg = IStatusMessage(self.request).show()
         self.assertEqual(len(msg), 1)
