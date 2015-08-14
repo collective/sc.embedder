@@ -1,28 +1,27 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:z3c="http://namespaces.zope.org/z3c"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="sc.embedder">
 
     <five:registerPackage package="." />
     <includeDependencies package="." />
     <i18n:registerTranslations directory="locales" />
 
-    <grok:grok package="." />
-
     <include file="profiles.zcml"/>
     <include file="skins.zcml"/>
     <include package=".browser"/>
+    <include package=".tiles" zcml:condition="installed collective.cover" />
 
-    <!-- Permissions -->
     <permission
-       id="sc.embedder.AddEmbedder"
-       title="sc.embedder: Add Embedder"
-    />
+        id="sc.embedder.AddEmbedder"
+        title="sc.embedder: Add Embedder"
+        />
+
+    <grok:grok package=".content" />
 
     <adapter factory=".content.embedder.EmbedderImageFieldWidget" />
 

@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Add Embedder tile for collective.cover (closes `#32`_).
+  [rodfersou]
+
 - Brazilian Portuguese and Spanish translations were updated.
   [rodfersou, hvelarde]
 
@@ -89,3 +92,4 @@ There's a frood who really knows where his towel is.
 .. _`#3`: https://github.com/simplesconsultoria/sc.embedder/issues/3
 .. _`#14`: https://github.com/simplesconsultoria/sc.embedder/issues/14
 .. _`#20`: https://github.com/simplesconsultoria/sc.embedder/issues/20
+.. _`#32`: https://github.com/simplesconsultoria/sc.embedder/issues/32

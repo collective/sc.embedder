@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 from plone.browserlayer.utils import registered_layers
 from sc.embedder.config import PROJECTNAME
 from sc.embedder.testing import INTEGRATION_TESTING
@@ -47,6 +48,10 @@ class InstallTestCase(unittest.TestCase):
         expected = ['Contributor', 'Manager', 'Owner', 'Site Administrator']
         self.assertListEqual(roles, expected)
 
+    def test_tile(self):
+        tiles = api.portal.get_registry_record('plone.app.tiles')
+        self.assertIn(u'sc.embedder', tiles)
+
 
 class UninstallTest(unittest.TestCase):
 
@@ -73,3 +78,7 @@ class UninstallTest(unittest.TestCase):
         resource_ids = self.portal.portal_css.getResourceIds()
         for id in CSS:
             self.assertNotIn(id, resource_ids, '%s not removed' % id)
+
+    def test_tile_removed(self):
+        tiles = api.portal.get_registry_record('plone.app.tiles')
+        self.assertNotIn(u'sc.embedder', tiles)
