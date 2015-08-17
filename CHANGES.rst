@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 1.0b5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Allow use of percent sign (%) on width properties (closes `#6`_).
+  [rodfersou]
 
 
 1.0b4 (2015-09-03)
@@ -96,6 +97,7 @@ There's a frood who really knows where his towel is.
 - Initial release.
 
 .. _`#3`: https://github.com/simplesconsultoria/sc.embedder/issues/3
+.. _`#6`: https://github.com/simplesconsultoria/sc.embedder/issues/6
 .. _`#14`: https://github.com/simplesconsultoria/sc.embedder/issues/14
 .. _`#20`: https://github.com/simplesconsultoria/sc.embedder/issues/20
 .. _`#32`: https://github.com/simplesconsultoria/sc.embedder/issues/32

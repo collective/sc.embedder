@@ -30,6 +30,7 @@ from zope.component import adapter
 from zope.event import notify
 from zope.interface import implementer
 from zope.interface import Interface
+from zope.interface import Invalid
 
 import requests
 import urllib2
@@ -93,21 +94,22 @@ class IEmbedder(form.Schema):
         required=False,
     )
 
-    width = schema.Int(
+    width = schema.ASCIILine(
         title=_(u'Width'),
-        description=_(u''),
+        description=_(
+            u'Can be expressed as a decimal number or a percentage, e.g., 270 or 50%.'),
         required=True,
     )
 
     height = schema.Int(
         title=_(u'Height'),
-        description=_(u''),
+        description=_(u'Can be expressed as a decimal number, e.g., 480.'),
         required=True,
     )
 
     embed_html = schema.Text(
         title=_(u'Embedded HTML code'),
-        description=_(u'HTML code to render the embedded media'),
+        description=_(u'HTML code to render the embedded media.'),
         required=True,
     )
 
@@ -160,6 +162,24 @@ class Embedder(dexterity.Item):
                         scale=scale,
                         css_class=css_class,
                         **kw)
+
+
+@form.validator(field=IEmbedder['width'])
+def validate_int_or_percentage(value):
+    """Check if size is an positive integer or a percetage.
+
+    :param value: number to be validated
+    :type value: string
+    :raises:
+        :class:`~zope.interface.Invalid` if the value is not valid
+    """
+    if value:
+        value = value.replace(' ', '')
+        value = value.rstrip('%')
+        try:
+            value = int(value, 10)
+        except ValueError:
+            raise Invalid(_(u'Value should be a int number or a percent.'))
 
 
 class BaseForm(DexterityExtensibleForm):
@@ -313,6 +333,8 @@ class AddForm(BaseForm, dexterity.AddForm):
                 if json_data.get(k):
                     self.request[v] = unicode(json_data[k])
         data, errors = self.extractData()
+        if 'width' in data:  # maybe using %
+            data['width'] = data['width'].replace(' ', '')
         self.handle_image(data)
         self.set_custom_embed_code(data)
         if errors:
@@ -362,6 +384,8 @@ class EditForm(dexterity.EditForm, BaseForm):
     @button.buttonAndHandler(_(u'Save'), name='save')
     def handleApply(self, action):
         data, errors = self.extractData()
+        if 'width' in data:  # maybe using %
+            data['width'] = data['width'].replace(' ', '')
         self.handle_image(data)
         self.set_custom_embed_code(data)
         if errors:
