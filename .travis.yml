@@ -3,7 +3,8 @@ python: 2.7
 sudo: false
 cache:
   directories:
-    - eggs
+  - eggs
+  - parts/node
 env:
   - PLONE_VERSION=4.3
   - PLONE_VERSION=5.0
