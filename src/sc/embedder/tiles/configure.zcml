@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="sc.embedder">
+
+  <include package="plone.tiles" file="meta.zcml" />
+
+  <plone:tile
+      name="sc.embedder"
+      title="Embedder"
+      description="Embedder tile, can reproduce embeded files."
+      add_permission="cmf.ModifyPortalContent"
+      schema=".embedder.IEmbedderTile"
+      class=".embedder.EmbedderTile"
+      permission="zope2.View"
+      for="*"
+      i18n:attributes="title; description"
+      />
+
+</configure>

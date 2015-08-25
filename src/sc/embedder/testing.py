@@ -12,12 +12,13 @@ class Fixture(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        # Load ZCML
+        import collective.cover
+        self.loadZCML(package=collective.cover)
         import sc.embedder
         self.loadZCML(package=sc.embedder)
 
     def setUpPloneSite(self, portal):
-        # Install into Plone site using portal_setup
+        self.applyProfile(portal, 'collective.cover:default')
         self.applyProfile(portal, 'sc.embedder:default')
 
 FIXTURE = Fixture()

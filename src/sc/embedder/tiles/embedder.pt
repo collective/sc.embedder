@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="brasil.gov.tiles">
+
+<body tal:define="tile_id view/id;">
+  <div class="video-tile"
+       tal:attributes="id string:video-$tile_id"
+       tal:define="results view/data;">
+    <div class="video-container" tal:content="structure results/embed_code"></div>
+    <a href="" tal:content="results/title" tal:attributes="href results/url"></a>
+  </div>
+  <noscript>
+      <div class="error" i18n:translate="">Your internet browser this not support JavaScript, therefore some features of the website may not be accessible.</div>
+  </noscript>
+</body>
+</html>

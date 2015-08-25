@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.embedder">
+
+  <genericsetup:upgradeSteps
+      source="1000"
+      destination="1001"
+      profile="sc.embedder:default">
+
+    <genericsetup:upgradeStep
+        title="Add embedder tile"
+        description="Add collective.cover tile for sc.embedder content type."
+        handler=".add_tile"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

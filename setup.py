@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-
 from setuptools import find_packages
 from setuptools import setup
 
-import os
 
 version = '1.0b4.dev0'
 description = 'This packages contains a Dexterity-based content type that '
@@ -75,7 +73,9 @@ setup(name='sc.embedder',
       ],
       extras_require={
           'test': [
+              'collective.cover',
               'httmock',
+              'mock',
               'plone.app.robotframework',
               'plone.app.testing [robot] >=4.2.2',
               'plone.browserlayer',
