@@ -18,7 +18,7 @@ There's a frood who really knows where his towel is.
 - Remove dependency on collective.oembed (closes `#3`_).
   [hvelarde]
 
-- Drop support for Plone 4.1 and remove dependency on unittest2.
+- Drop support for Plone 4.1 and 4.2; remove dependency on unittest2.
   [hvelarde]
 
 
