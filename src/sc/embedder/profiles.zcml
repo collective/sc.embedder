@@ -22,6 +22,9 @@
         i18n:attributes="title; description"
         />
 
+  <utility factory=".setuphandlers.HiddenProfiles" name="sc.embedder" />
+  <utility factory=".setuphandlers.HiddenProducts" name="sc.embedder" />
+
     <include package=".upgrades" />
 
 </configure>
