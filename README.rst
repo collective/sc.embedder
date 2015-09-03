@@ -18,11 +18,14 @@ especification.
 Mostly Harmless
 ---------------
 
-.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.embedder.png?branch=master
+.. image:: http://img.shields.io/pypi/v/sc.embedder.svg
+    :target: https://pypi.python.org/pypi/sc.embedder
+
+.. image:: https://img.shields.io/travis/simplesconsultoria/sc.embedder/master.svg
     :target: http://travis-ci.org/simplesconsultoria/sc.embedder
 
-.. image:: https://coveralls.io/repos/simplesconsultoria/sc.embedder/badge.png
-    :target: https://coveralls.io/r/simplesconsultoria/sc.embedder?branch=master
+.. image:: https://img.shields.io/coveralls/simplesconsultoria/sc.embedder/master.svg
+    :target: https://coveralls.io/r/simplesconsultoria/sc.embedder
 
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
@@ -84,8 +87,8 @@ In the URL field you must put the url of you content. For example:
 
     http://vimeo.com/17914974
 
-and then click the *load* button. This will automatically populate the form 
-with some data from the third party content. Which fields are populated depends 
+and then click the *load* button. This will automatically populate the form
+with some data from the third party content. Which fields are populated depends
 on the individual provider. But in most cases the fields: title, description, width,
 height and embed html fields will be filled.
 
