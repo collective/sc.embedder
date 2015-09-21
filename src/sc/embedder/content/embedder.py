@@ -32,6 +32,7 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import Invalid
 
+import re
 import requests
 import urllib2
 import urlparse
@@ -105,6 +106,8 @@ class IEmbedder(form.Schema):
         title=_(u'Height'),
         description=_(u'Can be expressed as a decimal number, e.g., 480.'),
         required=True,
+        min=1,
+        max=9999,
     )
 
     embed_html = schema.Text(
@@ -166,20 +169,20 @@ class Embedder(dexterity.Item):
 
 @form.validator(field=IEmbedder['width'])
 def validate_int_or_percentage(value):
-    """Check if size is an positive integer or a percetage.
+    """Check if size is an positive integer (less than 9999) or a
+    percetage.
 
     :param value: number to be validated
     :type value: string
     :raises:
         :class:`~zope.interface.Invalid` if the value is not valid
     """
-    if value:
-        value = value.replace(' ', '')
-        value = value.rstrip('%')
-        try:
-            value = int(value, 10)
-        except ValueError:
-            raise Invalid(_(u'Value should be a int number or a percent.'))
+    if not value:
+        return
+
+    p = re.compile(r'^\d{1,4}%?$')
+    if p.match(value) is None:
+        raise Invalid(_(u'Value should be an integer or a percentage.'))
 
 
 class BaseForm(DexterityExtensibleForm):
@@ -333,8 +336,6 @@ class AddForm(BaseForm, dexterity.AddForm):
                 if json_data.get(k):
                     self.request[v] = unicode(json_data[k])
         data, errors = self.extractData()
-        if 'width' in data:  # maybe using %
-            data['width'] = data['width'].replace(' ', '')
         self.handle_image(data)
         self.set_custom_embed_code(data)
         if errors:
@@ -384,8 +385,6 @@ class EditForm(dexterity.EditForm, BaseForm):
     @button.buttonAndHandler(_(u'Save'), name='save')
     def handleApply(self, action):
         data, errors = self.extractData()
-        if 'width' in data:  # maybe using %
-            data['width'] = data['width'].replace(' ', '')
         self.handle_image(data)
         self.set_custom_embed_code(data)
         if errors:

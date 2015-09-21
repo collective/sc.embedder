@@ -59,8 +59,8 @@ Create
 
     Click Add Embedder
     Input Text  css=${title_selector}  ${title}
-    Input Text  css=${width_selector}  0
-    Input Text  css=${height_selector}  0
+    Input Text  css=${width_selector}  1
+    Input Text  css=${height_selector}  1
     Input Text  css=${embed_html_selector}  <br/>
     Click Button  Save
     Page Should Contain  Item created
