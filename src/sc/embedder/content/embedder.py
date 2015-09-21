@@ -30,7 +30,9 @@ from zope.component import adapter
 from zope.event import notify
 from zope.interface import implementer
 from zope.interface import Interface
+from zope.interface import Invalid
 
+import re
 import requests
 import urllib2
 import urlparse
@@ -93,21 +95,24 @@ class IEmbedder(form.Schema):
         required=False,
     )
 
-    width = schema.Int(
+    width = schema.ASCIILine(
         title=_(u'Width'),
-        description=_(u''),
+        description=_(
+            u'Can be expressed as a decimal number or a percentage, e.g., 270 or 50%.'),
         required=True,
     )
 
     height = schema.Int(
         title=_(u'Height'),
-        description=_(u''),
+        description=_(u'Can be expressed as a decimal number, e.g., 480.'),
         required=True,
+        min=1,
+        max=9999,
     )
 
     embed_html = schema.Text(
         title=_(u'Embedded HTML code'),
-        description=_(u'HTML code to render the embedded media'),
+        description=_(u'HTML code to render the embedded media.'),
         required=True,
     )
 
@@ -160,6 +165,24 @@ class Embedder(dexterity.Item):
                         scale=scale,
                         css_class=css_class,
                         **kw)
+
+
+@form.validator(field=IEmbedder['width'])
+def validate_int_or_percentage(value):
+    """Check if size is an positive integer (less than 9999) or a
+    percetage.
+
+    :param value: number to be validated
+    :type value: string
+    :raises:
+        :class:`~zope.interface.Invalid` if the value is not valid
+    """
+    if not value:
+        return
+
+    p = re.compile(r'^\d{1,4}%?$')
+    if p.match(value) is None:
+        raise Invalid(_(u'Value should be an integer or a percentage.'))
 
 
 class BaseForm(DexterityExtensibleForm):
