@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Remove Chrome Frame from ``X-UA-Compatible`` HTTP header as it's deprecated.
+  [hvelarde]
+
 - Allow use of percent sign (%) on width properties (closes `#6`_).
   [rodfersou, hvelarde]
 
