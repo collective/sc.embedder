@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2015-10-06 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Luca Fabbri <luca@keul.it>\n"
+"Language-Team: Abstract Open Solution <team@abstract.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,24 +20,23 @@ msgstr ""
 #. Default: "Cancel"
 #: ../skins/tinymce/scembedder/scembedder.htm.pt:78
 msgid "common_cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. Default: "Insert"
 #: ../skins/tinymce/scembedder/scembedder.htm.pt:77
 msgid "common_insert"
-msgstr ""
+msgstr "Inserisci"
 
 #. Default: "Insert sc.embedder"
 #: ../skins/tinymce/scembedder/scembedder.htm.pt:4
 msgid "scembedder_dlg_dialog_title"
-msgstr ""
+msgstr "Inserisci sc.embedder"
 
 #. Default: "Embedded content list"
 #: ../skins/tinymce/scembedder/scembedder.htm.pt:48
 msgid "scembedder_dlg_image_list"
-msgstr ""
+msgstr "Lista degli elementi embedded"
 
 #: ../skins/tinymce/scembedder/scembedder.htm.pt:59
 msgid "scembedder_dlg_preview"
 msgstr ""
-

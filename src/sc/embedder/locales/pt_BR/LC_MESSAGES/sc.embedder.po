@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.embedder 1.0\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2015-10-06 12:49+0000\n"
 "PO-Revision-Date: 2015-06-18 17:45-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
@@ -17,103 +17,120 @@ msgstr ""
 "Language: pt_BR\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: sc/embedder/profiles/default/types/sc.embedder.xml
+#: ../profiles/default/types/sc.embedder.xml
 msgid "A content embedder"
 msgstr "Um Embedder de conteúdo"
 
-#: sc/embedder/content/embedder.py:318
+#: ../content/embedder.py:354
 msgid "Add New Item operation cancelled."
 msgstr "Operação cancelada."
 
-#: sc/embedder/content/embedder.py:134
-#: sc/embedder/content/templates/view.pt:38
+#: ../content/embedder.py:140
+#: ../content/templates/view.pt:38
 msgid "Alternate content"
 msgstr "Conteúdo alternativo"
 
-#: sc/embedder/content/embedder.py:129
+#: ../content/embedder.py:135
 msgid "Body text"
 msgstr "Corpo do texto"
 
-#: sc/embedder/content/embedder.py:315
+#: ../content/embedder.py:100
+msgid "Can be expressed as a decimal number or a percentage, e.g., 270 or 50%."
+msgstr ""
+
+#: ../content/embedder.py:107
+msgid "Can be expressed as a decimal number, e.g., 480."
+msgstr ""
+
+#: ../content/embedder.py:351
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: sc/embedder/content/embedder.py:359
+#: ../content/embedder.py:395
 msgid "Changes saved."
 msgstr "Alterações salvas."
 
-#: sc/embedder/content/embedder.py:135
+#: ../content/embedder.py:141
 msgid "Description or transcription for accessibility (WCAG) users."
 msgstr "Descrição ou transcrição, para usuários de sistemas acessíveis (WCAG)."
 
-#: sc/embedder/content/embedder.py:366
+#: ../content/embedder.py:402
 msgid "Edit cancelled."
 msgstr "Edição cancelada."
 
-#: sc/embedder/content/embedder.py:108
+#: ../content/embedder.py:114
 msgid "Embedded HTML code"
 msgstr "Código HTML a incorporar"
 
-#: sc/embedder/profiles/default/types/sc.embedder.xml
+#: ../profiles/default/types/sc.embedder.xml
 msgid "Embedder"
 msgstr "Embedder"
 
-#: sc/embedder/content/embedder.py:109
-msgid "HTML code to render the embedded media"
-msgstr "Código HTML para renderizar a mídia embarcada"
+#: ../content/embedder.py:115
+msgid "HTML code to render the embedded media."
+msgstr ""
 
-#: sc/embedder/content/embedder.py:102
+#: ../content/embedder.py:106
 msgid "Height"
 msgstr "Altura"
 
-#: sc/embedder/content/embedder.py:124
+#: ../content/embedder.py:130
 msgid "Image to be used when listing content."
 msgstr "Imagem a ser usada em listagens."
 
-#: sc/embedder/content/embedder.py:247
+#: ../content/embedder.py:283
 msgid "Invalid URL"
 msgstr "URL não válida"
 
-#: sc/embedder/content/embedder.py:313
+#: ../content/embedder.py:349
 msgid "Item created"
 msgstr "Item criado"
 
-#: sc/embedder/content/embedder.py:322
+#: ../content/embedder.py:358
 msgid "Load"
 msgstr "Carregar"
 
-#: sc/embedder/content/embedder.py:88
+#: ../content/embedder.py:91
 msgid "Multimedia URL"
 msgstr "Multimídia URL"
 
-#: sc/embedder/content/embedder.py:114
+#: ../content/embedder.py:120
 msgid "Player position"
 msgstr "Posição do player"
 
-#: sc/embedder/content/embedder.py:123
+#: ../content/embedder.py:129
 msgid "Preview image"
 msgstr "Imagem de pré-visualização"
 
-#: sc/embedder/content/embedder.py:285
+#: ../content/embedder.py:321
 msgid "Save"
 msgstr "Salvar"
 
-#: sc/embedder/content/embedder.py:89
-msgid ""
-"The URL for your multimedia file. Can be a URL from YouTube, Vimeo, "
-"SlideShare, SoundCloud or other main multimedia websites."
-msgstr ""
-"A URL do seu arquivo multimídia. Pode ser uma URL do YouTube, Vimeo, "
-"SlideShare, SoundCLoud ou outro dos principais sites de multimídia."
+#: ../content/embedder.py:92
+msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
+msgstr "A URL do seu arquivo multimídia. Pode ser uma URL do YouTube, Vimeo, SlideShare, SoundCLoud ou outro dos principais sites de multimídia."
 
-#: sc/embedder/content/embedder.py:199
+#: ../tiles/embedder.py:16
+msgid "Title"
+msgstr ""
+
+#: ../content/embedder.py:223
 msgid "URL not found"
 msgstr "URL não encontrada"
 
-#: sc/embedder/content/embedder.py:196
+#: ../content/embedder.py:220
 msgid "Unauthorized request"
 msgstr "Requisição não autorizada"
 
-#: sc/embedder/content/embedder.py:96
+#: ../content/embedder.py:185
+msgid "Value should be an integer or a percentage."
+msgstr ""
+
+#: ../tiles/embedder.py:21
+msgid "Videos"
+msgstr ""
+
+#: ../content/embedder.py:99
 msgid "Width"
 msgstr "Largura"
+
