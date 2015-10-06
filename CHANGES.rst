@@ -12,6 +12,8 @@ There's a frood who really knows where his towel is.
 - Allow use of percent sign (%) on width properties (closes `#6`_).
   [rodfersou, hvelarde]
 
+- Added italian translation
+  [keul]
 
 1.0b4 (2015-09-03)
 ^^^^^^^^^^^^^^^^^^

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-08 19:48+0000\n"
+"POT-Creation-Date: 2015-10-06 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,26 +15,26 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #. Default: "Cancel"
-#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:79
+#: ../skins/tinymce/scembedder/scembedder.htm.pt:78
 msgid "common_cancel"
 msgstr ""
 
 #. Default: "Insert"
-#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:78
+#: ../skins/tinymce/scembedder/scembedder.htm.pt:77
 msgid "common_insert"
 msgstr ""
 
 #. Default: "Insert sc.embedder"
-#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:4
+#: ../skins/tinymce/scembedder/scembedder.htm.pt:4
 msgid "scembedder_dlg_dialog_title"
 msgstr ""
 
 #. Default: "Embedded content list"
-#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:49
+#: ../skins/tinymce/scembedder/scembedder.htm.pt:48
 msgid "scembedder_dlg_image_list"
 msgstr ""
 
-#: sc/embedder/skins/tinymce/scembedder/scembedder.htm.pt:60
+#: ../skins/tinymce/scembedder/scembedder.htm.pt:59
 msgid "scembedder_dlg_preview"
 msgstr ""
 

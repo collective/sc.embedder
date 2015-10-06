@@ -1,136 +1,134 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sc.embedder 1.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2015-10-06 12:49+0000\n"
-"PO-Revision-Date: 2015-06-18 17:46-0300\n"
-"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
-"Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Luca Fabbri <luca@keul.it>\n"
+"Language-Team: Abstract Open Solution <team@abstract.it>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: es\n"
-"Language-Name: Spanish\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.embedder\n"
-"X-Generator: Poedit 1.5.4\n"
-"Language: es\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../profiles/default/types/sc.embedder.xml
 msgid "A content embedder"
-msgstr "Un contenido integrado"
+msgstr "Un contenitore multimediale"
 
 #: ../content/embedder.py:354
 msgid "Add New Item operation cancelled."
-msgstr "Operación cancelada."
+msgstr "Operazione di aggiunta di un nuovo elemento annullata"
 
 #: ../content/embedder.py:140
 #: ../content/templates/view.pt:38
 msgid "Alternate content"
-msgstr "Contenido alterno"
+msgstr "Contenuto alternativo"
 
 #: ../content/embedder.py:135
 msgid "Body text"
-msgstr "Cuerpo del texto"
+msgstr "Corpo del testo"
 
 #: ../content/embedder.py:100
 msgid "Can be expressed as a decimal number or a percentage, e.g., 270 or 50%."
-msgstr ""
+msgstr "Può essere espresso come numero decimale o percentuale, es: 270 o 50%."
 
 #: ../content/embedder.py:107
 msgid "Can be expressed as a decimal number, e.g., 480."
-msgstr ""
+msgstr "Può essere espresso come numero decimale, es: 480."
 
 #: ../content/embedder.py:351
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Annulla"
 
 #: ../content/embedder.py:395
 msgid "Changes saved."
-msgstr "Cambios guardados."
+msgstr "Modifiche memorizzate"
 
 #: ../content/embedder.py:141
 msgid "Description or transcription for accessibility (WCAG) users."
-msgstr "Descripción o transcripción  accesible (WCAG)."
+msgstr "Descrizione della trascrizione del contenuto per accessibilità (WCAG)"
 
 #: ../content/embedder.py:402
 msgid "Edit cancelled."
-msgstr "Edición cancelada."
+msgstr "Modifiche annullate"
 
 #: ../content/embedder.py:114
 msgid "Embedded HTML code"
-msgstr "Código HTML de inserciõn"
+msgstr "Codice HTML incorporato"
 
 #: ../profiles/default/types/sc.embedder.xml
 msgid "Embedder"
-msgstr "Embebedor"
+msgstr ""
 
 #: ../content/embedder.py:115
 msgid "HTML code to render the embedded media."
-msgstr ""
+msgstr "Codice HTML per visualizzare la risorsa incorporata"
 
 #: ../content/embedder.py:106
 msgid "Height"
-msgstr "Altura"
+msgstr "Altezza"
 
 #: ../content/embedder.py:130
 msgid "Image to be used when listing content."
-msgstr "Imagen que será usada al listar contenido."
+msgstr "L'immagine da usare nella visualizzazione in lista"
 
 #: ../content/embedder.py:283
 msgid "Invalid URL"
-msgstr "URL no válida"
+msgstr "URL non valido"
 
 #: ../content/embedder.py:349
 msgid "Item created"
-msgstr "Elemento creado"
+msgstr "Contenuto creato"
 
 #: ../content/embedder.py:358
 msgid "Load"
-msgstr "Cargar"
+msgstr "Carica"
 
 #: ../content/embedder.py:91
 msgid "Multimedia URL"
-msgstr "URL del contenido"
+msgstr "URL multimediale"
 
 #: ../content/embedder.py:120
 msgid "Player position"
-msgstr "Posición del reproductor"
+msgstr "Posizione del player"
 
 #: ../content/embedder.py:129
 msgid "Preview image"
-msgstr "Imagen de previsualización"
+msgstr "Immagine anteprima"
 
 #: ../content/embedder.py:321
 msgid "Save"
-msgstr "Guardar"
+msgstr "Salva"
 
 #: ../content/embedder.py:92
 msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
-msgstr "La URL del contenido multimedia. Puede ser una URL de  YouTube, Vimeo, SlideShare, SoundCloud y algunos otros sitios multimedia relevantes."
+msgstr ""
+"L'URL del contenuto multimediale.\n"
+"Può essere un URL da YoutTube, Vimeo, Slideshare, SoundCloud o qualunque altro sito di contenuti multimediali."
 
 #: ../tiles/embedder.py:16
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: ../content/embedder.py:223
 msgid "URL not found"
-msgstr "URL no encontrada"
+msgstr "URL non trovato"
 
 #: ../content/embedder.py:220
 msgid "Unauthorized request"
-msgstr "Solicitud no autorizada"
+msgstr "Richiesta non autorizzata"
 
 #: ../content/embedder.py:185
 msgid "Value should be an integer or a percentage."
-msgstr ""
+msgstr "Il valore deve essere un intero o una percentuale."
 
 #: ../tiles/embedder.py:21
 msgid "Videos"
-msgstr ""
+msgstr "Video"
 
 #: ../content/embedder.py:99
 msgid "Width"
-msgstr "Ancho"
-
+msgstr "Larghezza"

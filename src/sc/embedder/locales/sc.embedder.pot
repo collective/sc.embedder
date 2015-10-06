@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sc.embedder 1.0\n"
-"POT-Creation-Date: 2015-06-18 20:40+0000\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-10-06 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,106 +12,122 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: sc.embedder\n"
+"Domain: DOMAIN\n"
 
-#: sc/embedder/content/embedder.py:97
-msgid ""
-msgstr ""
-
-#: sc/embedder/profiles/default/types/sc.embedder.xml
+#: ../profiles/default/types/sc.embedder.xml
 msgid "A content embedder"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:318
+#: ../content/embedder.py:354
 msgid "Add New Item operation cancelled."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:134
-#: sc/embedder/content/templates/view.pt:38
+#: ../content/embedder.py:140
+#: ../content/templates/view.pt:38
 msgid "Alternate content"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:129
+#: ../content/embedder.py:135
 msgid "Body text"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:315
+#: ../content/embedder.py:100
+msgid "Can be expressed as a decimal number or a percentage, e.g., 270 or 50%."
+msgstr ""
+
+#: ../content/embedder.py:107
+msgid "Can be expressed as a decimal number, e.g., 480."
+msgstr ""
+
+#: ../content/embedder.py:351
 msgid "Cancel"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:359
+#: ../content/embedder.py:395
 msgid "Changes saved."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:135
+#: ../content/embedder.py:141
 msgid "Description or transcription for accessibility (WCAG) users."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:366
+#: ../content/embedder.py:402
 msgid "Edit cancelled."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:108
+#: ../content/embedder.py:114
 msgid "Embedded HTML code"
 msgstr ""
 
-#: sc/embedder/profiles/default/types/sc.embedder.xml
+#: ../profiles/default/types/sc.embedder.xml
 msgid "Embedder"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:109
-msgid "HTML code to render the embedded media"
+#: ../content/embedder.py:115
+msgid "HTML code to render the embedded media."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:102
+#: ../content/embedder.py:106
 msgid "Height"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:124
+#: ../content/embedder.py:130
 msgid "Image to be used when listing content."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:247
+#: ../content/embedder.py:283
 msgid "Invalid URL"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:313
+#: ../content/embedder.py:349
 msgid "Item created"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:322
+#: ../content/embedder.py:358
 msgid "Load"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:88
+#: ../content/embedder.py:91
 msgid "Multimedia URL"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:114
+#: ../content/embedder.py:120
 msgid "Player position"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:123
+#: ../content/embedder.py:129
 msgid "Preview image"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:285
+#: ../content/embedder.py:321
 msgid "Save"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:89
+#: ../content/embedder.py:92
 msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
 msgstr ""
 
-#: sc/embedder/content/embedder.py:199
+#: ../tiles/embedder.py:16
+msgid "Title"
+msgstr ""
+
+#: ../content/embedder.py:223
 msgid "URL not found"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:196
+#: ../content/embedder.py:220
 msgid "Unauthorized request"
 msgstr ""
 
-#: sc/embedder/content/embedder.py:96
+#: ../content/embedder.py:185
+msgid "Value should be an integer or a percentage."
+msgstr ""
+
+#: ../tiles/embedder.py:21
+msgid "Videos"
+msgstr ""
+
+#: ../content/embedder.py:99
 msgid "Width"
 msgstr ""
 
