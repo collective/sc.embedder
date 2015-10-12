@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" i18n:domain="tinymce">
 <head>
   <title i18n:translate="scembedder_dlg_dialog_title">Insert sc.embedder</title>
-  <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
-  <script type="text/javascript" src="../../utils/mctabs.js"></script>
-  <script type="text/javascript" src="../../utils/form_utils.js"></script>
-  <script type="text/javascript" src="js/scembedder.js"></script>
+  <script type="application/javascript" src="../../tiny_mce_popup.js"></script>
+  <script type="application/javascript" src="../../utils/mctabs.js"></script>
+  <script type="application/javascript" src="../../utils/form_utils.js"></script>
+  <script type="application/javascript" src="js/scembedder.js"></script>
   <link rel="stylesheet" type="text/css" href="css/scembedder.css" />
 </head>
 <body id="scembedder" style="display: none"

@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Use "application/javascript" media type instead of the obsolete "text/javascript".
+  [hvelarde]
+
 - Remove Chrome Frame from ``X-UA-Compatible`` HTTP header as it's deprecated.
   [hvelarde]
 

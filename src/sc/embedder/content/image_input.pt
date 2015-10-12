@@ -115,7 +115,8 @@
                             disabled view/disabled;
                             maxlength view/maxlength;"
             />
-        <script tal:condition="python:allow_nochange and action != 'replace'" type="text/javascript"
+        <script type="application/javascript"
+            tal:condition="python:allow_nochange and action != 'replace'"
             tal:content="string:document.getElementById('${view/id}-input').disabled=true;">
         </script>
     </div>
