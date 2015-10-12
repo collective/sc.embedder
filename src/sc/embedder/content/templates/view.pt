@@ -40,7 +40,7 @@
             </div>
 
             <div tal:replace="structure provider:plone.belowcontentbody" />
-            <script type="text/javascript" tal:attributes="src string:$portal_url/embedder.js"></script>
+            <script type="application/javascript" tal:attributes="src string:$portal_url/embedder.js"></script>
         </tal:main-macro>
     </metal:main>
 

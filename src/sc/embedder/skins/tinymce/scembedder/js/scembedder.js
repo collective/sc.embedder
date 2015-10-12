@@ -12,7 +12,7 @@ var SCEmbedderDialog = {
         tinyMCEPopup.requireLangPack();
 
         if (url = tinyMCEPopup.getParam("external_image_list_url"))
-            document.write('<script language="javascript" type="text/javascript" src="' + tinyMCEPopup.editor.documentBaseURI.toAbsolute(url) + '"></script>');
+            document.write('<script type="application/javascript" src="' + tinyMCEPopup.editor.documentBaseURI.toAbsolute(url) + '"></script>');
     },
 
     init : function() {
