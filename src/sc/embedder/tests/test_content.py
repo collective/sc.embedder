@@ -303,6 +303,20 @@ class MultimediaTestCase(unittest.TestCase):
                                },
                               json.loads(video.unrestrictedTraverse('@@tinymce-jsondetails')()))
 
+    def test_facebook_manual(self):
+        add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
+        add_form = add_view.form_instance
+        add_form.update()
+        embed_html = u"""<div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script><div class="fb-video" data-allowfullscreen="1" data-href="/cnnencuentro/videos/vb.195113273856041/1077980902235936/?type=3"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/cnnencuentro/videos/1077980902235936/"><a href="https://www.facebook.com/cnnencuentro/videos/1077980902235936/"></a><p>¿Te parece complejo el conflicto de Siria? Dos creadores españoles explican el origen de la guerra civil en ese país en 10 minutos y en 15 mapas.</p>Posted by <a href="https://www.facebook.com/cnnencuentro/">CNN Encuentro</a> on Segunda, 12 de outubro de 2015</blockquote></div></div>"""
+        data = {'embed_html': embed_html}
+        add_form.set_custom_embed_code(data)
+
+        # an additional div tag must be involving the original code
+        self.assertTrue(
+            data['embed_html'].startswith(u'<div><div id="fb-root"></div>'))
+        self.assertTrue(
+            data['embed_html'].endswith(u'</blockquote></div></div></div>'))
+
     def test_invalid_url(self):
         add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
         add_form = add_view.form_instance

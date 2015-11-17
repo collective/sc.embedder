@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Fix the stripping of embed code when it has more than one tag, like in Facebook videos (closes `#39`_).
+  [rodfersou]
+
 - Use "application/javascript" media type instead of the obsolete "text/javascript".
   [hvelarde]
 
@@ -109,3 +112,4 @@ There's a frood who really knows where his towel is.
 .. _`#14`: https://github.com/simplesconsultoria/sc.embedder/issues/14
 .. _`#20`: https://github.com/simplesconsultoria/sc.embedder/issues/20
 .. _`#32`: https://github.com/simplesconsultoria/sc.embedder/issues/32
+.. _`#39`: https://github.com/simplesconsultoria/sc.embedder/issues/39

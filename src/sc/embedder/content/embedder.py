@@ -4,6 +4,7 @@ from five import grok
 from lxml import cssselect
 from lxml import etree
 from lxml import html
+from lxml.html.builder import DIV
 from plone import api
 from plone.app.textfield import RichText
 from plone.dexterity.browser.base import DexterityExtensibleForm
@@ -304,12 +305,19 @@ class BaseForm(DexterityExtensibleForm):
             return
         tree = etree.HTML(data['embed_html'])
         sel = cssselect.CSSSelector('body > *')
-        el = sel(tree)[0]
+        el = sel(tree)
+        # add a div around if there is more than one element into code
+        if len(el) > 1:
+            el = DIV(*el)
+        else:
+            el = el[0]
 
-        if data.get('width', None):
-            el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
-        if data.get('height', None):
-            el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
+        # width and height attributes should not be set in a div tag
+        if el.tag in ['iframe', 'object']:
+            if data.get('width', None):
+                el.attrib['width'] = data['width'] and str(data['width']) or el.attrib['width']
+            if data.get('height', None):
+                el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
 
         data['embed_html'] = html.tostring(el)
 
