@@ -6,8 +6,8 @@ There's a frood who really knows where his towel is.
 1.0b6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
-
+- Fix error in TinyMCE plugin if the property icon_visibility is disabled (closes `#42`_).
+  [rodfersou]
 
 1.0b5 (2015-11-18)
 ^^^^^^^^^^^^^^^^^^
@@ -119,3 +119,4 @@ There's a frood who really knows where his towel is.
 .. _`#20`: https://github.com/simplesconsultoria/sc.embedder/issues/20
 .. _`#32`: https://github.com/simplesconsultoria/sc.embedder/issues/32
 .. _`#39`: https://github.com/simplesconsultoria/sc.embedder/issues/39
+.. _`#42`: https://github.com/simplesconsultoria/sc.embedder/issues/42
