@@ -449,7 +449,7 @@ var SCEmbedderDialog = {
                             html += ' type="radio" class="noborder" name="internallink" value="';
                             html += data.items[i].url;
                             html += '"/> ';
-                            if (data.items[i].icon.length) {
+                            if (data.items[i].icon !== null && data.items[i].icon.length) {
                                 var ico = data.items[i].icon;
                                 if (ico.search("<img") != -1) {
                                     html += ico;

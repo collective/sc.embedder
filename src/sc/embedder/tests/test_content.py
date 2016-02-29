@@ -272,13 +272,13 @@ class MultimediaTestCase(unittest.TestCase):
         add_form.update()
         add_form.actions.update()
 
-        url = 'http://video-js.zencoder.com/oceans-clip.webm'
+        url = 'http://vjs.zencdn.net/v/oceans.webm'
         add_form.widgets['url'].value = url
         action = add_form.actions['load']
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>\n'
+        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvjs.zencdn.net%2Fv%2Foceans.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>\n'
         self.assertEqual(
             u'', add_form.widgets['IDublinCore.title'].value)
         self.assertEqual(
