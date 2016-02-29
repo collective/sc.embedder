@@ -21,12 +21,12 @@
                 <ul class="configlets">
                     <li id="home">
               <a href="javascript:SCEmbedderDialog.displayPanel('internal_panel'); SCEmbedderDialog.getFolderListing(tinyMCEPopup.editor.settings.navigation_root_url, 'tinymce-jsonscembedderfolderlisting');">
-                  <img alt="" tal:attributes="src string:$portal_url/logoIcon.gif"/> <span i18n:domain="plone.tinymce" i18n:translate="">Home</span>
+                  <img alt="" tal:attributes="src string:$portal_url/logoIcon.png"/> <span i18n:domain="plone.tinymce" i18n:translate="">Home</span>
               </a>
             </li>
                     <li>
               <a href="javascript:SCEmbedderDialog.displayPanel('internal_panel'); SCEmbedderDialog.getCurrentFolderListing();">
-                  <img alt="" tal:attributes="src string:$portal_url/site_icon.gif"/> <span i18n:domain="plone.tinymce" i18n:translate="">Current Folder</span>
+                  <img alt="" tal:attributes="src string:$portal_url/site_icon.png"/> <span i18n:domain="plone.tinymce" i18n:translate="">Current Folder</span>
               </a>
             </li>
                     <!--li>
