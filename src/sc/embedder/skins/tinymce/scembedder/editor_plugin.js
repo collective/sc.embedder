@@ -16,8 +16,8 @@
 
                 ed.windowManager.open({
                     file : url + '/scembedder.htm',
-                    width : 820 + parseInt(ed.getLang('scembedder.delta_width', 0)),
-                    height : 500 + parseInt(ed.getLang('scembedder.delta_height', 0)),
+                    width : 840 + parseInt(ed.getLang('scembedder.delta_width', 0)),
+                    height : 530 + parseInt(ed.getLang('scembedder.delta_height', 0)),
                     inline : 1
                 }, {
                     plugin_url : url

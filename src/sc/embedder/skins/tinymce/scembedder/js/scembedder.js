@@ -397,13 +397,6 @@ var SCEmbedderDialog = {
                 var html = "";
                 text = SCEmbedderDialog.stripJSON(text);
                 var data = eval('(' + text + ')');
-                var f0 = document.forms[0];
-                var elm = f0.elements['dimensions'];
-                var dimension = "";
-                if (elm !== null && elm.options !== null) {
-                    dimension = elm.options[elm.selectedIndex].value;
-                }
-
                 document.getElementById ('previewimagecontainer').innerHTML = decodeURIComponent(data.thumb_html);
                 document.getElementById ('embed_html').value = decodeURIComponent(data.embed_html) + '<p></p>';
                 this.current_path = path;
