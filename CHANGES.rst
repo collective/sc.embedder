@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Fixes issue in TinyMCE plugin when clicked in Insert button (closes `#16`_).
+  [idgserpro]
+
 - Fix error in TinyMCE plugin if the property icon_visibility is disabled (closes `#42`_).
   [rodfersou]
 
@@ -116,6 +119,7 @@ There's a frood who really knows where his towel is.
 .. _`#3`: https://github.com/simplesconsultoria/sc.embedder/issues/3
 .. _`#6`: https://github.com/simplesconsultoria/sc.embedder/issues/6
 .. _`#14`: https://github.com/simplesconsultoria/sc.embedder/issues/14
+.. _`#16`: https://github.com/simplesconsultoria/sc.embedder/issues/16
 .. _`#20`: https://github.com/simplesconsultoria/sc.embedder/issues/20
 .. _`#32`: https://github.com/simplesconsultoria/sc.embedder/issues/32
 .. _`#39`: https://github.com/simplesconsultoria/sc.embedder/issues/39
