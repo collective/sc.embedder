@@ -6,6 +6,7 @@ from sc.embedder.testing import INTEGRATION_TESTING
 
 import unittest
 
+
 JS = [
     '++resource++sc.embedder/video-js/video.js',
 ]

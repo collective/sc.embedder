@@ -15,6 +15,7 @@ import json
 import os
 import unittest
 
+
 PROVIDERS = {
     'youtube': 'http://www.youtube.com/watch?v=n-zxaVt6acg&feature=g-all-u',
     'vimeo': 'http://vimeo.com/17914974',

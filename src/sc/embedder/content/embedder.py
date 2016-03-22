@@ -26,7 +26,8 @@ from z3c.form import button
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import IFormLayer
 from z3c.form.widget import FieldWidget
-from zope import schema, component
+from zope import component
+from zope import schema
 from zope.component import adapter
 from zope.event import notify
 from zope.interface import implementer

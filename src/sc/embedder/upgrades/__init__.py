@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from sc.embedder.logger import logger
 from plone import api
+from sc.embedder.logger import logger
 
 
 def cook_css_resources(context):
