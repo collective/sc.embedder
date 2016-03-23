@@ -1,8 +1,7 @@
 Share and Enjoy
 ---------------
 
-``sc.embedder`` would not have been possible without the contribution of the
-following people:
+This package would not have been possible without the contribution of the following people:
 
 - Alejandro Pereira
 - André Nogueira

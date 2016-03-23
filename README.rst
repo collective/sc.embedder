@@ -27,7 +27,7 @@ Mostly Harmless
 .. image:: https://img.shields.io/coveralls/simplesconsultoria/sc.embedder/master.svg
     :target: https://coveralls.io/r/simplesconsultoria/sc.embedder
 
-Got an idea? Found a bug? Let us know by `opening a support ticket`_.
+Got an idea? Found a bug? Let us know by `opening a support ticket <https://github.com/simplesconsultoria/sc.embedder/issues>`_.
 
 Don't Panic
 -----------
@@ -37,22 +37,14 @@ Installation
 
 To enable this product in a buildout-based installation:
 
-1. Edit your buildout.cfg and add ``sc.embedder`` to the list of eggs to
-   install ::
+1. Edit your buildout.cfg and add ``sc.embedder`` to the list of eggs to install:
+
+.. code-block:: ini
 
     [buildout]
     ...
     eggs =
         sc.embedder
-
-2. If you are using Plone 4.1 you may need to extend a Dexterity known good
-   set (KGS) to make sure that you get the right versions of the packages that
-   make up Dexterity::
-
-    [buildout]
-    ...
-    extends =
-        http://good-py.appspot.com/release/dexterity/1.2.1
 
 After updating the configuration you need to run ''bin/buildout'', which will
 take care of updating your system.
@@ -60,11 +52,6 @@ take care of updating your system.
 Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
 
 Check the box next to `sc.embedder`` and click the 'Activate' button.
-
-.. Note::
-
-	You may have to empty your browser cache and save your resource registries
-	in order to see the effects of the product installation.
 
 Use
 ^^^
@@ -116,9 +103,7 @@ views or covers.
 Providers
 ^^^^^^^^^
 
-This product uses `collective.oembed`_. You can check its documentation to see
-a list of supported providers.
+This product uses `python-oembed <https://pypi.python.org/pypi/python-oembed>`_.
+You can check its documentation to see a list of supported providers.
 
 .. _`oEmbed`: http://www.oembed.com/
-.. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.embedder/issues
-.. _`collective.oembed`: http://pypi.python.org/pypi/collective.oembed

@@ -12,6 +12,7 @@ There's a frood who really knows where his towel is.
 - Fix error in TinyMCE plugin if the property icon_visibility is disabled (closes `#42`_).
   [rodfersou]
 
+
 1.0b5 (2015-11-18)
 ^^^^^^^^^^^^^^^^^^
 
@@ -29,6 +30,7 @@ There's a frood who really knows where his towel is.
 
 - Added italian translation
   [keul]
+
 
 1.0b4 (2015-09-03)
 ^^^^^^^^^^^^^^^^^^
