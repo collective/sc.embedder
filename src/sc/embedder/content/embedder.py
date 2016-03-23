@@ -148,7 +148,7 @@ class IEmbedder(form.Schema):
 class Embedder(dexterity.Item):
     """ A content embedder
     """
-    grok.implements(IEmbedder)
+    grok.implements(IEmbedder)  # noqa: https://github.com/gforcada/flake8-deprecated/issues/9
 
     def image_thumb(self):
         ''' Return a thumbnail '''

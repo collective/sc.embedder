@@ -3,7 +3,7 @@ from plone import api
 from Products.CMFPlone.interfaces import INonInstallable
 from Products.PortalTransforms.Transform import make_config_persistent
 from sc.embedder.logger import logger
-from zope.interface import implements
+from zope.interface import implementer
 
 
 @implementer(INonInstallable)
