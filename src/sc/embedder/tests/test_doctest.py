@@ -2,9 +2,10 @@
 from plone.testing import layered
 from sc.embedder.testing import FUNCTIONAL_TESTING
 
-import os
 import doctest
+import os
 import unittest
+
 
 dirname = os.path.dirname(__file__)
 files = os.listdir(dirname)

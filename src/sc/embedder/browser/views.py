@@ -5,12 +5,12 @@ from Products.TinyMCE.adapters.interfaces.JSONSearch import IJSONSearch
 from Products.TinyMCE.browser.interfaces.browser import ITinyMCEBrowserView
 from Products.TinyMCE.interfaces.utility import ITinyMCE
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 
 
+@implementer(ITinyMCEBrowserView)
 class TinyMCEBrowserView(BrowserView):
     """TinyMCE Browser View"""
-    implements(ITinyMCEBrowserView)
 
     def jsonSCEmbedderFolderListing(self, rooted, document_base_url):
         """Returns the folderlisting of sc.embedder objects in JSON"""

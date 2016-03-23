@@ -26,7 +26,8 @@ from z3c.form import button
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import IFormLayer
 from z3c.form.widget import FieldWidget
-from zope import schema, component
+from zope import component
+from zope import schema
 from zope.component import adapter
 from zope.event import notify
 from zope.interface import implementer
@@ -147,7 +148,7 @@ class IEmbedder(form.Schema):
 class Embedder(dexterity.Item):
     """ A content embedder
     """
-    grok.implements(IEmbedder)
+    grok.implements(IEmbedder)  # noqa: https://github.com/gforcada/flake8-deprecated/issues/9
 
     def image_thumb(self):
         ''' Return a thumbnail '''
