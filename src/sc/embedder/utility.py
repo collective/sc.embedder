@@ -11,16 +11,15 @@ See: https://github.com/itteco/iframely/blob/master/lib/plugins/system/oembed/pr
 """
 from sc.embedder.interfaces import IConsumer
 from sc.embedder.logger import logger
-from zope.interface import implements
+from zope.interface import implementer
 
 import oembed
 
 
+@implementer(IConsumer)
 class Consumer(object):
 
     """oEmbed consumer utility."""
-
-    implements(IConsumer)
 
     def __init__(self):
         self.consumer = None

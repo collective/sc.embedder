@@ -4,14 +4,14 @@ from lxml import etree
 from lxml import html
 from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
 from urllib2 import quote
-from zope.interface import implements
+from zope.interface import implementer
 
 import json
 
 
+@implementer(IJSONDetails)
 class JSONDetails(object):
     """Return details of the current object in JSON"""
-    implements(IJSONDetails)
 
     def __init__(self, context):
         """Constructor"""
