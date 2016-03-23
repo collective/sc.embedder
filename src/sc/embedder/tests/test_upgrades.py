@@ -71,3 +71,14 @@ class Upgrade1000to1001TestCase(UpgradeTestCaseBase):
         self._do_upgrade_step(step)
         tiles = api.portal.get_registry_record('plone.app.tiles')
         self.assertIn(u'sc.embedder', tiles)
+
+
+class Upgrade1001to1002TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'1001', u'1002')
+
+    def test_upgrade_to_1002_registrations(self):
+        version = self.setup.getLastVersionForProfile(PROFILE)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self._how_many_upgrades_to_do(), 1)
