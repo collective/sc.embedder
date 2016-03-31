@@ -72,7 +72,6 @@ setup(name='sc.embedder',
       ],
       extras_require={
           'test': [
-              'collective.cover',
               'httmock',
               'plone.app.robotframework',
               'plone.app.testing [robot]',
