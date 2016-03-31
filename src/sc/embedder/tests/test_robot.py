@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.testing import layered
+from sc.embedder.testing import PLONE_VERSION
 from sc.embedder.testing import ROBOT_TESTING
 
 import os
@@ -10,6 +11,10 @@ import unittest
 dirname = os.path.dirname(__file__)
 files = os.listdir(dirname)
 tests = [f for f in files if f.startswith('test_') and f.endswith('.robot')]
+
+# skip RobotFramework tests in Plone 5
+if PLONE_VERSION.startswith('5'):
+    tests = []
 
 
 class Keywords(object):
