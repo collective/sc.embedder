@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 1.1b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Update Video.js to v5.8 and load it from CDN (closes `#50`_).
+  [rodfersou]
 
 
 1.1b1 (2016-03-24)
@@ -136,3 +137,4 @@ There's a frood who really knows where his towel is.
 .. _`#32`: https://github.com/simplesconsultoria/sc.embedder/issues/32
 .. _`#39`: https://github.com/simplesconsultoria/sc.embedder/issues/39
 .. _`#42`: https://github.com/simplesconsultoria/sc.embedder/issues/42
+.. _`#50`: https://github.com/simplesconsultoria/sc.embedder/issues/50

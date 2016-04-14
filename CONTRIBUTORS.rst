@@ -8,6 +8,7 @@ This package would not have been possible without the contribution of the follow
 - Héctor Velarde
 - João S. O. Bueno
 - Juan Pablo Giménez
+- Rodrigo Ferreira de Souza
 - `et alii`_
 
 Development sponsored by `Simples Consultoria`_.

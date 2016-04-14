@@ -30,6 +30,7 @@
     <tal:notajax tal:condition="python:not ajax_load or ajax_include_head">
         <div tal:replace="structure provider:plone.htmlhead" />
         <link tal:replace="structure provider:plone.htmlhead.links" />
+        <link href="//vjs.zencdn.net/5.8/video-js.min.css" rel="stylesheet">
 
         <tal:comment replace="nothing">
             Various slots where you can insert elements in the header from a template.
@@ -47,8 +48,9 @@
 
     <body class="embeddervideojs-template">
         <video id="embeded-video-js"
-               class="video-js vjs-default-skin"
-               width="0" height="0"
+               class="video-js vjs-default-skin vjs-big-play-centered"
+               width="0"
+               height="0"
                controls preload="auto"
                data-setup="{}"
                allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen=""
@@ -61,12 +63,12 @@
                                     type type;">
             </source>
         </video>
+        <script src="//vjs.zencdn.net/5.8/video.min.js"></script>
         <script>
-          $(function() {
-              var vjsPlayer = _V_("embeded-video-js");
-              vjsPlayer.width($(window).width());
-              vjsPlayer.height($(window).height());
-          });
+          videojs("embeded-video-js").dimensions(
+            $(window).width(),
+            $(window).height()
+          );
         </script>
     </body>
 </html>

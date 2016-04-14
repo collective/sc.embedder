@@ -5,9 +5,4 @@
     expression=""
     authenticated="False"
     />
- <stylesheet
-    id="++resource++sc.embedder/video-js/video-js.css"
-    expression=""
-    authenticated="False"
-    />
 </object>
