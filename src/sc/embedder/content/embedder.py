@@ -20,6 +20,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.embedder import MessageFactory as _
 from sc.embedder.interfaces import IConsumer
 from sc.embedder.logger import logger
+from sc.embedder.utils import sanitize_iframe_tag
 from urllib2 import HTTPError
 from urllib2 import URLError
 from z3c.form import button
@@ -251,8 +252,7 @@ class BaseForm(DexterityExtensibleForm):
         embedder_code = """
 <iframe src="%(context_url)s/@@embedder_videojs?src=%(url)s&type=%(type)s"
         class="vjs-iframe"
-        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"
-        frameborder="0">
+        allowfullscreen>
 </iframe>
 """
         r = requests.head(url)
@@ -292,6 +292,11 @@ class BaseForm(DexterityExtensibleForm):
             json_data = self.get_fallback(url)
             if json_data is None:
                 return
+        # html parameter not always required:
+        # https://github.com/abarmat/python-oembed/blob/master/oembed/__init__.py#L157-L167
+        # https://github.com/abarmat/python-oembed/blob/master/oembed/__init__.py#L181-L187
+        if 'html' in json_data:
+            json_data['html'] = sanitize_iframe_tag(json_data['html'])
         for k, v in self.tr_fields.iteritems():
             if json_data.get(k):
                 self.widgets[v].value = unicode(json_data[k])
@@ -320,7 +325,7 @@ class BaseForm(DexterityExtensibleForm):
             if data.get('height', None):
                 el.attrib['height'] = data['height'] and str(data['height']) or el.attrib['height']
 
-        data['embed_html'] = html.tostring(el)
+        data['embed_html'] = sanitize_iframe_tag(html.tostring(el))
 
 
 class AddForm(BaseForm, dexterity.AddForm):

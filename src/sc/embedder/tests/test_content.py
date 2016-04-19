@@ -279,15 +279,12 @@ class MultimediaTestCase(unittest.TestCase):
 
         # We trigger the action of load
         add_form.handleLoad(add_form, action)
-        iframe = u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvjs.zencdn.net%2Fv%2Foceans.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>\n'
-        self.assertEqual(
-            u'', add_form.widgets['IDublinCore.title'].value)
-        self.assertEqual(
-            iframe, add_form.widgets['embed_html'].value)
-        self.assertEqual(
-            u'', add_form.widgets['width'].value)
-        self.assertEqual(
-            u'', add_form.widgets['height'].value)
+        iframe = u'<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvjs.zencdn.net%2Fv%2Foceans.webm&amp;type=video%2Fwebm" class="vjs-iframe" allowfullscreen>\n</iframe>'
+        self.assertEqual(u'', add_form.widgets['IDublinCore.title'].value)
+        # sometimes a trailing '\n' is added to the embed_html field
+        self.assertIn(iframe, add_form.widgets['embed_html'].value)
+        self.assertEqual(u'', add_form.widgets['width'].value)
+        self.assertEqual(u'', add_form.widgets['height'].value)
 
         self.folder.invokeFactory('sc.embedder', 'ocean-clip')
         video = self.folder['ocean-clip']
@@ -297,12 +294,14 @@ class MultimediaTestCase(unittest.TestCase):
         video.height = '264'
         video.embed_html = iframe
 
-        self.assertItemsEqual({u'thumb_html': u'<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&amp;type=video%2Fwebm" class="vjs-iframe" allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1" frameborder="0" width="188" height="141">\n</iframe>',
-                               u'embed_html': u'\n<iframe src="http://nohost/plone/test-folder/@@embedder_videojs?src=http%3A%2F%2Fvideo-js.zencoder.com%2Foceans-clip.webm&type=video%2Fwebm"\n        class="vjs-iframe"\n        allowfullscreen="1" mozallowfullscreen="1" webkitallowfullscreen="1"\n        frameborder="0">\n</iframe>\n',
-                               u'description': u'',
-                               u'title': u'Oceans clip'
-                               },
-                              json.loads(video.unrestrictedTraverse('@@tinymce-jsondetails')()))
+        rendered = json.loads(video.unrestrictedTraverse('@@tinymce-jsondetails')())
+        expected = dict(
+            description=u'',
+            embed_html=u'%3Ciframe%20src%3D%22http%3A//nohost/plone/test-folder/%40%40embedder_videojs%3Fsrc%3Dhttp%253A%252F%252Fvjs.zencdn.net%252Fv%252Foceans.webm%26amp%3Btype%3Dvideo%252Fwebm%22%20class%3D%22vjs-iframe%22%20allowfullscreen%3E%0A%3C/iframe%3E',
+            thumb_html=u'%3Ciframe%20src%3D%22http%3A//nohost/plone/test-folder/%40%40embedder_videojs%3Fsrc%3Dhttp%253A%252F%252Fvjs.zencdn.net%252Fv%252Foceans.webm%26amp%3Btype%3Dvideo%252Fwebm%22%20class%3D%22vjs-iframe%22%20allowfullscreen%20width%3D%22188%22%20height%3D%22141%22%3E%0A%3C/iframe%3E',
+            title=u'Oceans clip'
+        )
+        self.assertEqual(rendered, expected)
 
     def test_facebook_manual(self):
         add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')

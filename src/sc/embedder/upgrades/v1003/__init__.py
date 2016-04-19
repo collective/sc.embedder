@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from sc.embedder.content.embedder import IEmbedder
 from sc.embedder.logger import logger
+from sc.embedder.utils import sanitize_iframe_tag
 
 
 REMOVE_CSS = '++resource++sc.embedder/video-js/video-js.css'
@@ -16,3 +18,16 @@ def remove_videojs_resources(setup_tool):
     js_tool = api.portal.get_tool('portal_javascripts')
     js_tool.unregisterResource(REMOVE_JS)
     logger.info('Video.js was removed from portal_javascripts.')
+
+
+def sanitize_iframe_tags(setup_tool):
+    """Remove invalid attributes from iframes."""
+    logger.info('Sanitizing iframes from embedded code')
+    catalog = api.portal.get_tool('portal_catalog')
+    query = dict(object_provides=IEmbedder.__identifier__)
+    results = catalog.unrestrictedSearchResults(**query)
+    for brain in results:
+        obj = brain.getObject()
+        obj.embed_html = sanitize_iframe_tag(obj.embed_html)
+
+    logger.info('{0} objects were processed'.format(len(results)))
