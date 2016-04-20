@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.embedder">
+
+  <genericsetup:upgradeSteps
+      source="1002"
+      destination="1003"
+      profile="sc.embedder:default">
+
+    <genericsetup:upgradeStep
+        title="Remove Video.js from resource registries"
+        description="We are now using Video.js from CDN."
+        handler=".remove_videojs_resources"
+        />
+
+    <genericsetup:upgradeStep
+        title="Cook CSS resources"
+        description="There were changes in the CSS files, so we need to cook the resources."
+        handler="..cook_css_resources"
+        />
+
+    <genericsetup:upgradeStep
+        title="Cook JS resources"
+        description="There were changes in the JS files, so we need to cook the resources."
+        handler="..cook_javascript_resources"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

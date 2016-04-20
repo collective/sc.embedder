@@ -7,16 +7,6 @@ from sc.embedder.testing import INTEGRATION_TESTING
 import unittest
 
 
-JS = [
-    '++resource++sc.embedder/video-js/video.js',
-]
-
-CSS = [
-    'embedder.css',
-    '++resource++sc.embedder/video-js/video-js.css',
-]
-
-
 class InstallTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
@@ -32,15 +22,9 @@ class InstallTestCase(unittest.TestCase):
         layers = [l.getName() for l in registered_layers()]
         self.assertIn('IEmbedderLayer', layers)
 
-    def test_javascript_registry(self):
-        resource_ids = self.portal.portal_javascripts.getResourceIds()
-        for id in JS:
-            self.assertTrue(id in resource_ids, '%s not installed' % id)
-
     def test_css_registry(self):
         resource_ids = self.portal.portal_css.getResourceIds()
-        for id in CSS:
-            self.assertTrue(id in resource_ids, '%s not installed' % id)
+        self.assertIn('embedder.css', resource_ids)
 
     def test_add_permissions(self):
         permission = 'sc.embedder: Add Embedder'
@@ -70,15 +54,9 @@ class UninstallTest(unittest.TestCase):
         layers = [l.getName() for l in registered_layers()]
         self.assertNotIn('IEmbedderLayer', layers)
 
-    def test_javascript_removed(self):
-        resource_ids = self.portal.portal_javascripts.getResourceIds()
-        for id in JS:
-            self.assertNotIn(id, resource_ids, '%s not removed' % id)
-
     def test_css_removed(self):
         resource_ids = self.portal.portal_css.getResourceIds()
-        for id in CSS:
-            self.assertNotIn(id, resource_ids, '%s not removed' % id)
+        self.assertNotIn('embedder.css', resource_ids)
 
     def test_tile_removed(self):
         tiles = api.portal.get_registry_record('plone.app.tiles')

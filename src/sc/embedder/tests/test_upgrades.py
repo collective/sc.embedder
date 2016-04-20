@@ -2,6 +2,8 @@
 from plone import api
 from sc.embedder.config import PROFILE
 from sc.embedder.testing import INTEGRATION_TESTING
+from sc.embedder.upgrades.v1003 import REMOVE_CSS
+from sc.embedder.upgrades.v1003 import REMOVE_JS
 
 import unittest
 
@@ -82,3 +84,33 @@ class Upgrade1001to1002TestCase(UpgradeTestCaseBase):
         version = self.setup.getLastVersionForProfile(PROFILE)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
         self.assertEqual(self._how_many_upgrades_to_do(), 1)
+
+
+class Upgrade1002to1003TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'1002', u'1003')
+
+    def test_upgrade_to_1003_registrations(self):
+        version = self.setup.getLastVersionForProfile(PROFILE)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self._how_many_upgrades_to_do(), 3)
+
+    def test_remove_videojs_resources(self):
+        # check if the upgrade step is registered
+        title = u'Remove Video.js from resource registries'
+        step = self._get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        css_tool = api.portal.get_tool('portal_css')
+        css_tool.registerResource(REMOVE_CSS)
+        self.assertIn(REMOVE_CSS, css_tool.getResourceIds())
+        js_tool = api.portal.get_tool('portal_javascripts')
+        js_tool.registerResource(REMOVE_JS)
+        self.assertIn(REMOVE_JS, js_tool.getResourceIds())
+
+        # run the upgrade step to validate the update
+        self._do_upgrade_step(step)
+        self.assertNotIn(REMOVE_CSS, css_tool.getResourceIds())
+        self.assertNotIn(REMOVE_JS, js_tool.getResourceIds())
