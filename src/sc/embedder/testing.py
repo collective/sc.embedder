@@ -2,7 +2,10 @@
 """Setup testing infrastructure.
 
 For Plone 5 we need to install plone.app.contenttypes.
+
+Tile for collective.cover is only tested in Plone 4.3.
 """
+from plone import api
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
@@ -20,18 +23,25 @@ else:
     from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE
 
 
+PLONE_VERSION = api.env.plone_version()
+
+
 class Fixture(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        import collective.cover
-        self.loadZCML(package=collective.cover)
+        if PLONE_VERSION.startswith('4.3'):
+            import collective.cover
+            self.loadZCML(package=collective.cover)
+
         import sc.embedder
         self.loadZCML(package=sc.embedder)
 
     def setUpPloneSite(self, portal):
-        self.applyProfile(portal, 'collective.cover:default')
+        if PLONE_VERSION.startswith('4.3'):
+            self.applyProfile(portal, 'collective.cover:default')
+
         self.applyProfile(portal, 'sc.embedder:default')
 
 FIXTURE = Fixture()
