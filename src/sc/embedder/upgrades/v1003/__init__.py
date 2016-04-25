@@ -28,6 +28,10 @@ def sanitize_iframe_tags(setup_tool):
     results = catalog.unrestrictedSearchResults(**query)
     for brain in results:
         obj = brain.getObject()
-        obj.embed_html = sanitize_iframe_tag(obj.embed_html)
+        try:
+            obj.embed_html = sanitize_iframe_tag(obj.embed_html)
+        except TypeError:
+            msg = 'An error ocurred sanitizing object: {0}; skipping'
+            logger.error(msg.format(obj.absolute_url()))
 
     logger.info('{0} objects were processed'.format(len(results)))
