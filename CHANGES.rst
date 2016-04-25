@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 1.1b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Avoid `TypeError` while running upgrade step (fixes `#58`_).
+  [hvelarde]
 
 
 1.1b2 (2016-04-25)
@@ -153,3 +154,4 @@ There's a frood who really knows where his towel is.
 .. _`#44`: https://github.com/simplesconsultoria/sc.embedder/issues/44
 .. _`#50`: https://github.com/simplesconsultoria/sc.embedder/issues/50
 .. _`#55`: https://github.com/simplesconsultoria/sc.embedder/issues/55
+.. _`#58`: https://github.com/simplesconsultoria/sc.embedder/issues/58
