@@ -26,6 +26,12 @@
         handler="..cook_javascript_resources"
         />
 
+    <genericsetup:upgradeStep
+        title="Sanitize iframe tags"
+        description="Remove invalid attributes from iframes."
+        handler=".sanitize_iframe_tags"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>

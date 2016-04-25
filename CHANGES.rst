@@ -6,6 +6,10 @@ There's a frood who really knows where his towel is.
 1.1b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Sanitize <iframe> tags to avoid including invalid HTML attributes;
+  an upgrade step is included to clean up existing objects (closes `#44`_).
+  [rodfersou, hvelarde]
+
 - Update Video.js to v5.8 and load it from CDN (closes `#50`_).
   [rodfersou]
 
@@ -137,4 +141,5 @@ There's a frood who really knows where his towel is.
 .. _`#32`: https://github.com/simplesconsultoria/sc.embedder/issues/32
 .. _`#39`: https://github.com/simplesconsultoria/sc.embedder/issues/39
 .. _`#42`: https://github.com/simplesconsultoria/sc.embedder/issues/42
+.. _`#44`: https://github.com/simplesconsultoria/sc.embedder/issues/44
 .. _`#50`: https://github.com/simplesconsultoria/sc.embedder/issues/50

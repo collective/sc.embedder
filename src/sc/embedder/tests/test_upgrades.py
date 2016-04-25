@@ -94,7 +94,7 @@ class Upgrade1002to1003TestCase(UpgradeTestCaseBase):
     def test_upgrade_to_1003_registrations(self):
         version = self.setup.getLastVersionForProfile(PROFILE)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
-        self.assertEqual(self._how_many_upgrades_to_do(), 3)
+        self.assertEqual(self._how_many_upgrades_to_do(), 4)
 
     def test_remove_videojs_resources(self):
         # check if the upgrade step is registered
@@ -114,3 +114,20 @@ class Upgrade1002to1003TestCase(UpgradeTestCaseBase):
         self._do_upgrade_step(step)
         self.assertNotIn(REMOVE_CSS, css_tool.getResourceIds())
         self.assertNotIn(REMOVE_JS, js_tool.getResourceIds())
+
+    def test_sanitize_iframe_tags(self):
+        # check if the upgrade step is registered
+        title = u'Sanitize iframe tags'
+        step = self._get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        iframe = '<iframe src="http://plone.org" frameborder="0"></iframe>'
+        with api.env.adopt_roles(['Manager']):
+            e1 = api.content.create(
+                self.portal, 'sc.embedder', 'e1', embed_html=iframe)
+
+        # run the upgrade step to validate the update
+        self._do_upgrade_step(step)
+        expected = '<iframe src="http://plone.org"></iframe>'
+        self.assertEqual(e1.embed_html, expected)
