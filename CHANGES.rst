@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.1b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Implement `Subresource Integrity <https://www.w3.org/TR/SRI/>`_ (closes `#55`_).
+  [cleberjsantos]
+
 - Sanitize <iframe> tags to avoid including invalid HTML attributes;
   an upgrade step is included to clean up existing objects (closes `#44`_).
   [rodfersou, hvelarde]
@@ -143,3 +146,4 @@ There's a frood who really knows where his towel is.
 .. _`#42`: https://github.com/simplesconsultoria/sc.embedder/issues/42
 .. _`#44`: https://github.com/simplesconsultoria/sc.embedder/issues/44
 .. _`#50`: https://github.com/simplesconsultoria/sc.embedder/issues/50
+.. _`#55`: https://github.com/simplesconsultoria/sc.embedder/issues/55

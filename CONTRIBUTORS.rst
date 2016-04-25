@@ -5,6 +5,7 @@ This package would not have been possible without the contribution of the follow
 
 - Alejandro Pereira
 - André Nogueira
+- Cleber J Santos
 - Héctor Velarde
 - João S. O. Bueno
 - Juan Pablo Giménez
