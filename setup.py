@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '1.1b2'
+version = '1.1b3.dev0'
 description = 'This packages contains a Dexterity-based content type that '
 'allows you to embedded content (such as photos or videos) from third '
 'parties into your Plone site.'
