@@ -14,7 +14,7 @@ matrix:
   fast_finish: true
 install:
   - sed -ie "s#4.3.x.cfg#$PLONE_VERSION.x.cfg#" buildout.cfg
-  - python bootstrap.py --setuptools-version=20.9.0
+  - python bootstrap.py
   - bin/buildout annotate
   - bin/buildout
 before_script:
