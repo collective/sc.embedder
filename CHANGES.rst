@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.1b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Package is compatible with Plone 4.2 again.
+  [hvelarde]
+
 - Avoid `TypeError` while running upgrade step (fixes `#58`_).
   [hvelarde]
 
