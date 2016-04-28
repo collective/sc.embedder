@@ -23,7 +23,7 @@ else:
     from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE
 
 
-PLONE_VERSION = api.env.plone_version()
+IS_PLONE_5 = api.env.plone_version().startswith('5')
 
 
 class Fixture(PloneSandboxLayer):
@@ -31,7 +31,7 @@ class Fixture(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        if PLONE_VERSION.startswith('4.3'):
+        if not IS_PLONE_5:
             import collective.cover
             self.loadZCML(package=collective.cover)
 
@@ -39,7 +39,7 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=sc.embedder)
 
     def setUpPloneSite(self, portal):
-        if PLONE_VERSION.startswith('4.3'):
+        if not IS_PLONE_5:
             self.applyProfile(portal, 'collective.cover:default')
 
         self.applyProfile(portal, 'sc.embedder:default')
