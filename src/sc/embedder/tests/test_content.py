@@ -151,8 +151,8 @@ class MultimediaTestCase(unittest.TestCase):
             add_form.widgets['IDublinCore.title'].value, u'The Backwater Gospel')
         self.assertNotEqual(
             add_form.widgets['IDublinCore.description'].value, u'')
-        self.assertEqual(add_form.widgets['width'].value, u'1280')
-        self.assertEqual(add_form.widgets['height'].value, u'720')
+        self.assertEqual(add_form.widgets['width'].value, u'480')
+        self.assertEqual(add_form.widgets['height'].value, u'272')
         self.assertIn(
             u'player.vimeo.com/video/17914974',
             add_form.widgets['embed_html'].value
@@ -382,7 +382,7 @@ class MultimediaTestCase(unittest.TestCase):
         ''' Test if traversing to image_thumb returns an image
         '''
         content = self.multimedia
-        self.assertIsNotNone(content.restrictedTraverse('image_thumb')().read())
+        self.assertIsNotNone(content.restrictedTraverse('image_thumb')())
 
     def test_image_thumb_no_image(self):
         ''' Test if traversing to image_thumb returns None
