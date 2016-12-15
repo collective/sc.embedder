@@ -1,0 +1,58 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:z3c="http://namespaces.zope.org/z3c">
+
+  <adapter factory=".embedder.EmbedderImageFieldWidget" />
+
+  <z3c:widgetTemplate
+      mode="input"
+      widget=".embedder.EmbedderImageWidget"
+      layer="z3c.form.interfaces.IFormLayer"
+      template="image_input.pt"
+      />
+
+  <adapter
+      for=".embedder.IEmbedder"
+      provides="Products.TinyMCE.adapters.interfaces.JSONDetails.IJSONDetails"
+      factory="..adapters.JSONDetails"
+      />
+
+  <browser:page
+      for=".embedder.IEmbedder"
+      name="edit"
+      class=".embedder.EditForm"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <adapter
+      for="Products.CMFCore.interfaces.IFolderish
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           plone.dexterity.interfaces.IDexterityFTI"
+      provides="zope.publisher.interfaces.browser.IBrowserPage"
+      factory=".embedder.AddView"
+      name="sc.embedder"
+      />
+
+  <class class=".embedder.AddView">
+    <require
+        permission="cmf.AddPortalContent"
+        interface="zope.publisher.interfaces.browser.IBrowserPage"
+        />
+  </class>
+
+  <browser:page
+      for=".embedder.IEmbedder"
+      name="view"
+      class=".embedder.View"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="*"
+      name="embedder_videojs"
+      class=".embedder.EmbedderVideoJS"
+      permission="zope2.View"
+      />
+
+</configure>

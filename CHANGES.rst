@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.1b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Remove dependency on five.grok (closes `#63`_).
+  [rodfersou]
+
 - Package is compatible with Plone 4.2 again.
   [hvelarde]
 
@@ -158,3 +161,4 @@ There's a frood who really knows where his towel is.
 .. _`#50`: https://github.com/simplesconsultoria/sc.embedder/issues/50
 .. _`#55`: https://github.com/simplesconsultoria/sc.embedder/issues/55
 .. _`#58`: https://github.com/simplesconsultoria/sc.embedder/issues/58
+.. _`#63`: https://github.com/simplesconsultoria/sc.embedder/issues/63

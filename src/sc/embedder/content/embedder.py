@@ -1,21 +1,24 @@
 # -*- coding: utf-8 -*-
 from collective import dexteritytextindexer
-from five import grok
 from lxml import cssselect
 from lxml import etree
 from lxml import html
 from lxml.html.builder import DIV
 from plone import api
 from plone.app.textfield import RichText
+from plone.dexterity.browser.add import DefaultAddForm
+from plone.dexterity.browser.add import DefaultAddView
 from plone.dexterity.browser.base import DexterityExtensibleForm
+from plone.dexterity.browser.edit import DefaultEditForm
+from plone.dexterity.content import Item
 from plone.dexterity.events import AddCancelledEvent
 from plone.dexterity.events import EditCancelledEvent
 from plone.dexterity.events import EditFinishedEvent
-from plone.directives import dexterity
 from plone.directives import form
 from plone.formwidget.namedfile.widget import NamedImageWidget
 from plone.namedfile.field import NamedImage as BaseNamedImage
 from plone.namedfile.file import NamedImage as ImageValueType
+from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.embedder import MessageFactory as _
 from sc.embedder.interfaces import IConsumer
@@ -32,16 +35,12 @@ from zope import schema
 from zope.component import adapter
 from zope.event import notify
 from zope.interface import implementer
-from zope.interface import Interface
 from zope.interface import Invalid
 
 import re
 import requests
 import urllib2
 import urlparse
-
-
-grok.templatedir('templates')
 
 
 def has_image(content):
@@ -146,13 +145,14 @@ class IEmbedder(form.Schema):
     )
 
 
-class Embedder(dexterity.Item):
-    """ A content embedder
-    """
-    grok.implements(IEmbedder)  # noqa: https://github.com/gforcada/flake8-deprecated/issues/9
+@implementer(IEmbedder)
+class Embedder(Item):
+
+    """A content embedder."""
 
     def image_thumb(self):
-        ''' Return a thumbnail '''
+        """Return a thumbnail."""
+
         if not has_image(self):
             return None
         view = self.unrestrictedTraverse('@@images')
@@ -160,7 +160,8 @@ class Embedder(dexterity.Item):
                           scale='thumb').index_html()
 
     def tag(self, scale='thumb', css_class='tileImage', **kw):
-        ''' Return a tag to the image '''
+        """Return a tag to the image."""
+
         if not (has_image(self)):
             return ''
         view = self.unrestrictedTraverse('@@images')
@@ -189,8 +190,8 @@ def validate_int_or_percentage(value):
 
 
 class BaseForm(DexterityExtensibleForm):
-    """
-    """
+
+    """Methods and attributes shared by Add and Edit form."""
 
     tr_fields = {'width': 'width',
                  'height': 'height',
@@ -304,8 +305,9 @@ class BaseForm(DexterityExtensibleForm):
             self.set_image(json_data.get('thumbnail_url'))
 
     def set_custom_embed_code(self, data):
-        """ Return the code that embed the code. Could be with the
-            original size or the custom chosen.
+        """Return the code that embed the code.
+
+        Could be with the original size or the custom chosen.
         """
         if 'embed_html' not in data:
             return
@@ -328,8 +330,7 @@ class BaseForm(DexterityExtensibleForm):
         data['embed_html'] = sanitize_iframe_tag(html.tostring(el))
 
 
-class AddForm(BaseForm, dexterity.AddForm):
-    grok.name('sc.embedder')
+class AddForm(BaseForm, DefaultAddForm):
     template = ViewPageTemplateFile('templates/sc.embedder.pt')
 
     @button.buttonAndHandler(_('Save'), name='save')
@@ -388,8 +389,11 @@ class AddForm(BaseForm, dexterity.AddForm):
             return load
 
 
-class EditForm(dexterity.EditForm, BaseForm):
-    grok.context(IEmbedder)
+class AddView(DefaultAddView):
+    form = AddForm
+
+
+class EditForm(DefaultEditForm, BaseForm):
     template = ViewPageTemplateFile('templates/edit.pt')
 
     @button.buttonAndHandler(_('Load'), name='load')
@@ -432,10 +436,8 @@ class EditForm(dexterity.EditForm, BaseForm):
             return load
 
 
-class View(dexterity.DisplayForm):
-    grok.context(IEmbedder)
-    grok.require('zope2.View')
-    grok.name('view')
+class View(BrowserView):
+    index = ViewPageTemplateFile('templates/view.pt')
 
     def get_player_pos_class(self):
         """ Returns the css class based on the position of the embed item.
@@ -444,8 +446,12 @@ class View(dexterity.DisplayForm):
         css_class = '%s_embedded' % pos.lower()
         return css_class
 
+    def __call__(self):
+        return self.index()
 
-class EmbedderVideoJS(grok.View):
-    grok.context(Interface)
-    grok.require('zope2.View')
-    grok.name('embedder_videojs')
+
+class EmbedderVideoJS(BrowserView):
+    index = ViewPageTemplateFile('templates/embeddervideojs.pt')
+
+    def __call__(self):
+        return self.index()

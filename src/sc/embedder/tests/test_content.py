@@ -86,13 +86,12 @@ class MultimediaTestCase(unittest.TestCase):
             edit form.
         """
         edit_view = self.multimedia.unrestrictedTraverse('edit')
-        edit_form = edit_view.form_instance
         dummy_data = {}
         dummy_data['embed_html'] = '<object width="512" height="296"><param ' + \
             'name="flashvars" value="ap=1"></param></object>'
         dummy_data['width'] = 300
         dummy_data['height'] = 200
-        edit_form.set_custom_embed_code(dummy_data)
+        edit_view.set_custom_embed_code(dummy_data)
         self.assertTrue('width="300"' in dummy_data['embed_html'])
         self.assertTrue('height="200"' in dummy_data['embed_html'])
 
@@ -122,8 +121,7 @@ class MultimediaTestCase(unittest.TestCase):
     def test_get_url_widget(self):
         from z3c.form.browser.text import TextWidget
         edit_view = self.multimedia.unrestrictedTraverse('edit')
-        edit_form = edit_view.form_instance
-        edit_form.update()
+        edit_view.update()
         url_wid = edit_view.get_url_widget()
         self.assertTrue(TextWidget, url_wid)
         self.assertEqual(url_wid.id, 'form-widgets-url')
@@ -131,8 +129,7 @@ class MultimediaTestCase(unittest.TestCase):
     def test_get_load_action(self):
         from z3c.form.button import ButtonAction
         edit_view = self.multimedia.unrestrictedTraverse('edit')
-        edit_form = edit_view.form_instance
-        edit_form.update()
+        edit_view.update()
         load_act = edit_view.get_load_action()
         self.assertTrue(ButtonAction, load_act)
         self.assertEqual(load_act.id, 'form-buttons-load')

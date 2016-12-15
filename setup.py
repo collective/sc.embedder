@@ -48,7 +48,6 @@ setup(name='sc.embedder',
       zip_safe=False,
       install_requires=[
           'collective.dexteritytextindexer',
-          'five.grok',
           'lxml',
           'plone.api',
           'plone.app.content',
