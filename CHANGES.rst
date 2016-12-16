@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-1.1b3 (unreleased)
+1.2b1 (2016-12-16)
 ^^^^^^^^^^^^^^^^^^
 
 - Remove dependency on five.grok (closes `#63`_).
