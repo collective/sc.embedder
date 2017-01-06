@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.2b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Update list of package dependencies.
+  [hvelarde]
+
 - Fix width validator.
   [hvelarde]
 
