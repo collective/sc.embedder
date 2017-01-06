@@ -6,7 +6,11 @@ There's a frood who really knows where his towel is.
 1.2b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix width validator.
+  [hvelarde]
+
+- Remove dependency on plone.directives.form and latest traces of Grok.
+  [hvelarde]
 
 
 1.2b1 (2016-12-16)

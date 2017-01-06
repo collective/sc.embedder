@@ -6,6 +6,7 @@ from lxml import html
 from lxml.html.builder import DIV
 from plone import api
 from plone.app.textfield import RichText
+from plone.autoform import directives as form
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.add import DefaultAddView
 from plone.dexterity.browser.base import DexterityExtensibleForm
@@ -14,16 +15,17 @@ from plone.dexterity.content import Item
 from plone.dexterity.events import AddCancelledEvent
 from plone.dexterity.events import EditCancelledEvent
 from plone.dexterity.events import EditFinishedEvent
-from plone.directives import form
 from plone.formwidget.namedfile.widget import NamedImageWidget
 from plone.namedfile.field import NamedImage as BaseNamedImage
 from plone.namedfile.file import NamedImage as ImageValueType
+from plone.supermodel import model
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from sc.embedder import MessageFactory as _
 from sc.embedder.interfaces import IConsumer
 from sc.embedder.logger import logger
 from sc.embedder.utils import sanitize_iframe_tag
+from sc.embedder.utils import validate_int_or_percentage
 from urllib2 import HTTPError
 from urllib2 import URLError
 from z3c.form import button
@@ -35,9 +37,7 @@ from zope import schema
 from zope.component import adapter
 from zope.event import notify
 from zope.interface import implementer
-from zope.interface import Invalid
 
-import re
 import requests
 import urllib2
 import urlparse
@@ -81,7 +81,7 @@ def EmbedderImageFieldWidget(field, request):
     return FieldWidget(field, EmbedderImageWidget(request))
 
 
-class IEmbedder(form.Schema):
+class IEmbedder(model.Schema):
     """ A representation of a content embedder content type
     """
 
@@ -102,6 +102,7 @@ class IEmbedder(form.Schema):
         description=_(
             u'Can be expressed as a decimal number or a percentage, e.g., 270 or 50%.'),
         required=True,
+        constraint=validate_int_or_percentage,
     )
 
     height = schema.Int(
@@ -169,24 +170,6 @@ class Embedder(Item):
                         scale=scale,
                         css_class=css_class,
                         **kw)
-
-
-@form.validator(field=IEmbedder['width'])
-def validate_int_or_percentage(value):
-    """Check if size is an positive integer (less than 9999) or a
-    percetage.
-
-    :param value: number to be validated
-    :type value: string
-    :raises:
-        :class:`~zope.interface.Invalid` if the value is not valid
-    """
-    if not value:
-        return
-
-    p = re.compile(r'^\d{1,4}%?$')
-    if p.match(value) is None:
-        raise Invalid(_(u'Value should be an integer or a percentage.'))
 
 
 class BaseForm(DexterityExtensibleForm):
