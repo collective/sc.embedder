@@ -3,6 +3,7 @@ from plone import api
 from plone.browserlayer.utils import registered_layers
 from sc.embedder.config import PROJECTNAME
 from sc.embedder.testing import INTEGRATION_TESTING
+from sc.embedder.testing import IS_PLONE_5
 
 import unittest
 
@@ -22,6 +23,7 @@ class InstallTestCase(unittest.TestCase):
         layers = [l.getName() for l in registered_layers()]
         self.assertIn('IEmbedderLayer', layers)
 
+    @unittest.skipIf(IS_PLONE_5, 'No easy way to test this under Plone 5')
     def test_css_registry(self):
         resource_ids = self.portal.portal_css.getResourceIds()
         self.assertIn('embedder.css', resource_ids)
@@ -54,6 +56,7 @@ class UninstallTest(unittest.TestCase):
         layers = [l.getName() for l in registered_layers()]
         self.assertNotIn('IEmbedderLayer', layers)
 
+    @unittest.skipIf(IS_PLONE_5, 'No easy way to test this under Plone 5')
     def test_css_removed(self):
         resource_ids = self.portal.portal_css.getResourceIds()
         self.assertNotIn('embedder.css', resource_ids)
