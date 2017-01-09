@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-1.2b2 (unreleased)
+1.2b2 (2017-01-09)
 ^^^^^^^^^^^^^^^^^^
 
 - Update list of package dependencies.
