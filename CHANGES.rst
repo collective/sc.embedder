@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 1.2b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Remove references to Grok's ``w`` dictionary used on the view template (fixes `#72`_).
+  [rodfersou]
 
 
 1.2b2 (2017-01-09)
@@ -181,3 +182,4 @@ There's a frood who really knows where his towel is.
 .. _`#55`: https://github.com/simplesconsultoria/sc.embedder/issues/55
 .. _`#58`: https://github.com/simplesconsultoria/sc.embedder/issues/58
 .. _`#63`: https://github.com/simplesconsultoria/sc.embedder/issues/63
+.. _`#72`: https://github.com/simplesconsultoria/sc.embedder/issues/72
