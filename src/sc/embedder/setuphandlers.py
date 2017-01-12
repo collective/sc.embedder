@@ -9,7 +9,7 @@ from zope.interface import implementer
 @implementer(INonInstallable)
 class HiddenProfiles(object):
 
-    def getNonInstallableProfiles(self):
+    def getNonInstallableProfiles(self):  # pragma: no cover
         """Do not show on Plone's list of installable profiles."""
         return [
             u'sc.embedder:uninstall',

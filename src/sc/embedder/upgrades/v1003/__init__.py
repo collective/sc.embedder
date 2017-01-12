@@ -30,7 +30,7 @@ def sanitize_iframe_tags(setup_tool):
         obj = brain.getObject()
         try:
             obj.embed_html = sanitize_iframe_tag(obj.embed_html)
-        except TypeError:
+        except TypeError:  # pragma: no cover
             msg = 'An error ocurred sanitizing object: {0}; skipping'
             logger.error(msg.format(obj.absolute_url()))
 
