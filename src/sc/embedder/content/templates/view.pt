@@ -1,48 +1,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="sc.embedder">
-    <body>
-
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="sc.embedder">
+  <body>
     <metal:main fill-slot="main">
-        <tal:main-macro metal:define-macro="main">
+      <article vocab="http://schema.org/" typeof="WebPage">
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-            <div tal:replace="structure provider:plone.abovecontenttitle" />
+        <h1 property="name" class="documentFirstHeading"
+            tal:content="context/title">Title</h1>
 
-            <h1 class="documentFirstHeading" tal:content="context/title" />
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-            <p class="documentDescription" tal:content="context/description" />
+        <div property="description" class="documentDescription"
+            tal:content="context/description">Description</div>
 
-            <div tal:replace="structure provider:plone.belowcontenttitle" />
+        <div tal:replace="structure provider:plone.abovecontentbody" />
 
-            <div tal:replace="structure provider:plone.abovecontentbody" />
+        <div id="content-core">
+          <metal:content-core define-macro="content-core"
+              tal:define="sameAs context/url|nothing;
+                          text context/text/output|nothing;
+                          alt_text context/alternate_content/output|nothing">
+            <link property="sameAs" tal:condition="sameAs" tal:attributes="href sameAs">
 
             <div tal:condition='python:context.player_position != "Bottom"'
-                 tal:attributes="class view/get_player_pos_class">
-                 <span tal:replace="structure context/embed_html"/>
+                tal:attributes="class view/get_player_pos_class">
+              <span tal:replace="structure context/embed_html" />
             </div>
 
-            <div id="embed_body_text" class="field" tal:condition="context/text">
-                <div tal:content="structure context/text/output|nothing" />
+            <p class="discreet"
+                tal:define="is_editable context/@@plone_context_state/is_editable"
+                tal:condition="python:not text and is_editable"
+                i18n:domain="plone"
+                i18n:translate="no_body_text">
+              This item does not have any body text, click the edit tab to change it.
+            </p>
+
+            <div id="embed_body_text" class="field" tal:condition="text">
+              <div property="text" tal:content="structure text">The body</div>
             </div>
 
             <div tal:condition='python:context.player_position == "Bottom"'
-                 class="bottom_embedded" >
-                 <span tal:replace="structure context/embed_html" />
+                class="bottom_embedded">
+              <span tal:replace="structure context/embed_html" />
             </div>
 
-            <div id="alt_cont" class="field" tal:condition="context/alternate_content">
-                <a i18n:translate="">Alternate content</a>
-                <div class="alt_cont_text" tal:content="structure context/alternate_content/output|nothing" />
+            <div id="alt_cont" class="field" tal:condition="alt_text">
+              <a i18n:translate="">Alternate content</a>
+              <div class="alt_cont_text" tal:content="structure alt_text" />
             </div>
 
-            <div tal:replace="structure provider:plone.belowcontentbody" />
-            <script type="application/javascript" tal:attributes="src string:$portal_url/embedder.js"></script>
-        </tal:main-macro>
+            <script tal:attributes="src string:$portal_url/embedder.js"></script>
+          </metal:content-core>
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+      </article>
     </metal:main>
-
-    </body>
+  </body>
 </html>

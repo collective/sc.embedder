@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.2b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Use semantic markup on the Embedder view (for simplicity, we are using `WebPage <http://schema.org/WebPage>`_  type).
+  [hvelarde]
+
 - Remove references to Grok's ``w`` dictionary used on the view template (fixes `#72`_).
   [rodfersou]
 

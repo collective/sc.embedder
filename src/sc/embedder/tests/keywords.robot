@@ -9,6 +9,9 @@ Library  Remote  ${PLONE_URL}/RobotRemote
 
 ${html_text} =  HTML code
 ${embedder_title} =  Nulla in mundo pax sincera
+${no_body_text} =  This item does not have any body text, click the edit tab to change it.
+${body_text} =  A sacred motet composed by Antonio Vivaldi in 1735.
+${alternate_content} =  In this world there is no honest peace
 ${title_selector} =  input#form-widgets-IDublinCore-title
 ${description_selector} =  textarea#form-widgets-IDublinCore-description
 ${width_selector} =  input#form-widgets-width
@@ -48,6 +51,8 @@ Create
     Click Button  Save
     Page Should Contain  Item created
     Page Should Contain  ${title}
+    Page Should Contain  ${no_body_text}
+    Page Should Not Contain  Alternate content
 
 Update
     [arguments]  ${description}
@@ -56,9 +61,21 @@ Update
     Input Text  css=${description_selector}  ${description}
     Click Element  css=${image_input_selector}
     Select File  image.jpg
+    Wait For Condition  return tinyMCE.activeEditor != null
+    Execute Javascript
+    ...  var editors = tinyMCE.editors;
+    ...  if (editors[0] === undefined) {
+    ...    editors = Object.keys(tinyMCE.editors).map(function(key) {
+    ...      return tinyMCE.editors[key];
+    ...    });
+    ...  }
+    ...  editors[0].setContent("${body_text}");
+    ...  editors[1].setContent("${alternate_content}");
     Click Button  Save
     Page Should Contain  Changes saved
     Page Should Contain  ${description}
+    Page Should Contain  ${body_text}
+    Page Should Contain  ${alternate_content}
 
 Delete
     Open Action Menu
