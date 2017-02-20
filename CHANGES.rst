@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-1.2b3 (unreleased)
+1.3b1 (2017-02-20)
 ^^^^^^^^^^^^^^^^^^
 
 - Use semantic markup on the Embedder view (for simplicity, we are using `WebPage <http://schema.org/WebPage>`_  type).
