@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object>
+ <resourcetypes>
+  <linkable>
+   <element value="sc.embedder" remove="true" />
+  </linkable>
+ </resourcetypes>
+</object>
+

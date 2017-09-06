@@ -2,6 +2,7 @@
 from plone import api
 from sc.embedder.config import PROFILE
 from sc.embedder.testing import INTEGRATION_TESTING
+from sc.embedder.testing import IS_PLONE_5
 from sc.embedder.upgrades.v1003 import REMOVE_CSS
 from sc.embedder.upgrades.v1003 import REMOVE_JS
 
@@ -131,3 +132,33 @@ class Upgrade1002to1003TestCase(UpgradeTestCaseBase):
         self._do_upgrade_step(step)
         expected = '<iframe src="http://plone.org"></iframe>'
         self.assertEqual(e1.embed_html, expected)
+
+
+class Upgrade1003to1004TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'1003', u'1004')
+
+    def test_registrations(self):
+        version = self.setup.getLastVersionForProfile(PROFILE)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self._how_many_upgrades_to_do(), 1)
+
+    # FIXME: https://community.plone.org/t/making-content-type-linkable-in-tinymce-under-plone-5/4822
+    @unittest.skipIf(IS_PLONE_5, 'Not supported under Plone 5')
+    def test_add_as_tinymce_linkable(self):
+        # check if the upgrade step is registered
+        title = u'Add as TinyMCE linkable'
+        step = self._get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        tinymce_tool = api.portal.get_tool('portal_tinymce')
+        linkable = tinymce_tool.linkable.split('\n')
+        linkable.remove('sc.embedder')
+        tinymce_tool.linkable = '\n'.join(linkable)
+        self.assertNotIn('sc.embedder', tinymce_tool.linkable.split('\n'))
+
+        # run the upgrade step to validate the update
+        self._do_upgrade_step(step)
+        self.assertIn('sc.embedder', tinymce_tool.linkable.split('\n'))

@@ -35,6 +35,12 @@ class InstallTestCase(unittest.TestCase):
         expected = ['Contributor', 'Manager', 'Owner', 'Site Administrator']
         self.assertListEqual(roles, expected)
 
+    # FIXME: https://community.plone.org/t/making-content-type-linkable-in-tinymce-under-plone-5/4822
+    @unittest.skipIf(IS_PLONE_5, 'Not supported under Plone 5')
+    def test_tinymce_linkables(self):
+        linkables = self.portal.portal_tinymce.linkable.split('\n')
+        self.assertIn('sc.embedder', linkables)
+
     def test_tile(self):
         tiles = api.portal.get_registry_record('plone.app.tiles')
         self.assertIn(u'sc.embedder', tiles)
@@ -60,6 +66,12 @@ class UninstallTest(unittest.TestCase):
     def test_css_removed(self):
         resource_ids = self.portal.portal_css.getResourceIds()
         self.assertNotIn('embedder.css', resource_ids)
+
+    # FIXME: https://community.plone.org/t/making-content-type-linkable-in-tinymce-under-plone-5/4822
+    @unittest.skipIf(IS_PLONE_5, 'Not supported under Plone 5')
+    def test_tinymce_linkables(self):
+        linkables = self.portal.portal_tinymce.linkable.split('\n')
+        self.assertNotIn('sc.embedder', linkables)
 
     def test_tile_removed(self):
         tiles = api.portal.get_registry_record('plone.app.tiles')

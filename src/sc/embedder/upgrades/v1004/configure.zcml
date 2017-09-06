@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.embedder">
+
+  <genericsetup:upgradeSteps
+      source="1003"
+      destination="1004"
+      profile="sc.embedder:default">
+
+    <genericsetup:upgradeStep
+        title="Add as TinyMCE linkable"
+        description="Add Embedder to TinyMCE's list of linkable content types."
+        handler=".add_as_tinymce_linkable"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

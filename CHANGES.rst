@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.3b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Add Embedder to TinyMCE's list of linkable content types (closes `#79 <https://github.com/simplesconsultoria/sc.embedder/issues/79>`_).
+  [hvelarde]
+
 - Remove hard dependency on Products.TinyMCE.
   [hvelarde]
 
