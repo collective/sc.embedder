@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-1.3b2 (unreleased)
+1.4b1 (2017-09-06)
 ^^^^^^^^^^^^^^^^^^
 
 - Add Related Items behavior to Embedder content type by default (closes `#80 <https://github.com/simplesconsultoria/sc.embedder/issues/80>`_).
