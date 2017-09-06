@@ -11,6 +11,7 @@
     <include package="Products.CMFCore" file="permissions.zcml" />
     <include package="plone.app.dexterity" />
     <include package="plone.app.dexterity" file="meta.zcml" />
+    <include package="plone.app.relationfield" />
     <include package="collective.dexteritytextindexer" />
 
     <include file="profiles.zcml"/>

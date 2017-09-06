@@ -69,6 +69,10 @@ class MultimediaTestCase(unittest.TestCase):
         self.assertTrue(IEmbedder.providedBy(self.multimedia))
         self.assertTrue(verifyObject(IEmbedder, self.multimedia))
 
+    def test_relateditems_behavior(self):
+        from plone.app.relationfield.behavior import IRelatedItems
+        self.assertTrue(IRelatedItems.providedBy(self.multimedia))
+
     def test_custom_player_size_addform(self):
         """ Check if the custom size applies to the embed code in the
             add form.

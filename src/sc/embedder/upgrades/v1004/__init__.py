@@ -11,3 +11,14 @@ def add_as_tinymce_linkable(setup_tool):
     tinymce_tool.linkable = '\n'.join(linkable)
     assert 'sc.embedder' in tinymce_tool.linkable.split('\n')
     logger.info("sc.embedder added to TinyMCE's list of linkable content types.")
+
+
+def add_relateditems_behavior(setup_tool):
+    """Add Related Items behavior to Embedder content type."""
+    from plone.app.relationfield.behavior import IRelatedItems
+    from plone.dexterity.interfaces import IDexterityFTI
+    from zope.component import getUtility
+    fti = getUtility(IDexterityFTI, name='sc.embedder')
+    if IRelatedItems.__identifier__ not in fti.behaviors:
+        fti.behaviors += (IRelatedItems.__identifier__,)
+        logger.info('Related Items behavior added to sc.embedder content type')

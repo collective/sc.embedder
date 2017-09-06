@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.3b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Add Related Items behavior to Embedder content type by default (closes `#80 <https://github.com/simplesconsultoria/sc.embedder/issues/80>`_).
+  [hvelarde]
+
 - Add Embedder to TinyMCE's list of linkable content types (closes `#79 <https://github.com/simplesconsultoria/sc.embedder/issues/79>`_).
   [hvelarde]
 

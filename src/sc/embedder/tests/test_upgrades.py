@@ -142,7 +142,7 @@ class Upgrade1003to1004TestCase(UpgradeTestCaseBase):
     def test_registrations(self):
         version = self.setup.getLastVersionForProfile(PROFILE)[0]
         self.assertGreaterEqual(int(version), int(self.to_version))
-        self.assertEqual(self._how_many_upgrades_to_do(), 1)
+        self.assertEqual(self._how_many_upgrades_to_do(), 2)
 
     # FIXME: https://community.plone.org/t/making-content-type-linkable-in-tinymce-under-plone-5/4822
     @unittest.skipIf(IS_PLONE_5, 'Not supported under Plone 5')
@@ -162,3 +162,23 @@ class Upgrade1003to1004TestCase(UpgradeTestCaseBase):
         # run the upgrade step to validate the update
         self._do_upgrade_step(step)
         self.assertIn('sc.embedder', tinymce_tool.linkable.split('\n'))
+
+    def test_add_relateditems_behavior(self):
+        # check if the upgrade step is registered
+        title = u'Add Related Items behavior'
+        step = self._get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        from plone.app.relationfield.behavior import IRelatedItems
+        from plone.dexterity.interfaces import IDexterityFTI
+        from zope.component import getUtility
+        fti = getUtility(IDexterityFTI, name='sc.embedder')
+        behaviors = list(fti.behaviors)
+        behaviors.remove(IRelatedItems.__identifier__)
+        fti.behaviors = tuple(behaviors)
+        self.assertNotIn(IRelatedItems.__identifier__, fti.behaviors)
+
+        # run the upgrade step to validate the update
+        self._do_upgrade_step(step)
+        self.assertIn(IRelatedItems.__identifier__, fti.behaviors)
