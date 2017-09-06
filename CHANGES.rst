@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.3b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Remove hard dependency on Products.TinyMCE.
+  [hvelarde]
+
 - Drop support for Plone 4.2.
   [hvelarde]
 

@@ -12,12 +12,6 @@
       template="image_input.pt"
       />
 
-  <adapter
-      for=".embedder.IEmbedder"
-      provides="Products.TinyMCE.adapters.interfaces.JSONDetails.IJSONDetails"
-      factory="..adapters.JSONDetails"
-      />
-
   <browser:page
       for=".embedder.IEmbedder"
       name="edit"
