@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 from httmock import all_requests
 from httmock import HTTMock
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
+from plone import api
+from plone.dexterity.interfaces import IDexterityFTI
 from plone.namedfile.file import NamedBlobImage
 from Products.statusmessages.interfaces import IStatusMessage
 from sc.embedder.content.embedder import Embedder
 from sc.embedder.content.embedder import IEmbedder
 from sc.embedder.testing import INTEGRATION_TESTING
 from sc.embedder.testing import IS_PLONE_5
-from zope.interface.verify import verifyClass
-from zope.interface.verify import verifyObject
+from zope.component import queryUtility
 
 import json
 import os
@@ -38,7 +37,7 @@ def youtube_mock(url, request):
         return dict(status_code=404)
 
 
-class MultimediaTestCase(unittest.TestCase):
+class EmbedderTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
@@ -46,13 +45,11 @@ class MultimediaTestCase(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
 
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Folder', 'test-folder')
-        self.folder = self.portal['test-folder']
+        with api.env.adopt_roles(['Manager']):
+            self.folder = api.content.create(self.portal, 'Folder', 'test-folder')
 
-        self.folder.invokeFactory('sc.embedder', 'multimedia')
-        self.multimedia = self.folder['multimedia']
-        self.multimedia.title = 'Multimedia'
+        self.multimedia = api.content.create(
+            self.folder, 'sc.embedder', title='Multimedia')
 
         # Setup image
         path = os.path.dirname(__file__)
@@ -61,13 +58,30 @@ class MultimediaTestCase(unittest.TestCase):
         self.multimedia.image = image
         self.multimedia.reindexObject()
 
+    def test_interface_implementation(self):
+        from zope.interface.verify import verifyClass
+        from zope.interface.verify import verifyObject
+        self.assertTrue(verifyClass(IEmbedder, Embedder))
+        self.assertTrue(verifyObject(IEmbedder, self.multimedia))
+
     def test_adding(self):
         self.assertTrue(IEmbedder.providedBy(self.multimedia))
-        self.assertTrue(verifyClass(IEmbedder, Embedder))
 
-    def test_interface(self):
-        self.assertTrue(IEmbedder.providedBy(self.multimedia))
-        self.assertTrue(verifyObject(IEmbedder, self.multimedia))
+    def test_fti(self):
+        fti = queryUtility(IDexterityFTI, name='sc.embedder')
+        self.assertIsNotNone(fti)
+
+    def test_schema(self):
+        fti = queryUtility(IDexterityFTI, name='sc.embedder')
+        schema = fti.lookupSchema()
+        self.assertEqual(IEmbedder, schema)
+
+    def test_factory(self):
+        from zope.component import createObject
+        fti = queryUtility(IDexterityFTI, name='sc.embedder')
+        factory = fti.factory
+        new_object = createObject(factory)
+        self.assertTrue(IEmbedder.providedBy(new_object))
 
     def test_relateditems_behavior(self):
         from plone.app.relationfield.behavior import IRelatedItems
