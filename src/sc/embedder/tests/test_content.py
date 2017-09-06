@@ -376,14 +376,12 @@ class MultimediaTestCase(unittest.TestCase):
         self.assertIn('"id": "multimedia"', output)
 
     def test_image_thumb(self):
-        ''' Test if traversing to image_thumb returns an image
-        '''
+        # Test if traversing to image_thumb returns an image
         content = self.multimedia
         self.assertIsNotNone(content.restrictedTraverse('image_thumb')())
 
     def test_image_thumb_no_image(self):
-        ''' Test if traversing to image_thumb returns None
-        '''
+        # Test if traversing to image_thumb returns None
         content = self.multimedia
         content.image = None
         self.assertIsNone(content.restrictedTraverse('image_thumb')())
@@ -393,8 +391,7 @@ class MultimediaTestCase(unittest.TestCase):
         self.assertIsNone(content.restrictedTraverse('image_thumb')())
 
     def test_image_tag(self):
-        ''' Test if tag method works as expected
-        '''
+        # Test if tag method works as expected
         content = self.multimedia
         expected = u'<img src="http://nohost/plone/test-folder/' + \
                    u'multimedia/@@images/'
@@ -404,8 +401,7 @@ class MultimediaTestCase(unittest.TestCase):
         self.assertTrue(content.tag().endswith(expected))
 
     def test_image_tag_no_image(self):
-        ''' Tag should return a default image if no picture available
-        '''
+        # Tag should return a default image if no picture available
         content = self.multimedia
         content.image = None
         expected = u''
