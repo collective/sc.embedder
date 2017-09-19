@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sc.embedder">
+
+  <genericsetup:upgradeSteps
+      source="1004"
+      destination="1005"
+      profile="sc.embedder:default">
+
+    <genericsetup:upgradeStep
+        title="Remove IDexterityTextIndexer behavior"
+        description="No longer depends on collective.dexteritytextindexer."
+        handler=".remove_dexteritytextindexer_behavior"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

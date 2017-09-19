@@ -6,7 +6,11 @@ There's a frood who really knows where his towel is.
 1.4b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- ``SearchableText`` index for Embedder content type now includes object id and keywords.
+  [hvelarde]
+
+- Remove dependency on collective.dexteritytextindexer.
+  [hvelarde]
 
 
 1.4b1 (2017-09-06)

@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from plone.dexterity.interfaces import IDexterityFTI
 from sc.embedder.config import PROFILE
 from sc.embedder.testing import INTEGRATION_TESTING
 from sc.embedder.testing import IS_PLONE_5
 from sc.embedder.upgrades.v1003 import REMOVE_CSS
 from sc.embedder.upgrades.v1003 import REMOVE_JS
+from zope.component import getUtility
 
 import unittest
 
@@ -171,8 +173,6 @@ class Upgrade1003to1004TestCase(UpgradeTestCaseBase):
 
         # simulate state on previous version
         from plone.app.relationfield.behavior import IRelatedItems
-        from plone.dexterity.interfaces import IDexterityFTI
-        from zope.component import getUtility
         fti = getUtility(IDexterityFTI, name='sc.embedder')
         behaviors = list(fti.behaviors)
         behaviors.remove(IRelatedItems.__identifier__)
@@ -182,3 +182,30 @@ class Upgrade1003to1004TestCase(UpgradeTestCaseBase):
         # run the upgrade step to validate the update
         self._do_upgrade_step(step)
         self.assertIn(IRelatedItems.__identifier__, fti.behaviors)
+
+
+class UpgradeTo1005TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'1004', u'1005')
+
+    def test_registrations(self):
+        version = self.setup.getLastVersionForProfile(PROFILE)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self._how_many_upgrades_to_do(), 1)
+
+    def test_remove_dexteritytextindexer_behavior(self):
+        # check if the upgrade step is registered
+        title = u'Remove IDexterityTextIndexer behavior'
+        step = self._get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        from sc.embedder.upgrades.v1005 import BEHAVIOR
+        fti = getUtility(IDexterityFTI, name='sc.embedder')
+        fti.behaviors += (BEHAVIOR,)
+        self.assertIn(BEHAVIOR, fti.behaviors)
+
+        # run the upgrade step to validate the update
+        self._do_upgrade_step(step)
+        self.assertNotIn(BEHAVIOR, fti.behaviors)
