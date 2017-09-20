@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.4b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Fix i18n and update Brazilian Portuguese and Spanish translations.
+  [rafahela, hvelarde]
+
 - ``SearchableText`` index for Embedder content type now includes object id and keywords.
   [hvelarde]
 
