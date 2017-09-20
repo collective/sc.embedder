@@ -39,6 +39,8 @@ from zope import schema
 from zope.component import adapter
 from zope.event import notify
 from zope.interface import implementer
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 import requests
 import urllib2
@@ -124,7 +126,12 @@ class IEmbedder(model.Schema):
         description=_(u''),
         default=u'Top',
         required=True,
-        values=[u'Top', u'Bottom', u'Left', u'Right'],
+        vocabulary=SimpleVocabulary([
+            SimpleTerm(value=u'Top', title=_(u'Top')),
+            SimpleTerm(value=u'Bottom', title=_(u'Bottom')),
+            SimpleTerm(value=u'Left', title=_(u'Left')),
+            SimpleTerm(value=u'Right', title=_(u'Right'))
+        ])
     )
 
     form.widget(image=EmbedderImageFieldWidget)

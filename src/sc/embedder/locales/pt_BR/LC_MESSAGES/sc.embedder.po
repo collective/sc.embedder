@@ -36,11 +36,11 @@ msgstr "Corpo do texto"
 
 #: ../content/embedder.py:100
 msgid "Can be expressed as a decimal number or a percentage, e.g., 270 or 50%."
-msgstr ""
+msgstr "Pode ser expressada como número decimal ou porcentagem, exemplo 270 ou 50%."
 
 #: ../content/embedder.py:107
 msgid "Can be expressed as a decimal number, e.g., 480."
-msgstr ""
+msgstr "Pode ser expressada com número decimal, exemplo 480."
 
 #: ../content/embedder.py:351
 msgid "Cancel"
@@ -68,7 +68,7 @@ msgstr "Embedder"
 
 #: ../content/embedder.py:115
 msgid "HTML code to render the embedded media."
-msgstr ""
+msgstr "Código HTML para renderizar a mídia incorporada."
 
 #: ../content/embedder.py:106
 msgid "Height"
@@ -96,7 +96,23 @@ msgstr "Multimídia URL"
 
 #: ../content/embedder.py:120
 msgid "Player position"
-msgstr "Posição do player"
+msgstr "Posição do player em relação ao conteúdo"
+
+#: ../content/embedder.py:127
+msgid "Top"
+msgstr "Topo"
+
+#: ../content/embedder.py:127
+msgid "Bottom"
+msgstr "Abaixo"
+
+#: ../content/embedder.py:127
+msgid "Left"
+msgstr "Esquerda"
+
+#: ../content/embedder.py:127
+msgid "Right"
+msgstr "Direita"
 
 #: ../content/embedder.py:129
 msgid "Preview image"
@@ -114,6 +130,26 @@ msgstr "A URL do seu arquivo multimídia. Pode ser uma URL do YouTube, Vimeo, Sl
 msgid "Title"
 msgstr ""
 
+#: ../content/image_input.pt:54
+msgid "image_load"
+msgstr "Carregar imagem do provedor de serviço (se disponível)"
+
+#: ../content/image_input.pt:67
+msgid "image_upload"
+msgstr "Carregar imagem"
+
+#: ../content/image_input.pt:81
+msgid "image_keep"
+msgstr "Manter a imagem existente"
+
+#: ../content/image_input.pt:94
+msgid "image_remove"
+msgstr "Remover imagem existente"
+
+#: ../content/image_input.pt:106
+msgid "image_replace"
+msgstr "Substituir com nova imagem"
+
 #: ../content/embedder.py:223
 msgid "URL not found"
 msgstr "URL não encontrada"
@@ -124,11 +160,11 @@ msgstr "Requisição não autorizada"
 
 #: ../content/embedder.py:185
 msgid "Value should be an integer or a percentage."
-msgstr ""
+msgstr "O valor deve ser um inteiro ou uma porcentagem."
 
 #: ../tiles/embedder.py:21
 msgid "Videos"
-msgstr ""
+msgstr "Vídeos"
 
 #: ../content/embedder.py:99
 msgid "Width"
