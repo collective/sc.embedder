@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sc.embedder 1.0\n"
-"POT-Creation-Date: 2015-10-06 12:49+0000\n"
-"PO-Revision-Date: 2015-06-18 17:46-0300\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2017-09-20 12:00-0300\n"
 "Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -13,124 +13,184 @@ msgstr ""
 "Language-Name: Spanish\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.embedder\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "Language: es\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../profiles/default/types/sc.embedder.xml
+#: sc/embedder/content/image_input.pt:40
+msgid "&mdash; ${size} KB"
+msgstr "&mdash; ${size} KB"
+
+#: sc/embedder/profiles/default/types/sc.embedder.xml
 msgid "A content embedder"
 msgstr "Un contenido integrado"
 
-#: ../content/embedder.py:354
+#: sc/embedder/profiles.zcml:14
+msgid "A content embeder for Plone."
+msgstr "Un embebedor de contenido para Plone."
+
+#: sc/embedder/content/embedder.py:359
 msgid "Add New Item operation cancelled."
 msgstr "Operación cancelada."
 
-#: ../content/embedder.py:140
-#: ../content/templates/view.pt:38
+#: sc/embedder/content/embedder.py:150 sc/embedder/content/templates/view.pt:53
 msgid "Alternate content"
 msgstr "Contenido alterno"
 
-#: ../content/embedder.py:135
+#: sc/embedder/content/embedder.py:145
 msgid "Body text"
 msgstr "Cuerpo del texto"
 
-#: ../content/embedder.py:100
+#: sc/embedder/content/embedder.py:131
+msgid "Bottom"
+msgstr "Abajo"
+
+#: sc/embedder/content/embedder.py:104
 msgid "Can be expressed as a decimal number or a percentage, e.g., 270 or 50%."
-msgstr ""
+msgstr "Puede ser expresado como un número decimal o un porcentaje; por ejemplo, 270 o 50%."
 
-#: ../content/embedder.py:107
+#: sc/embedder/content/embedder.py:112
 msgid "Can be expressed as a decimal number, e.g., 480."
-msgstr ""
+msgstr "Puede ser expresado como un número decimal; por ejemplo, 480."
 
-#: ../content/embedder.py:351
+#: sc/embedder/content/embedder.py:356
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../content/embedder.py:395
+#: sc/embedder/content/embedder.py:403
 msgid "Changes saved."
 msgstr "Cambios guardados."
 
-#: ../content/embedder.py:141
+#: sc/embedder/content/embedder.py:151
 msgid "Description or transcription for accessibility (WCAG) users."
 msgstr "Descripción o transcripción  accesible (WCAG)."
 
-#: ../content/embedder.py:402
+#: sc/embedder/content/embedder.py:410
 msgid "Edit cancelled."
 msgstr "Edición cancelada."
 
-#: ../content/embedder.py:114
+#: sc/embedder/content/embedder.py:119
 msgid "Embedded HTML code"
 msgstr "Código HTML de inserciõn"
 
-#: ../profiles/default/types/sc.embedder.xml
+#: sc/embedder/profiles/default/types/sc.embedder.xml
+#: sc/embedder/tiles/configure.zcml:19
 msgid "Embedder"
 msgstr "Embebedor"
 
-#: ../content/embedder.py:115
-msgid "HTML code to render the embedded media."
-msgstr ""
+#: sc/embedder/tiles/configure.zcml:19
+msgid "Embedder tile, can reproduce embeded files."
+msgstr "Tile de media embebida, puede reproducir archivos embebidos."
 
-#: ../content/embedder.py:106
+#: sc/embedder/content/embedder.py:120
+msgid "HTML code to render the embedded media."
+msgstr "Código HTML para renderizar el medio embebido."
+
+#: sc/embedder/content/embedder.py:111
 msgid "Height"
 msgstr "Altura"
 
-#: ../content/embedder.py:130
+#: sc/embedder/content/embedder.py:140
 msgid "Image to be used when listing content."
 msgstr "Imagen que será usada al listar contenido."
 
-#: ../content/embedder.py:283
+#: sc/embedder/content/embedder.py:276
 msgid "Invalid URL"
 msgstr "URL no válida"
 
-#: ../content/embedder.py:349
+#: sc/embedder/content/embedder.py:354
 msgid "Item created"
 msgstr "Elemento creado"
 
-#: ../content/embedder.py:358
+#: sc/embedder/content/embedder.py:132
+msgid "Left"
+msgstr "Izquierda"
+
+#: sc/embedder/content/embedder.py:363
 msgid "Load"
 msgstr "Cargar"
 
-#: ../content/embedder.py:91
+#: sc/embedder/content/embedder.py:95
 msgid "Multimedia URL"
 msgstr "URL del contenido"
 
-#: ../content/embedder.py:120
+#: sc/embedder/content/embedder.py:125
 msgid "Player position"
 msgstr "Posición del reproductor"
 
-#: ../content/embedder.py:129
+#: sc/embedder/content/embedder.py:139
 msgid "Preview image"
 msgstr "Imagen de previsualización"
 
-#: ../content/embedder.py:321
+#: sc/embedder/content/embedder.py:133
+msgid "Right"
+msgstr "Derecha"
+
+#: sc/embedder/content/embedder.py:326
 msgid "Save"
 msgstr "Guardar"
 
-#: ../content/embedder.py:92
+#: sc/embedder/content/embedder.py:96
 msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
 msgstr "La URL del contenido multimedia. Puede ser una URL de  YouTube, Vimeo, SlideShare, SoundCloud y algunos otros sitios multimedia relevantes."
 
-#: ../tiles/embedder.py:16
+#: sc/embedder/tiles/embedder.py:16
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
-#: ../content/embedder.py:223
+#: sc/embedder/content/embedder.py:130
+msgid "Top"
+msgstr "Arriba"
+
+#: sc/embedder/content/embedder.py:217
 msgid "URL not found"
 msgstr "URL no encontrada"
 
-#: ../content/embedder.py:220
+#: sc/embedder/content/embedder.py:214
 msgid "Unauthorized request"
 msgstr "Solicitud no autorizada"
 
-#: ../content/embedder.py:185
-msgid "Value should be an integer or a percentage."
-msgstr ""
+#: sc/embedder/profiles.zcml:23
+msgid "Uninstall sc.embedder"
+msgstr "Desinstalar sc.embedder"
 
-#: ../tiles/embedder.py:21
+#: sc/embedder/tiles/embedder.py:21
 msgid "Videos"
-msgstr ""
+msgstr "Videos"
 
-#: ../content/embedder.py:99
+#: sc/embedder/content/embedder.py:103
 msgid "Width"
 msgstr "Ancho"
 
+#. Default: "Keep existing image"
+#: sc/embedder/content/image_input.pt:80
+msgid "image_keep"
+msgstr "Mantener la imagen existente"
+
+#. Default: "Load image from service provider (if available)"
+#: sc/embedder/content/image_input.pt:53
+msgid "image_load"
+msgstr "Cargar la imagen de un proveedor de servicio (en caso que esté disponible)"
+
+#. Default: "Remove existing image"
+#: sc/embedder/content/image_input.pt:93
+msgid "image_remove"
+msgstr "Remover la imagen existente"
+
+#. Default: "Replace with new image"
+#: sc/embedder/content/image_input.pt:105
+msgid "image_replace"
+msgstr "Reemplazar la imagen con una nueva"
+
+#. Default: "Upload image"
+#: sc/embedder/content/image_input.pt:66
+msgid "image_upload"
+msgstr "Cargar una imagen"
+
+#: sc/embedder/profiles.zcml:14
+msgid "sc.embedder: Install"
+msgstr "sc.embedder: Install"
+
+#: sc/embedder/profiles.zcml:23
+msgid "sc.embedder: Uninstall"
+msgstr "sc.embedder: Uninstall"

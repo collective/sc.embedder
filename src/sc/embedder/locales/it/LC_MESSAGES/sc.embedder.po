@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-06 12:49+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <luca@keul.it>\n"
 "Language-Team: Abstract Open Solution <team@abstract.it>\n"
@@ -14,121 +14,183 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.embedder\n"
 
-#: ../profiles/default/types/sc.embedder.xml
+#: sc/embedder/content/image_input.pt:40
+msgid "&mdash; ${size} KB"
+msgstr ""
+
+#: sc/embedder/profiles/default/types/sc.embedder.xml
 msgid "A content embedder"
 msgstr "Un contenitore multimediale"
 
-#: ../content/embedder.py:354
+#: sc/embedder/profiles.zcml:14
+msgid "A content embeder for Plone."
+msgstr ""
+
+#: sc/embedder/content/embedder.py:359
 msgid "Add New Item operation cancelled."
 msgstr "Operazione di aggiunta di un nuovo elemento annullata"
 
-#: ../content/embedder.py:140
-#: ../content/templates/view.pt:38
+#: sc/embedder/content/embedder.py:150
+#: sc/embedder/content/templates/view.pt:53
 msgid "Alternate content"
 msgstr "Contenuto alternativo"
 
-#: ../content/embedder.py:135
+#: sc/embedder/content/embedder.py:145
 msgid "Body text"
 msgstr "Corpo del testo"
 
-#: ../content/embedder.py:100
+#: sc/embedder/content/embedder.py:131
+msgid "Bottom"
+msgstr ""
+
+#: sc/embedder/content/embedder.py:104
 msgid "Can be expressed as a decimal number or a percentage, e.g., 270 or 50%."
 msgstr "Può essere espresso come numero decimale o percentuale, es: 270 o 50%."
 
-#: ../content/embedder.py:107
+#: sc/embedder/content/embedder.py:112
 msgid "Can be expressed as a decimal number, e.g., 480."
 msgstr "Può essere espresso come numero decimale, es: 480."
 
-#: ../content/embedder.py:351
+#: sc/embedder/content/embedder.py:356
 msgid "Cancel"
 msgstr "Annulla"
 
-#: ../content/embedder.py:395
+#: sc/embedder/content/embedder.py:403
 msgid "Changes saved."
 msgstr "Modifiche memorizzate"
 
-#: ../content/embedder.py:141
+#: sc/embedder/content/embedder.py:151
 msgid "Description or transcription for accessibility (WCAG) users."
 msgstr "Descrizione della trascrizione del contenuto per accessibilità (WCAG)"
 
-#: ../content/embedder.py:402
+#: sc/embedder/content/embedder.py:410
 msgid "Edit cancelled."
 msgstr "Modifiche annullate"
 
-#: ../content/embedder.py:114
+#: sc/embedder/content/embedder.py:119
 msgid "Embedded HTML code"
 msgstr "Codice HTML incorporato"
 
-#: ../profiles/default/types/sc.embedder.xml
+#: sc/embedder/profiles/default/types/sc.embedder.xml
+#: sc/embedder/tiles/configure.zcml:19
 msgid "Embedder"
 msgstr ""
 
-#: ../content/embedder.py:115
+#: sc/embedder/tiles/configure.zcml:19
+msgid "Embedder tile, can reproduce embeded files."
+msgstr ""
+
+#: sc/embedder/content/embedder.py:120
 msgid "HTML code to render the embedded media."
 msgstr "Codice HTML per visualizzare la risorsa incorporata"
 
-#: ../content/embedder.py:106
+#: sc/embedder/content/embedder.py:111
 msgid "Height"
 msgstr "Altezza"
 
-#: ../content/embedder.py:130
+#: sc/embedder/content/embedder.py:140
 msgid "Image to be used when listing content."
 msgstr "L'immagine da usare nella visualizzazione in lista"
 
-#: ../content/embedder.py:283
+#: sc/embedder/content/embedder.py:276
 msgid "Invalid URL"
 msgstr "URL non valido"
 
-#: ../content/embedder.py:349
+#: sc/embedder/content/embedder.py:354
 msgid "Item created"
 msgstr "Contenuto creato"
 
-#: ../content/embedder.py:358
+#: sc/embedder/content/embedder.py:132
+msgid "Left"
+msgstr ""
+
+#: sc/embedder/content/embedder.py:363
 msgid "Load"
 msgstr "Carica"
 
-#: ../content/embedder.py:91
+#: sc/embedder/content/embedder.py:95
 msgid "Multimedia URL"
 msgstr "URL multimediale"
 
-#: ../content/embedder.py:120
+#: sc/embedder/content/embedder.py:125
 msgid "Player position"
 msgstr "Posizione del player"
 
-#: ../content/embedder.py:129
+#: sc/embedder/content/embedder.py:139
 msgid "Preview image"
 msgstr "Immagine anteprima"
 
-#: ../content/embedder.py:321
+#: sc/embedder/content/embedder.py:133
+msgid "Right"
+msgstr ""
+
+#: sc/embedder/content/embedder.py:326
 msgid "Save"
 msgstr "Salva"
 
-#: ../content/embedder.py:92
+#: sc/embedder/content/embedder.py:96
 msgid "The URL for your multimedia file. Can be a URL from YouTube, Vimeo, SlideShare, SoundCloud or other main multimedia websites."
 msgstr ""
 "L'URL del contenuto multimediale.\n"
 "Può essere un URL da YoutTube, Vimeo, Slideshare, SoundCloud o qualunque altro sito di contenuti multimediali."
 
-#: ../tiles/embedder.py:16
+#: sc/embedder/tiles/embedder.py:16
 msgid "Title"
 msgstr "Titolo"
 
-#: ../content/embedder.py:223
+#: sc/embedder/content/embedder.py:130
+msgid "Top"
+msgstr ""
+
+#: sc/embedder/content/embedder.py:217
 msgid "URL not found"
 msgstr "URL non trovato"
 
-#: ../content/embedder.py:220
+#: sc/embedder/content/embedder.py:214
 msgid "Unauthorized request"
 msgstr "Richiesta non autorizzata"
 
-#: ../content/embedder.py:185
-msgid "Value should be an integer or a percentage."
-msgstr "Il valore deve essere un intero o una percentuale."
+#: sc/embedder/profiles.zcml:23
+msgid "Uninstall sc.embedder"
+msgstr ""
 
-#: ../tiles/embedder.py:21
+#: sc/embedder/tiles/embedder.py:21
 msgid "Videos"
 msgstr "Video"
 
-#: ../content/embedder.py:99
+#: sc/embedder/content/embedder.py:103
 msgid "Width"
 msgstr "Larghezza"
+
+#. Default: "Keep existing image"
+#: sc/embedder/content/image_input.pt:80
+msgid "image_keep"
+msgstr ""
+
+#. Default: "Load image from service provider (if available)"
+#: sc/embedder/content/image_input.pt:53
+msgid "image_load"
+msgstr ""
+
+#. Default: "Remove existing image"
+#: sc/embedder/content/image_input.pt:93
+msgid "image_remove"
+msgstr ""
+
+#. Default: "Replace with new image"
+#: sc/embedder/content/image_input.pt:105
+msgid "image_replace"
+msgstr ""
+
+#. Default: "Upload image"
+#: sc/embedder/content/image_input.pt:66
+msgid "image_upload"
+msgstr ""
+
+#: sc/embedder/profiles.zcml:14
+msgid "sc.embedder: Install"
+msgstr ""
+
+#: sc/embedder/profiles.zcml:23
+msgid "sc.embedder: Uninstall"
+msgstr ""
