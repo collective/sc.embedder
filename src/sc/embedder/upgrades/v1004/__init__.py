@@ -21,4 +21,4 @@ def add_relateditems_behavior(setup_tool):
     fti = getUtility(IDexterityFTI, name='sc.embedder')
     if IRelatedItems.__identifier__ not in fti.behaviors:
         fti.behaviors += (IRelatedItems.__identifier__,)
-        logger.info('Related Items behavior added to sc.embedder content type')
+        logger.info('IRelatedItems behavior added to content type')

@@ -14,4 +14,4 @@ def remove_dexteritytextindexer_behavior(setup_tool):
     if BEHAVIOR in behaviors:
         behaviors.remove(BEHAVIOR)
         fti.behaviors = tuple(behaviors)
-        logger.info('Behavior removed from sc.embedder content type')
+        logger.info('IDexterityTextIndexer behavior removed from content type')
