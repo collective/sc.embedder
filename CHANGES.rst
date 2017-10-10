@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.5b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Remove hard dependency on collective.dexteritytextindexer.
+  [hvelarde]
+
 - Update ``SearchableText`` index for Embedder objects.
   [hvelarde]
 
