@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="1005"
+      destination="1006"
+      profile="sc.embedder:default">
+
+    <genericsetup:upgradeStep
+        title="Reindex SearchableText"
+        description="Fix the SearchableText index of embedders."
+        handler=".reindex_searchable_text"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

@@ -209,3 +209,35 @@ class UpgradeTo1005TestCase(UpgradeTestCaseBase):
         # run the upgrade step to validate the update
         self._do_upgrade_step(step)
         self.assertNotIn(BEHAVIOR, fti.behaviors)
+
+
+class UpgradeTo1006TestCase(UpgradeTestCaseBase):
+
+    def setUp(self):
+        UpgradeTestCaseBase.setUp(self, u'1005', u'1006')
+
+    def test_registrations(self):
+        version = self.setup.getLastVersionForProfile(PROFILE)[0]
+        self.assertGreaterEqual(int(version), int(self.to_version))
+        self.assertEqual(self._how_many_upgrades_to_do(), 1)
+
+    def test_reindex_news_articles(self):
+        # check if the upgrade step is registered
+        title = u'Reindex SearchableText'
+        step = self._get_upgrade_step(title)
+        self.assertIsNotNone(step)
+
+        with api.env.adopt_roles(['Manager']):
+            for i in xrange(0, 10):
+                api.content.create(self.portal, 'sc.embedder', str(i))
+
+        # update metadata without notifying
+        self.portal['0'].subject = ('foo', 'bar')
+        results = api.content.find(SearchableText='foo')
+        self.assertEqual(len(results), 0)
+
+        # run the upgrade step to validate the update
+        self._do_upgrade_step(step)
+        results = api.content.find(SearchableText='foo')
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0].getURL(), self.portal['0'].absolute_url())

@@ -4,4 +4,5 @@
   <include package=".v1003" />
   <include package=".v1004" />
   <include package=".v1005" />
+  <include package=".v1006" />
 </configure>
