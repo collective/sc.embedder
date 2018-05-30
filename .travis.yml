@@ -29,8 +29,14 @@ script:
   - bin/code-analysis
   - bin/test
 after_success:
-  - bin/createcoverage --output-dir=htmlcov -t "--layer=!Robot"
-  - pip install --upgrade coveralls
-  - coveralls
+- pip install coverage
+- coverage run bin/test --layer=\!Robot
+# Coveralls
+- pip install coveralls
+- coveralls
+# Codacy
+- coverage xml
+- pip install codacy-coverage
+- python-codacy-coverage -r coverage.xml
 notifications:
   irc: irc.freenode.org#simplesconsultoria
