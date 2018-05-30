@@ -58,7 +58,7 @@ class EmbedderTile(PersistentCoverTile):
             data_mgr.set({'title': title,
                           'url': url,
                           'uuid': uuid,
-                          'embed_code': embed
+                          'embed_code': embed,
                           })
 
     def get_uid(self, obj):

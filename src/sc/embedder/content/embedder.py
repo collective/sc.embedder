@@ -130,8 +130,8 @@ class IEmbedder(model.Schema):
             SimpleTerm(value=u'Top', title=_(u'Top')),
             SimpleTerm(value=u'Bottom', title=_(u'Bottom')),
             SimpleTerm(value=u'Left', title=_(u'Left')),
-            SimpleTerm(value=u'Right', title=_(u'Right'))
-        ])
+            SimpleTerm(value=u'Right', title=_(u'Right')),
+        ]),
     )
 
     form.widget(image=EmbedderImageFieldWidget)

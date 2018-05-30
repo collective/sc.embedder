@@ -173,8 +173,7 @@ class EmbedderTestCase(unittest.TestCase):
         self.assertEqual(add_form.widgets['height'].value, u'272')
         self.assertIn(
             u'player.vimeo.com/video/17914974',
-            add_form.widgets['embed_html'].value
-        )
+            add_form.widgets['embed_html'].value)
 
     def test_youtube_oembed(self):
         add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
@@ -195,8 +194,7 @@ class EmbedderTestCase(unittest.TestCase):
         self.assertEqual(add_form.widgets['height'].value, u'344')
         self.assertIn(
             u'www.youtube.com/embed/d8bEU80gIzQ',
-            add_form.widgets['embed_html'].value
-        )
+            add_form.widgets['embed_html'].value)
 
     def test_slideshare_oembed(self):
         add_view = self.folder.unrestrictedTraverse('++add++sc.embedder')
@@ -319,7 +317,7 @@ class EmbedderTestCase(unittest.TestCase):
             description=u'',
             embed_html=u'%3Ciframe%20src%3D%22http%3A//nohost/plone/test-folder/%40%40embedder_videojs%3Fsrc%3Dhttp%253A%252F%252Fvjs.zencdn.net%252Fv%252Foceans.webm%26amp%3Btype%3Dvideo%252Fwebm%22%20class%3D%22vjs-iframe%22%20allowfullscreen%3E%0A%3C/iframe%3E',
             thumb_html=u'%3Ciframe%20src%3D%22http%3A//nohost/plone/test-folder/%40%40embedder_videojs%3Fsrc%3Dhttp%253A%252F%252Fvjs.zencdn.net%252Fv%252Foceans.webm%26amp%3Btype%3Dvideo%252Fwebm%22%20class%3D%22vjs-iframe%22%20allowfullscreen%20width%3D%22188%22%20height%3D%22141%22%3E%0A%3C/iframe%3E',
-            title=u'Oceans clip'
+            title=u'Oceans clip',
         )
         self.assertEqual(rendered, expected)
 

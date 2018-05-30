@@ -16,7 +16,7 @@ class TinyMCEBrowserView(BrowserView):
         """Returns the folderlisting of sc.embedder objects in JSON"""
 
         utility = getUtility(ITinyMCE)
-        portal_types = ['sc.embedder', ]
+        portal_types = ['sc.embedder']
         portal_types.extend(utility.containsobjects.split('\n'))
 
         object = IJSONFolderListing(self.context, None)
@@ -30,7 +30,7 @@ class TinyMCEBrowserView(BrowserView):
         """Returns the search results of sc.embedder objects in JSON"""
 
         utility = getUtility(ITinyMCE)
-        portal_types = ['sc.embedder', ]
+        portal_types = ['sc.embedder']
         portal_types.extend(utility.containsobjects.split('\n'))
 
         object = IJSONSearch(self.context, None)
