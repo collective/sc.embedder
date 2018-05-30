@@ -3,6 +3,7 @@ python: 2.7
 sudo: false
 cache:
   directories:
+  - $HOME/.pylint.d
   - eggs
   - parts/node
 addons:
@@ -25,8 +26,9 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - firefox -v
 script:
-  - bin/code-analysis
-  - bin/test
+- bin/code-analysis
+- bin/test
+- bin/pylint --py3k --disable=no-absolute-import src/sc/embedder || true
 after_success:
 - pip install coverage
 - coverage run bin/test --layer=\!Robot
