@@ -6,7 +6,8 @@ There's a frood who really knows where his towel is.
 1.5b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Add ``cssselect`` as pakage dependency.
+  [idgserpro]
 
 
 1.5b2 (2017-10-10)

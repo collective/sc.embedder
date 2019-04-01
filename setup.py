@@ -47,6 +47,7 @@ setup(name='sc.embedder',
       zip_safe=False,
       install_requires=[
           'lxml',
+          'cssselect',
           'plone.api',
           'plone.app.content',
           'plone.app.dexterity',
