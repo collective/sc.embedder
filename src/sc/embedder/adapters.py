@@ -3,6 +3,7 @@ from lxml import cssselect
 from lxml import etree
 from lxml import html
 from Products.TinyMCE.adapters.interfaces.JSONDetails import IJSONDetails
+from Products.TinyMCE.adapters.JSONDetails import JSONDetails as JSONDetailsBase
 from urllib2 import quote
 from zope.interface import implementer
 
@@ -10,21 +11,17 @@ import json
 
 
 @implementer(IJSONDetails)
-class JSONDetails(object):
+class JSONDetails(JSONDetailsBase):
     """Return details of the current object in JSON"""
-
-    def __init__(self, context):
-        """Constructor"""
-        self.context = context
 
     def getDetails(self):
         """Builds a JSON object based on the details
            of this object.
         """
 
-        results = {}
-        results['title'] = self.context.title_or_id()
-        results['description'] = self.context.Description()
+        results = json.loads(super(JSONDetails, self).getDetails())
+
+        results['description'] = self.context.description
 
         tree = etree.HTML(self.context.embed_html)
         sel = cssselect.CSSSelector('body > *')
@@ -38,12 +35,4 @@ class JSONDetails(object):
         results['thumb_html'] = quote(html.tostring(el))
         results['embed_html'] = quote(self.context.embed_html)
 
-        results.update(self.additionalDetails())
-
         return json.dumps(results)
-
-    def additionalDetails(self):
-        """Hook to allow subclasses to supplement or
-           override the default set of results
-        """
-        return {}

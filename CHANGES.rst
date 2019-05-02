@@ -6,6 +6,9 @@ There's a frood who really knows where his towel is.
 1.5b3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Allows Embedder content to be linkcable in TinyMCE.
+  [idgserpro]
+
 - Add ``cssselect`` as pakage dependency.
   [idgserpro]
 

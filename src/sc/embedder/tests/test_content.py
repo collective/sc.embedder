@@ -311,13 +311,21 @@ class EmbedderTestCase(unittest.TestCase):
         video.width = '640'
         video.height = '264'
         video.embed_html = iframe
+        video.description = u'Video description'
+
+        uid = video.UID()
 
         rendered = json.loads(video.unrestrictedTraverse('@@tinymce-jsondetails')())
         expected = dict(
-            description=u'',
+            anchors=[],
+            description=u'Video description',
             embed_html=u'%3Ciframe%20src%3D%22http%3A//nohost/plone/test-folder/%40%40embedder_videojs%3Fsrc%3Dhttp%253A%252F%252Fvjs.zencdn.net%252Fv%252Foceans.webm%26amp%3Btype%3Dvideo%252Fwebm%22%20class%3D%22vjs-iframe%22%20allowfullscreen%3E%0A%3C/iframe%3E',
+            thumb=u'',
             thumb_html=u'%3Ciframe%20src%3D%22http%3A//nohost/plone/test-folder/%40%40embedder_videojs%3Fsrc%3Dhttp%253A%252F%252Fvjs.zencdn.net%252Fv%252Foceans.webm%26amp%3Btype%3Dvideo%252Fwebm%22%20class%3D%22vjs-iframe%22%20allowfullscreen%20width%3D%22188%22%20height%3D%22141%22%3E%0A%3C/iframe%3E',
             title=u'Oceans clip',
+            uid_relative_url=u'resolveuid/{0}'.format(uid),
+            uid_url=u'http://nohost/plone/resolveuid/{0}'.format(uid),
+            url=u'http://nohost/plone/test-folder/ocean-clip',
         )
         self.assertEqual(rendered, expected)
 
