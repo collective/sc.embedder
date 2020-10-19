@@ -50,6 +50,7 @@ class Fixture(PloneSandboxLayer):
 
         self.applyProfile(portal, 'sc.embedder:default')
 
+
 FIXTURE = Fixture()
 
 INTEGRATION_TESTING = IntegrationTesting(

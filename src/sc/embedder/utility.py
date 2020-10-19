@@ -55,8 +55,8 @@ class Consumer(object):
 
 REGEX_PROVIDERS = [
     # http://apiblog.youtube.com/2009/10/oembed-support.html
-    {u'regex': ['regex:.*youtube\.com/watch.*',
-                'regex:.*youtube\.com/playlist.*'],
+    {u'regex': [r'regex:.*youtube\.com/watch.*',
+                r'regex:.*youtube\.com/playlist.*'],
      u'endpoint': 'http://www.youtube.com/oembed'},
 
     {u'regex': ['http://*.flickr.com/*'],
@@ -163,7 +163,7 @@ class WordpressEndPoint(oembed.OEmbedEndpoint):
 
     def __init__(self):
         url = 'http://public-api.wordpress.com/oembed/1.0/'
-        urlSchemes = ['regex:.*.wordpress\.com/.*']
+        urlSchemes = [r'regex:.*.wordpress\.com/.*']
         super(WordpressEndPoint, self).__init__(url, urlSchemes=urlSchemes)
 
     def request(self, url, **opt):

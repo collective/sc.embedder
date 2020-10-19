@@ -93,9 +93,11 @@ class IEmbedder(model.Schema):
 
     url = schema.ASCIILine(
         title=_(u'Multimedia URL'),
-        description=_(u'The URL for your multimedia file. Can be a URL ' +
-                      u'from YouTube, Vimeo, SlideShare, SoundCloud or ' +
-                      u'other main multimedia websites.'),
+        description=_(
+            u'The URL for your multimedia file. Can be a URL '
+            + u'from YouTube, Vimeo, SlideShare, SoundCloud or '
+            + u'other main multimedia websites.',
+        ),
         required=False,
     )
 
@@ -197,7 +199,7 @@ class BaseForm(DexterityExtensibleForm):
             self.widgets['image'].value = ImageValueType(data=response.read(),
                                                          filename=url.split('/')[-1])
             self.request['form.widgets.image.action'] = u'load'
-        except:
+        except (IOError, URLError, HTTPError):
             pass
 
     def get_data(self, url, maxwidth=None, maxheight=None, format='json'):
@@ -235,7 +237,7 @@ class BaseForm(DexterityExtensibleForm):
                     response = opener.open(json_data.get('thumbnail_url'))
                     data['image'] = ImageValueType(data=response.read(),
                                                    filename=json_data.get('thumbnail_url').split('/')[-1])
-                except:
+                except (IOError, URLError, HTTPError):
                     pass
 
     def get_fallback(self, url):
