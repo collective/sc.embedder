@@ -29,7 +29,7 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
         layered(
-            robotsuite.RobotTestSuite(t, noncritical=['Expected Failure']),
+            robotsuite.RobotTestSuite(t),
             layer=ROBOT_TESTING)
         for t in tests
     ])

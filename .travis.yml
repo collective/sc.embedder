@@ -4,11 +4,12 @@ language: python
 python: 2.7
 cache:
   directories:
-  - $HOME/.pylint.d
-  - eggs
-  - parts/node
+    - $HOME/.pylint.d
+    - eggs
+    - parts/node
+    - geckodriver
 addons:
-  firefox: 45.8.0esr
+  firefox: "81.0"
 env:
   - PLONE_VERSION=4.3 TEST_EGGS=collective.cover[test]
   - PLONE_VERSION=5.1
@@ -21,6 +22,13 @@ install:
   - bin/buildout buildout:test-eggs=$TEST_EGGS annotate
   - bin/buildout buildout:test-eggs=$TEST_EGGS
 before_script:
+  - >
+    if [ ! -f geckodriver/geckodriver ]; then
+      GECKODRIVER_VERSION=0.27.0
+      wget https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIVER_VERSION/geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz
+      tar -xzf geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz -C geckodriver
+    fi;
+  - export PATH=$PATH:$PWD/geckodriver
   - firefox -v
 script:
 - bin/code-analysis

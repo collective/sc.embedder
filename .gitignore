@@ -27,3 +27,4 @@ selenium*
 share/
 var/
 /dist/
+/pyvenv.cfg
