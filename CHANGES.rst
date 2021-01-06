@@ -6,8 +6,8 @@ There's a frood who really knows where his towel is.
 1.5.1 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
-
+- Fix error 403 on YouTube's oEmbed endpoint (Ref. `#95`_).
+  [idgserpro]
 
 1.5.0 (2019-05-07)
 ^^^^^^^^^^^^^^^^^^
@@ -245,3 +245,4 @@ There's a frood who really knows where his towel is.
 .. _`#58`: https://github.com/simplesconsultoria/sc.embedder/issues/58
 .. _`#63`: https://github.com/simplesconsultoria/sc.embedder/issues/63
 .. _`#72`: https://github.com/simplesconsultoria/sc.embedder/issues/72
+.. _`#95`: https://github.com/simplesconsultoria/sc.embedder/issues/95

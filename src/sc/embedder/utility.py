@@ -57,7 +57,7 @@ REGEX_PROVIDERS = [
     # http://apiblog.youtube.com/2009/10/oembed-support.html
     {u'regex': [r'regex:.*youtube\.com/watch.*',
                 r'regex:.*youtube\.com/playlist.*'],
-     u'endpoint': 'http://www.youtube.com/oembed'},
+     u'endpoint': 'https://www.youtube.com/oembed'},
 
     {u'regex': ['http://*.flickr.com/*'],
      u'endpoint': 'http://www.flickr.com/services/oembed'},
