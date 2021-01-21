@@ -3,7 +3,7 @@ Changelog
 
 There's a frood who really knows where his towel is.
 
-1.5.1 (unreleased)
+1.5.1 (2021-01-21)
 ^^^^^^^^^^^^^^^^^^
 
 - Fix error 403 on YouTube's oEmbed endpoint (Ref. `#95`_).
